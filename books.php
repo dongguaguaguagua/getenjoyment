@@ -64,7 +64,7 @@ th{
         </div>
         <br>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-             <input class="mdl-textfield__input" type="text" name="notes" id="notes" >
+             <textarea class="mdl-textfield__input" type="text" name="notes" id="notes" ></textarea>
              <label class="mdl-textfield__label" for="notes">备注……</label>
         </div>
         <br>
