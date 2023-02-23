@@ -1,6 +1,6 @@
 <?php
 require_once 'function.php';
-$result=init("serial","serialName");
+$result=init("localhost","root","","resources","serial","serialName");
 ?>
 
 <!DOCTYPE html>

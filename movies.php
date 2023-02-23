@@ -1,6 +1,6 @@
 <?php
 require_once 'function.php';
-$result=init("movies","movieName");
+$result=init("localhost","root","","resources","movies","movieName");
 ?>
 
 <!DOCTYPE html>

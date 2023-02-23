@@ -1,6 +1,6 @@
 <?php
 require_once 'function.php';
-$result=init("books","bookName");
+$result=init("localhost","root","","resources","books","bookName");
 ?>
 
 <!DOCTYPE html>

@@ -1,7 +1,7 @@
 <?php
-function init($_media_, $_mediaName_){
+function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
     header("Content-Type: text/html;charset=utf-8");
-    $connect_mysql = mysqli_connect('localhost','root','','resources'); //创建数据库连接
+    $connect_mysql = mysqli_connect($_host_,$_user_,$_password_,$_dbname_); //创建数据库连接
     if(!$connect_mysql){ //如果失败
         die('连接mysql数据库失败'.mysqli_error()); //显示出错误信息
     }

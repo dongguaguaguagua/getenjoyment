@@ -1,6 +1,6 @@
 <?php
 require_once 'function.php';
-$result=init("variety_show","showName");
+$result=init("localhost","root","","resources","variety_show","showName");
 ?>
 
 <!DOCTYPE html>
