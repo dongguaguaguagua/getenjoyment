@@ -11,26 +11,30 @@ $result=init("localhost","root","","resources","books","bookName");
 </head>
 <style>
 
-table#searchShow{
-    width : 1424px;
-    /* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
-    table-layout : fixed;
-}
+/*table{
+    text-align:center;
+}*/
 
-/*溢出部分样式*/
-
-td.link{
+/*td.link{
     width:100px;
     word-break:keep-all;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+}*/
+td{
+    text-align:left;
 }
-
+th{
+    text-align:left;
+}
 </style>
+
+
 <body>
     <center>
-    <h1>欢迎来到scu资源共享站</h1>
+    <h2>欢迎来到scu资源共享站</h2>
+
     <a href="http://localhost:8080/resources">首页</a>
     <a href="http://localhost:8080/resources/movies.php">电影</a>
     <a href="http://localhost:8080/resources/serial.php">电视剧</a>
@@ -38,29 +42,62 @@ td.link{
     <a href="http://localhost:8080/resources/books.php">书籍</a>
 
     <form action="books.php?act=insert" method="post">
-        <br>上传者
-         <input type="txt" name="name" />
-        <br>书籍名称
-         <input type="txt" name="bookName" required="required"/>
-        <br>链接
-         <input type="txt" name="link" />
-        <br>提取码
-         <input type="txt" name="extractCode" />
-        <br>备注
-         <input type="txt" name="notes" />
-         <input type="submit" value="提交" />
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+             <input class="mdl-textfield__input" type="text" name="name" id="name">
+             <label class="mdl-textfield__label" for="name">你的名字……</label>
+        </div>
+        <br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+             <input class="mdl-textfield__input" type="text" name="bookName" required="required" id="bookName">
+             <label class="mdl-textfield__label" for="bookName">书籍名称(必填)</label>
+        </div>
+        <br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+             <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9]*" id="link">
+             <label class="mdl-textfield__label" for="link">资源链接(必须是永久链接)</label>
+             <span class="mdl-textfield__error">链接只能包含字母和数字</span>
+        </div>
+        <br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+             <input class="mdl-textfield__input" type="text" name="extractCode" id="extractCode">
+             <label class="mdl-textfield__label" for="extractCode">提取码（如果有的话）</label>
+        </div>
+        <br>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+             <input class="mdl-textfield__input" type="text" name="notes" id="notes" >
+             <label class="mdl-textfield__label" for="notes">备注……</label>
+        </div>
+        <br>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+            分享资源
+        </button>
      </form>
-     <div id="load">数据加载中……请稍等</div>
      <br>
-     <div class="wrap">
-              <input type='text' value="" id='searchKey' placeholder="搜索……" style="width: 20%"/>
-              <input type='button' value="查询" id='searchBtn' />
-              <table border=1px id='searchShow'></table>
-     </div>
+     <!-- <div class="mdl-spinner mdl-js-spinner is-active"></div> -->
+
+    <!-- 加载中 -->
+     <div id="load"><span class="mdl-chip"><span class="mdl-chip__text">加载中……</span></span></div>
      <br>
-     </center>
+    <!-- 搜索框 -->
+    <div class="wrap">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+         <input class="mdl-textfield__input" type="text" value="" name="notes" id="searchKey">
+         <label class="mdl-textfield__label" for="searchKey">搜索……</label>
+    </div>
+    <!-- 查询按钮 -->
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id='searchBtn'>查询</button>
+    <!-- 绘制表格 -->
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border=1px id='searchShow'></table>
+    </div>
+    <br>
+    </center>
 </body>
-<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- Google mdl风格 -->
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+<link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
+<script defer src="mdl/material.min.js"></script>
+
 <script>
 let l = [[],[],[],[],[]];
 <?php
@@ -109,18 +146,33 @@ Fuzzysearch.prototype={
         let colStr = '';
 
         if(list[1].length==0){
-          this.searchShow.innerHTML='未查询到关键字相关结果';
+          this.searchShow.innerHTML='<center><span class=\"mdl-chip\"><span class=\"mdl-chip__text\">很遗憾，未查询到关键字相关结果</span></span></center>';
           return;
         }
-        colStr+="<tr><th style=\"width:5.2%\">分享者</th><th style=\"width:30%\">书籍名称</th><th style=\"width:30%\">网盘链接</th><th style=\"width:5%\">提取码</th><th style=\"width:26.8%\">备注</th><th style=\"width:3%\">操作</th></tr>";
+        //表格头mdl
+        colStr+="<thead><tr><th style=\"width:5.2%\">分享者</th>\
+                <th class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">书籍名称</th>\
+                <th class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">网盘链接</th>\
+                <th style=\"width:5%\">提取码</th>\
+                <th class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">备注</th>\
+                <th style=\"width:3%\">操作</th>\
+                </tr></thead>";
+        //表身mdl
+        colStr+="<tbody>";
         for(var i=0,len=list[1].length;i<len;i++){
-             colStr+="<tr><td style=\"width:5.2%\">"+list[0][i]+"</td><td style=\"width:30%\">"+list[1][i]+"</td><td style=\"width:30%\" class=\"link\"><a href=\""+list[2][i]+"\">"+list[2][i]+"</a></td><td style=\"width:5%\">"+list[3][i]+"</td><td style=\"width:26.8%\">"+list[4][i]+"</td><td style=\"width:3%\"><input type=\"button\" value=\"删除\" onclick=\"window.location.href='http://localhost:8080/resources/books.php?act=delete&delateObject="+list[1][i]+"'\"></td></tr>";
+             colStr+="<tr>\
+             <td style=\"width:5.2%\">"+list[0][i]+"</td>\
+             <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">"+list[1][i]+"</td>\
+             <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\" class=\"link\"><a href=\""+list[2][i]+"\">"+list[2][i]+"</a></td>\
+             <td style=\"width:5%\">"+list[3][i]+"</td><td class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">"+list[4][i]+"</td>\
+             <td style=\"width:3%\"><button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\" onclick=\"window.location.href='http://localhost:8080/resources/books.php?act=delete&delateObject="+list[1][i]+"'\">删除</button></td>\
+             </tr>";
         }
-
+        colStr+="</tbody>";
         this.searchShow.innerHTML = colStr;
     }
 }
-document.getElementById('load').innerHTML="<p>加载成功</p>";
+document.getElementById('load').innerHTML="<span class=\"mdl-chip\"><span class=\"mdl-chip__text\">加载成功！</span></span>";
 new Fuzzysearch(l);
 </script>
 </html>

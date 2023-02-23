@@ -19,14 +19,20 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
         $select_deleted_sql = "select * from $_media_ where $_mediaName_ ='".$_GET['delateObject']."' LIMIT 1";
         $deleted_sql = mysqli_query($connect_mysql,$select_deleted_sql);
         $row = mysqli_fetch_array($deleted_sql);
-        $insert_deleted_sql = "insert into deleted (name,mediaName,link,extractCode,notes) values ('".$row['name']."','".$row[$_mediaName_]."','".$row['link']."','".$row['extractCode']."','".$row['notes']."')";
-        $sql = "delete from $_media_ where $_mediaName_ = '".$_GET['delateObject']."' LIMIT 1";
-        if(mysqli_query($connect_mysql,$sql)&&mysqli_query($connect_mysql,$insert_deleted_sql)){
-            echo "<script>alert('删除数据成功！将刷新页面')</script>";
+        if(!empty($row[$_mediaName_]))
+        {
+            $insert_deleted_sql = "insert into deleted (name,mediaName,link,extractCode,notes) values ('".$row['name']."','".$row[$_mediaName_]."','".$row['link']."','".$row['extractCode']."','".$row['notes']."')";
+            $sql = "delete from $_media_ where $_mediaName_ = '".$_GET['delateObject']."' LIMIT 1";
+            if(mysqli_query($connect_mysql,$sql)&&mysqli_query($connect_mysql,$insert_deleted_sql)){
+                echo "<script>alert('删除数据成功！将刷新页面')</script>";
+            }
+            else{
+                echo "<script>alert('删除数据失败，请联系我')</script>";
+            }
+        }else{
+            echo "<script>alert('删除数据失败，为找到相关数据')</script>";
         }
-        else{
-            echo "<script>alert('删除数据失败，请联系我')</script>";
-        }
+
         $select_sql = "select * from $_media_ order by rand() limit 10";
         $result = mysqli_query($connect_mysql,$select_sql);
     }
