@@ -7,13 +7,15 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
     }
     mysqli_select_db($connect_mysql,'root');
     if(@$_GET['act'] == 'insert'){
-        $sql = "insert into $_media_ (name,$_mediaName_,link,extractCode,notes) values ('".$_POST['name']."','".$_POST['$_mediaName_']."','".$_POST['link']."','".$_POST['extractCode']."','".$_POST['notes']."')";
+        $sql = "insert into $_media_ (name,$_mediaName_,link,extractCode,notes) values ('".$_POST['name']."','".$_POST[$_mediaName_]."','".$_POST['link']."','".$_POST['extractCode']."','".$_POST['notes']."')";
+        echo $sql;
         if(mysqli_query($connect_mysql,$sql)){
-            echo "<script>alert('感谢您的无私分享！将刷新页面')</script>')</script>";
+            echo "<script>alert('感谢您的无私分享！将刷新页面');</script>";
         }
         else{
-            echo "<script>alert('插入数据失败，请联系我')</script>";
+            echo "<script>alert('插入数据失败，请联系我');</script>";
         }
+        $result = showDefaultResult($connect_mysql,$_media_);
     }
     elseif(@$_GET['act'] == 'delete'){
         $select_deleted_sql = "select * from $_media_ where $_mediaName_ ='".$_GET['delateObject']."' LIMIT 1";
@@ -24,38 +26,36 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
             $insert_deleted_sql = "insert into deleted (name,mediaName,link,extractCode,notes) values ('".$row['name']."','".$row[$_mediaName_]."','".$row['link']."','".$row['extractCode']."','".$row['notes']."')";
             $sql = "delete from $_media_ where $_mediaName_ = '".$_GET['delateObject']."' LIMIT 1";
             if(mysqli_query($connect_mysql,$sql)&&mysqli_query($connect_mysql,$insert_deleted_sql)){
-                echo "<script>alert('删除数据成功！将刷新页面')</script>";
+                echo "<script>alert('删除数据成功！将刷新页面');</script>";
             }
             else{
-                echo "<script>alert('删除数据失败，请联系我')</script>";
+                echo "<script>alert('删除数据失败，请联系我');</script>";
             }
         }else{
-            echo "<script>alert('删除数据失败，为找到相关数据')</script>";
+            echo "<script>alert('删除数据失败，为找到相关数据');</script>";
         }
-        $count_data = "select count(*) from $_media_";
-        $count_data_result = mysqli_query($connect_mysql,$count_data);
-        $row = mysqli_fetch_row($count_data_result);
-        $AllMediaCount = (int)$row[0];
-        $startMediaCount = $AllMediaCount - 10;
-        $select_sql = "select * from $_media_ limit $startMediaCount,$AllMediaCount";
-        $result = mysqli_query($connect_mysql,$select_sql);
+        $result = showDefaultResult($connect_mysql,$_media_);
     }
     elseif(@$_GET['act'] == 'search'){
         $select_sql = "select * from $_media_ where $_mediaName_ like '%".$_GET['keyWord']."%'";
         $result = mysqli_query($connect_mysql,$select_sql);
     }
     else{
-        $count_data = "select count(*) from $_media_";
-        $count_data_result = mysqli_query($connect_mysql,$count_data);
-        $row = mysqli_fetch_row($count_data_result);
-        $AllMediaCount = (int)$row[0];
-        $startMediaCount = $AllMediaCount - 10;
-        if($startMediaCount < 0){
-            $startMediaCount = 0;
-        }
-        $select_sql = "select * from $_media_ limit $startMediaCount,$AllMediaCount";
-        $result = mysqli_query($connect_mysql,$select_sql);
+        $result = showDefaultResult($connect_mysql,$_media_);
     }
+    return $result;
+}
+function showDefaultResult($connect_mysql,$_media_){
+    $count_data = "select count(*) from $_media_";
+    $count_data_result = mysqli_query($connect_mysql,$count_data);
+    $row = mysqli_fetch_row($count_data_result);
+    $AllMediaCount = (int)$row[0];
+    $startMediaCount = $AllMediaCount - 10;
+    if($startMediaCount < 0){
+        $startMediaCount = 0;
+    }
+    $select_sql = "select * from $_media_ limit $startMediaCount,$AllMediaCount";
+    $result = mysqli_query($connect_mysql,$select_sql);
     return $result;
 }
 ?>

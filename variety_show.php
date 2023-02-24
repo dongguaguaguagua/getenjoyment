@@ -51,34 +51,29 @@ $result=init("localhost","root","","resources","variety_show","showName");
                     <!-- 表格内容 -->
                     <form action="books.php?act=insert" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <i style="color: #f2ac61;" class="fa fa-user-circle fa-2x"></i>
                             <input class="mdl-textfield__input" type="text" name="name" id="name">
                             <label class="mdl-textfield__label" for="name">你的名字……</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <i style="color: #f2ac61;" class="fa fa-film fa-2x"></i>
                             <input class="mdl-textfield__input" type="text" name="bookName" required="required"
                                 id="bookName">
                             <label class="mdl-textfield__label" for="bookName">综艺名称(必填)</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <i style="color: #f2ac61;" class="fa fa-link fa-2x"></i>
-                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9]*"
+                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/:.]*"
                                 id="link">
                             <label class="mdl-textfield__label" for="link">资源链接(必须是永久链接)</label>
                             <span class="mdl-textfield__error">链接只能包含字母和数字</span>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <i style="color: #f2ac61;" class="fa fa-code fa-2x"></i>
                             <input class="mdl-textfield__input" type="text" name="extractCode" id="extractCode">
                             <label class="mdl-textfield__label" for="extractCode">提取码（如果有的话）</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <i style="color: #f2ac61;" class="fa fa-file-text-o fa-2x"></i>
                             <textarea class="mdl-textfield__input" type="text" name="notes" id="notes"></textarea>
                             <label class="mdl-textfield__label" for="notes">备注……</label>
                         </div>
@@ -110,7 +105,7 @@ $result=init("localhost","root","","resources","variety_show","showName");
                         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border=1px id='searchShow'>
                         </table>
                     </div>
-                    <br>
+                    <br><br><br><br><br>
                 </center>
             </div>
         </main>
@@ -124,7 +119,7 @@ $result=init("localhost","root","","resources","variety_show","showName");
 
 <script>
     let l = [[], [], [], [], []];
-<? php
+<?php
     $i = 0;
     while ($row = mysqli_fetch_array($result)) {
         echo "l[0][".$i."]=\"".$row['name']."\";";

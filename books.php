@@ -61,35 +61,30 @@ $result=init("localhost","root","","resources","books","bookName");
                     <!-- 表格内容 -->
                     <form action="books.php?act=insert" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <i style="color: #f2ac61;" class="fa fa-user-circle fa-2x"></i>
                             <input class="mdl-textfield__input" type="text" name="name" id="name">
                             <label class="mdl-textfield__label" for="name">你的名字……</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <i style="color: #f2ac61;" class="fa fa-film fa-2x"></i>
                             <input class="mdl-textfield__input" type="text" name="bookName" required="required"
                                 id="bookName">
                             <label class="mdl-textfield__label" for="bookName">书籍名称(必填)</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <i style="color: #f2ac61;" class="fa fa-link fa-2x"></i>
-                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9]*"
+                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/:.]*"
                                 id="link">
                             <label class="mdl-textfield__label" for="link">资源链接(必须是永久链接)</label>
                             <span class="mdl-textfield__error">链接只能包含字母和数字</span>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <i style="color: #f2ac61;" class="fa fa-code fa-2x"></i>
                             <input class="mdl-textfield__input" type="text" name="extractCode" id="extractCode">
                             <label class="mdl-textfield__label" for="extractCode">提取码（如果有的话）</label>
                         </div>
                         <br>
 
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <i style="color: #f2ac61;" class="fa fa-file-text-o fa-2x"></i>
                             <textarea class="mdl-textfield__input" type="text" name="notes" id="notes"></textarea>
                             <label class="mdl-textfield__label" for="notes">备注……</label>
                         </div>
@@ -121,7 +116,7 @@ $result=init("localhost","root","","resources","books","bookName");
                         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border=1px id='searchShow'>
                         </table>
                     </div>
-                    <br>
+                    <br><br><br><br><br>
                 </center>
             </div>
         </main>
@@ -132,8 +127,8 @@ $result=init("localhost","root","","resources","books","bookName");
 <script defer src="mdl/material.min.js"></script>
 
 <script>
-    let l = [[], [], [], [], []];
-<? php
+let l = [[], [], [], [], []];
+<?php
     $i = 0;
     while ($row = mysqli_fetch_array($result)) {
         echo "l[0][".$i."]=\"".$row['name']."\";";
@@ -196,8 +191,15 @@ $result=init("localhost","root","","resources","books","bookName");
             <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">"+ list[1][i] + "</td>\
             <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\" class=\"link\"><a href=\""+ list[2][i] + "\">" + list[2][i] + "</a></td>\
             <td style=\"width:5%\">"+ list[3][i] + "</td><td class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">" + list[4][i] + "</td>\
-            <td style=\"width:3%\"><button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\" onclick=\"window.location.href='/resources/books.php?act=delete&delateObject="+ list[1][i] + "'\">删除</button></td>\
-            </tr>";
+            <td style=\"width:3%\">\
+            <button id=\"menu-lower-right"+i.toString()+"\" class=\"mdl-button mdl-js-button mdl-button--icon\">\
+              <i class=\"material-icons\">more_vert</i>\
+            </button>\
+            <ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"\
+                for=\"menu-lower-right"+i.toString()+"\">\
+              <li class=\"mdl-menu__item\" onclick=\"window.location.href='/resources/books.php?act=delete&delateObject="+ list[1][i] + "'\">删除</li>\
+            </ul>\
+            </td></tr>";
             }
             colStr += "</tbody>";
             this.searchShow.innerHTML = colStr;
