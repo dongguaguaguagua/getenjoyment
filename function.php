@@ -5,15 +5,26 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
     if(!$connect_mysql){ //如果失败
         die('连接mysql数据库失败'.mysqli_error()); //显示出错误信息
     }
-    mysqli_select_db($connect_mysql,'root');
+    mysqli_select_db($connect_mysql,$_user_);
     if(@$_GET['act'] == 'insert'){
-        $sql = "insert into $_media_ (name,$_mediaName_,link,extractCode,notes) values ('".$_POST['name']."','".$_POST[$_mediaName_]."','".$_POST['link']."','".$_POST['extractCode']."','".$_POST['notes']."')";
-        echo $sql;
-        if(mysqli_query($connect_mysql,$sql)){
+        $insert_sql = "insert into $_media_ (name,$_mediaName_,link,extractCode,notes) values ('".$_POST['name']."','".$_POST[$_mediaName_]."','".$_POST['link']."','".$_POST['extractCode']."','".$_POST['notes']."')";
+        // echo $insert_sql;
+        if(mysqli_query($connect_mysql,$insert_sql)){
             echo "<script>alert('感谢您的无私分享！将刷新页面');</script>";
         }
         else{
             echo "<script>alert('插入数据失败，请联系我');</script>";
+        }
+        $result = showDefaultResult($connect_mysql,$_media_);
+    }
+    elseif(@$_GET['act'] == 'edit'){
+        $update_sql = "update $_media_ set name=\"".$_POST['name']."\",$_mediaName_=\"".$_POST[$_mediaName_]."\",link=\"".$_POST['link']."\",extractCode=\"".$_POST['extractCode']."\",notes=\"".$_POST['notes']."\" where $_mediaName_=\"".$_GET['name']."\";";
+        echo $update_sql;
+        if(mysqli_query($connect_mysql,$update_sql)){
+            echo "<script>alert('感谢您的修改！将刷新页面');</script>";
+        }
+        else{
+            echo "<script>alert('修改数据失败，请联系我');</script>";
         }
         $result = showDefaultResult($connect_mysql,$_media_);
     }

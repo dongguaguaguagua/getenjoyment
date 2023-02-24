@@ -11,7 +11,7 @@ $result=init("localhost","root","","resources","serial","serialName");
     <title>scu资源共享站-电视剧</title>
 </head>
 <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-
+<link rel="stylesheet" href="css/hidden.css" />
 <body>
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -48,24 +48,66 @@ $result=init("localhost","root","","resources","serial","serialName");
             <div class="page-content">
                 <center>
                     <h3 style="color:rgb(65, 147, 136)">电视剧</h3>
+                    <!-- 绘制编辑对话框 -->
+                    <div class="editForm">
+                    <h3 style="color:rgb(65, 147, 136);">编辑资源</h3>
+                    <form action="" method="post" name="editResources">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" name="name" id="name">
+                            <label class="mdl-textfield__label" for="name">修改名字</label>
+                        </div>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" name="serialName" required="required"
+                                id="serialName">
+                            <label class="mdl-textfield__label" for="serialName">修改电视剧名称(必填)</label>
+                        </div>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/:.?%&=-]*"
+                                id="link">
+                            <label class="mdl-textfield__label" for="link">修改资源链接(必须是永久链接)</label>
+                            <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
+                        </div>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" name="extractCode" id="extractCode">
+                            <label class="mdl-textfield__label" for="extractCode">修改提取码（如果有的话）</label>
+                        </div>
+                        <br>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" type="text" name="notes" id="notes"></textarea>
+                            <label class="mdl-textfield__label" for="notes">修改备注</label>
+                        </div>
+                        <br>
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                            type="submit">
+                            提交
+                        </button>
+                        <br><br><br><br>
+                        <div class="close" style="color:rgb(65, 147, 136);">关闭</div>
+                    </form>
+                    </div>
                     <!-- 表格内容 -->
-                    <form action="books.php?act=insert" method="post">
+                    <form action="serial.php?act=insert" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="name" id="name">
                             <label class="mdl-textfield__label" for="name">你的名字……</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="bookName" required="required"
-                                id="bookName">
-                            <label class="mdl-textfield__label" for="bookName">电视剧名称(必填)</label>
+                            <input class="mdl-textfield__input" type="text" name="serialName" required="required"
+                                id="serialName">
+                            <label class="mdl-textfield__label" for="serialName">电视剧名称(必填)</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/:.]*"
+                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/:.?%&=-]*"
                                 id="link">
                             <label class="mdl-textfield__label" for="link">资源链接(必须是永久链接)</label>
-                            <span class="mdl-textfield__error">链接只能包含字母和数字</span>
+                            <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -115,7 +157,18 @@ $result=init("localhost","root","","resources","serial","serialName");
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
 <script defer src="mdl/material.min.js"></script>
-
+<script>
+    //编辑资源
+    var editItem = function(name) {
+        var close=document.getElementsByClassName("close");
+        var editForm=document.getElementsByClassName("editForm");
+        editForm[0].className="editForm open";
+        close[0].addEventListener('click',function(){
+            editForm[0].className="editForm";
+        })
+        document.editResources.action="serial.php?act=edit&name="+name;
+    }
+</script>
 <script>
     let l = [[], [], [], [], []];
 <?php
@@ -167,7 +220,7 @@ $result=init("localhost","root","","resources","serial","serialName");
             }
             //表格头mdl
             colStr += "<thead><tr><th style=\"width:5.2%\">分享者</th>\
-                <th class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">电视剧名称</th>\
+                <th class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">电影名称</th>\
                 <th class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">网盘链接</th>\
                 <th style=\"width:5%\">提取码</th>\
                 <th class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">备注</th>\
@@ -181,8 +234,16 @@ $result=init("localhost","root","","resources","serial","serialName");
             <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">"+ list[1][i] + "</td>\
             <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\" class=\"link\"><a href=\""+ list[2][i] + "\">" + list[2][i] + "</a></td>\
             <td style=\"width:5%\">"+ list[3][i] + "</td><td class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">" + list[4][i] + "</td>\
-            <td style=\"width:3%\"><button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\" onclick=\"window.location.href='/resources/serial.php?act=delete&delateObject="+ list[1][i] + "'\">删除</button></td>\
-            </tr>";
+            <td style=\"width:3%\">\
+            <button id=\"menu-lower-right"+i.toString()+"\" class=\"mdl-button mdl-js-button mdl-button--icon\">\
+              <i class=\"material-icons\">more_vert</i>\
+            </button>\
+            <ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"\
+                for=\"menu-lower-right"+i.toString()+"\">\
+                <li class=\"mdl-menu__item\" onclick=\"window.location.href='/resources/serial.php?act=delete&delateObject="+ list[1][i] + "'\">删除</li>\
+                <li class=\"mdl-menu__item\" onclick=editItem(\""+list[1][i]+"\");>编辑</li>\
+            </ul>\
+            </td></tr>";
             }
             colStr += "</tbody>";
             this.searchShow.innerHTML = colStr;

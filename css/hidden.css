@@ -1,0 +1,36 @@
+.editForm{
+    width:400px;
+    height:600px;
+    border:2px solid rgb(65, 147, 136);
+    visibility: hidden;
+    position: absolute;
+    z-index: 999;
+    opacity: 1;
+    overflow: hidden;
+    background-color: white;
+    text-align: center;
+    margin-top: 10%;
+    margin-left: 35%;
+    border-radius: 10px;
+}
+.open{
+    visibility: visible;
+    opacity: 1;
+}
+
+.editInput .close{
+    color:#5d5d5d;
+    text-align: center;
+    line-height: 20px;
+    border:1px solid  #5d5d5d;
+    border-radius: 50%;
+    float: right;
+    padding-top: 0px;
+    margin-right: 10px;
+    font-size: 12px;
+}
+.editInput .close:hover{
+    cursor:pointer;
+}
+
+

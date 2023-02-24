@@ -1,9 +1,3 @@
-<!--
-roadmap:
-加入图标 ok
-增加查询框大小 ok
-操作可以有修改选项
--->
 <?php
 require_once 'function.php';
 $result=init("localhost","root","","resources","books","bookName");
@@ -21,6 +15,7 @@ $result=init("localhost","root","","resources","books","bookName");
 <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
+<link rel="stylesheet" href="css/hidden.css" />
 
 <body>
     <!-- Always shows a header, even in smaller screens. -->
@@ -58,6 +53,48 @@ $result=init("localhost","root","","resources","books","bookName");
             <div class="page-content">
                 <center>
                     <h3 style="color:rgb(65, 147, 136)">书籍</h3>
+                    <!-- 绘制编辑对话框 -->
+                    <div class="editForm">
+                    <h3 style="color:rgb(65, 147, 136);">编辑资源</h3>
+                    <form action="" method="post" name="editResources">
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" name="name" id="name">
+                            <label class="mdl-textfield__label" for="name">修改名字</label>
+                        </div>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" name="bookName" required="required"
+                                id="bookName">
+                            <label class="mdl-textfield__label" for="bookName">修改书籍名称(必填)</label>
+                        </div>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/:.?%&=-]*"
+                                id="link">
+                            <label class="mdl-textfield__label" for="link">修改资源链接(必须是永久链接)</label>
+                            <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
+                        </div>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <input class="mdl-textfield__input" type="text" name="extractCode" id="extractCode">
+                            <label class="mdl-textfield__label" for="extractCode">修改提取码（如果有的话）</label>
+                        </div>
+                        <br>
+
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <textarea class="mdl-textfield__input" type="text" name="notes" id="notes"></textarea>
+                            <label class="mdl-textfield__label" for="notes">修改备注</label>
+                        </div>
+                        <br>
+                        <button
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                            type="submit">
+                            提交
+                        </button>
+                        <br><br><br><br>
+                        <div class="close" style="color:rgb(65, 147, 136);">关闭</div>
+                    </form>
+                    </div>
                     <!-- 表格内容 -->
                     <form action="books.php?act=insert" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -72,10 +109,10 @@ $result=init("localhost","root","","resources","books","bookName");
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/:.]*"
+                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/:.?%&=-]*"
                                 id="link">
                             <label class="mdl-textfield__label" for="link">资源链接(必须是永久链接)</label>
-                            <span class="mdl-textfield__error">链接只能包含字母和数字</span>
+                            <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -125,7 +162,18 @@ $result=init("localhost","root","","resources","books","bookName");
 
 <!-- Google mdl风格 -->
 <script defer src="mdl/material.min.js"></script>
-
+<script>
+    //编辑资源
+    var editItem = function(name) {
+        var close=document.getElementsByClassName("close");
+        var editForm=document.getElementsByClassName("editForm");
+        editForm[0].className="editForm open";
+        close[0].addEventListener('click',function(){
+            editForm[0].className="editForm";
+        })
+        document.editResources.action="books.php?act=edit&name="+name;
+    }
+</script>
 <script>
 let l = [[], [], [], [], []];
 <?php
@@ -184,6 +232,7 @@ let l = [[], [], [], [], []];
                 <th style=\"width:3%\">操作</th>\
                 </tr></thead>";
             //表身mdl
+            console.log(typeof(list[1][0]));
             colStr += "<tbody>";
             for (var i = 0, len = list[1].length; i < len; i++) {
                 colStr += "<tr>\
@@ -197,7 +246,8 @@ let l = [[], [], [], [], []];
             </button>\
             <ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"\
                 for=\"menu-lower-right"+i.toString()+"\">\
-              <li class=\"mdl-menu__item\" onclick=\"window.location.href='/resources/books.php?act=delete&delateObject="+ list[1][i] + "'\">删除</li>\
+                <li class=\"mdl-menu__item\" onclick=\"window.location.href='/resources/books.php?act=delete&delateObject="+ list[1][i] + "'\">删除</li>\
+                <li class=\"mdl-menu__item\" onclick=editItem(\""+list[1][i]+"\");>编辑</li>\
             </ul>\
             </td></tr>";
             }
