@@ -9,6 +9,7 @@ $result=init("localhost","root","","resources","variety_show","showName");
     <meta charset="UTF-8">
     <title>scu资源共享站-综艺</title>
 </head>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
 <style>
 
 /*table#searchShow{
@@ -38,21 +39,21 @@ td.link{
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
           <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <a class="mdl-navigation__link" href="http://localhost:8080/resources/movies.php">电影</a>
-            <a class="mdl-navigation__link" href="http://localhost:8080/resources/serial.php">电视剧</a>
-            <a class="mdl-navigation__link" href="http://localhost:8080/resources/variety_show.php">综艺</a>
-            <a class="mdl-navigation__link" href="http://localhost:8080/resources/books.php">书籍</a>
+            <a class="mdl-navigation__link" href="/resources/movies.php">电影</a>
+            <a class="mdl-navigation__link" href="/resources/serial.php">电视剧</a>
+            <a class="mdl-navigation__link" href="/resources/variety_show.php">综艺</a>
+            <a class="mdl-navigation__link" href="/resources/books.php">书籍</a>
           </nav>
         </div>
       </header>
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">scu资源共享站</span>
         <nav class="mdl-navigation">
-          <a class="fa fa-user-circle fa-lg mdl-navigation__link" href="http://localhost:8080/resources">&nbsp;&nbsp;&nbsp;首页</a>
-          <a class="fa fa-film fa-lg mdl-navigation__link" href="http://localhost:8080/resources/movies.php">&nbsp;&nbsp;&nbsp;电影</a>
-          <a class="fa fa-video-camera fa-lg mdl-navigation__link" href="http://localhost:8080/resources/serial.php">&nbsp;&nbsp;&nbsp;电视剧</a>
-          <a class="fa fa-hand-peace-o fa-lg mdl-navigation__link" href="http://localhost:8080/resources/variety_show.php">&nbsp;&nbsp;&nbsp;综艺</a>
-          <a class="fa fa-book fa-lg mdl-navigation__link" href="http://localhost:8080/resources/books.php">&nbsp;&nbsp;&nbsp;书籍</a>
+          <a class="fa fa-user-circle fa-lg mdl-navigation__link" href="/resources">&nbsp;&nbsp;&nbsp;首页</a>
+          <a class="fa fa-film fa-lg mdl-navigation__link" href="/resources/movies.php">&nbsp;&nbsp;&nbsp;电影</a>
+          <a class="fa fa-video-camera fa-lg mdl-navigation__link" href="/resources/serial.php">&nbsp;&nbsp;&nbsp;电视剧</a>
+          <a class="fa fa-hand-peace-o fa-lg mdl-navigation__link" href="/resources/variety_show.php">&nbsp;&nbsp;&nbsp;综艺</a>
+          <a class="fa fa-book fa-lg mdl-navigation__link" href="/resources/books.php">&nbsp;&nbsp;&nbsp;书籍</a>
           <a class="fa fa-github fa-lg mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">&nbsp;&nbsp;&nbsp;Github</a>
         </nav>
       </div>
@@ -189,7 +190,7 @@ Fuzzysearch.prototype={
              <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">"+list[1][i]+"</td>\
              <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\" class=\"link\"><a href=\""+list[2][i]+"\">"+list[2][i]+"</a></td>\
              <td style=\"width:5%\">"+list[3][i]+"</td><td class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">"+list[4][i]+"</td>\
-             <td style=\"width:3%\"><button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\" onclick=\"window.location.href='http://localhost:8080/resources/variety_show.php?act=delete&delateObject="+list[1][i]+"'\">删除</button></td>\
+             <td style=\"width:3%\"><button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\" onclick=\"window.location.href='/resources/variety_show.php?act=delete&delateObject="+list[1][i]+"'\">删除</button></td>\
              </tr>";
         }
         colStr+="</tbody>";

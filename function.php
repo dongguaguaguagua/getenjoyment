@@ -32,8 +32,12 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
         }else{
             echo "<script>alert('删除数据失败，为找到相关数据')</script>";
         }
-
-        $select_sql = "select * from $_media_ order by rand() limit 10";
+        $count_data = "select count(*) from $_media_";
+        $count_data_result = mysqli_query($connect_mysql,$count_data);
+        $row = mysqli_fetch_row($count_data_result);
+        $AllMediaCount = (int)$row[0];
+        $startMediaCount = $AllMediaCount - 10;
+        $select_sql = "select * from $_media_ limit $startMediaCount,$AllMediaCount";
         $result = mysqli_query($connect_mysql,$select_sql);
     }
     elseif(@$_GET['act'] == 'search'){
@@ -41,7 +45,15 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
         $result = mysqli_query($connect_mysql,$select_sql);
     }
     else{
-        $select_sql = "select * from $_media_ order by rand() limit 10";
+        $count_data = "select count(*) from $_media_";
+        $count_data_result = mysqli_query($connect_mysql,$count_data);
+        $row = mysqli_fetch_row($count_data_result);
+        $AllMediaCount = (int)$row[0];
+        $startMediaCount = $AllMediaCount - 10;
+        if($startMediaCount < 0){
+            $startMediaCount = 0;
+        }
+        $select_sql = "select * from $_media_ limit $startMediaCount,$AllMediaCount";
         $result = mysqli_query($connect_mysql,$select_sql);
     }
     return $result;
