@@ -64,7 +64,7 @@ td.link{
              <label class="mdl-textfield__label" for="notes">备注……</label>
         </div>
         <br>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">
             分享资源
         </button>
      </form>
@@ -157,7 +157,7 @@ Fuzzysearch.prototype={
              <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">"+list[1][i]+"</td>\
              <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\" class=\"link\"><a href=\""+list[2][i]+"\">"+list[2][i]+"</a></td>\
              <td style=\"width:5%\">"+list[3][i]+"</td><td class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">"+list[4][i]+"</td>\
-             <td style=\"width:3%\"><button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\" onclick=\"window.location.href='http://localhost:8080/resources/books.php?act=delete&delateObject="+list[1][i]+"'\">删除</button></td>\
+             <td style=\"width:3%\"><button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\" onclick=\"window.location.href='http://localhost:8080/resources/movies.php?act=delete&delateObject="+list[1][i]+"'\">删除</button></td>\
              </tr>";
         }
         colStr+="</tbody>";

@@ -68,7 +68,7 @@ th{
              <label class="mdl-textfield__label" for="notes">备注……</label>
         </div>
         <br>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit">
             分享资源
         </button>
      </form>
