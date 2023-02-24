@@ -1,3 +1,9 @@
+<!--
+roadmap:
+加入图标
+增加查询框大小 ok
+操作可以有修改选项
+-->
 <?php
 require_once 'function.php';
 $result=init("localhost","root","","resources","books","bookName");
@@ -46,10 +52,12 @@ $result=init("localhost","root","","resources","books","bookName");
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">scu资源共享站</span>
         <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="http://localhost:8080/resources">首页</a>
           <a class="mdl-navigation__link" href="http://localhost:8080/resources/movies.php">电影</a>
           <a class="mdl-navigation__link" href="http://localhost:8080/resources/serial.php">电视剧</a>
           <a class="mdl-navigation__link" href="http://localhost:8080/resources/variety_show.php">综艺</a>
           <a class="mdl-navigation__link" href="http://localhost:8080/resources/books.php">书籍</a>
+          <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">Github</a>
         </nav>
       </div>
       <main class="mdl-layout__content">
@@ -94,16 +102,17 @@ $result=init("localhost","root","","resources","books","bookName");
                 <!-- 加载中 -->
                  <div id="load"><span class="mdl-chip"><span class="mdl-chip__text">加载中……</span></span></div>
                  <br>
-                <!-- 搜索框 -->
                 <div class="wrap">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                     <input class="mdl-textfield__input" type="text" value="" name="notes" id="searchKey">
-                     <label class="mdl-textfield__label" for="searchKey">搜索……</label>
-                </div>
-                <!-- 查询按钮 -->
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id='searchBtn'>查询</button>
-                <!-- 绘制表格 -->
-                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border=1px id='searchShow'></table>
+                    <!-- 搜索框 -->
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                         <input class="mdl-textfield__input" type="text" value="" name="notes" id="searchKey" style="width:400px;">
+                         <label class="mdl-textfield__label" for="searchKey" style="width:400px;">搜索……</label>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <!-- 查询按钮 -->
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id='searchBtn'>查询</button>
+                    <!-- 绘制表格 -->
+                    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border=1px id='searchShow'></table>
                 </div>
                 <br>
             </center>
