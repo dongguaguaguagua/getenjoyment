@@ -58,30 +58,35 @@ while($row = mysqli_fetch_array($result)){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>sufe资源共享站-电影</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <style>
-        body{
+        body {
             margin: 0;
         }
-        .head{
+
+        .head {
             background-color: white;
             height: ;
         }
-        .head .container{
+
+        .head .container {
             width: 70%;
             margin-left: auto;
             margin-right: auto;
             /*border: 1px solid red;*/
         }
-        .head .container .logo{
+
+        .head .container .logo {
             float: left;
             display: inline-block;
             padding-top: 40px;
         }
-        .head .container .logo1{
+
+        .head .container .logo1 {
             padding: 10px;
             padding-top: 12px;
             display: inline-block;
@@ -94,19 +99,22 @@ while($row = mysqli_fetch_array($result)){
             -webkit-transition-duration: 0.5s;
             transition-duration: 0.5s;
         }
-        .head .container .logo1:hover{
+
+        .head .container .logo1:hover {
             background-color: white;
             color: #7a56ae;
             cursor: pointer;
         }
-        .head .container .logo2{
+
+        .head .container .logo2 {
             display: inline-block;
             color: black;
             font-size: 25px;
             font-weight: bold;
             font-family: cursive;
         }
-        .head .container .menu{
+
+        .head .container .menu {
             float: right;
             display: inline-block;
             width: 70px;
@@ -118,17 +126,20 @@ while($row = mysqli_fetch_array($result)){
             transition-duration: 0.5s;
             font-family: sans-serif;
         }
-        .head .container .menu:hover{
+
+        .head .container .menu:hover {
             background-color: #e6e6e6;
             color: #7a56ae;
             cursor: pointer;
         }
-        .body .container{
+
+        .body .container {
             position: relative;
             width: 100%;
             height: 100%;
         }
-        .body .container .mask{
+
+        .body .container .mask {
             position: absolute;
             top: 0;
             left: 0;
@@ -137,16 +148,19 @@ while($row = mysqli_fetch_array($result)){
             background-color: rgba(121, 87, 174, 0.9);
             /*color: #7a56ae;*/
         }
-        .body .form{
+
+        .body .form {
             margin-top: 20px;
         }
-        .body .form .label{
+
+        .body .form .label {
             margin-left: 20px;
             color: white;
             font-size: 30px;
             font-family: sans-serif;
         }
-        .body .form .input{
+
+        .body .form .input {
             float: right;
             padding-left: 10px;
             padding-top: 8px;
@@ -162,11 +176,13 @@ while($row = mysqli_fetch_array($result)){
             -webkit-transition-duration: 0.5s;
             transition-duration: 0.5s;
         }
-        .body .form .input:focus{
+
+        .body .form .input:focus {
             border-color: lightgreen;
             box-shadow: lightgreen 5px 5px 30px 5px;
         }
-        .body .submitButton{
+
+        .body .submitButton {
             margin-top: 20px;
             background-color: white;
             color: #f2ac61;
@@ -178,12 +194,15 @@ while($row = mysqli_fetch_array($result)){
             -webkit-transition-duration: 0.5s;
             transition-duration: 0.5s;
         }
-        .body .submitButton:hover{
+
+        .body .submitButton:hover {
             background-color: #f2ac61;
             color: white;
         }
+
     </style>
 </head>
+
 <body>
     <div class="head">
         <div class="container">
@@ -207,7 +226,7 @@ while($row = mysqli_fetch_array($result)){
                 <i class="fa fa-book fa-lg"></i>
                 书籍
             </div>
-            <!-- 
+            <!--
             <div class="menu" onclick="window.open('http://localhost:8080/resources/about.php')">
                 <i class="fa fa-info-circle fa-lg"></i>
                 关于
@@ -217,36 +236,40 @@ while($row = mysqli_fetch_array($result)){
     </div>
     <div class="body">
         <div class="container">
-            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp2.itc.cn%2Fq_70%2Fimages03%2F20201018%2F8f9322ec8402451aa80a3880ae2a9a72.jpeg&refer=http%3A%2F%2Fp2.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668062892&t=59611fee402937e846dda7f670ca3a09" style="width: 100%;">
+            <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp2.itc.cn%2Fq_70%2Fimages03%2F20201018%2F8f9322ec8402451aa80a3880ae2a9a72.jpeg&refer=http%3A%2F%2Fp2.itc.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668062892&t=59611fee402937e846dda7f670ca3a09"
+                style="width: 100%;">
             <div class="mask"></div>
             <div style="position: absolute;top: 20%;left: 30%;">
                 <form action="movies.php?act=insert" method="post">
                     <div class="form">
                         <i style="color: #f2ac61;" class="fa fa-user-circle fa-2x"></i>
                         <span class="label">上传者:</span>
-                        <input class="input" type="txt" placeholder="[选填]无需实名" name="name" id="uploaderInput"/>
+                        <input class="input" type="txt" placeholder="[选填]无需实名" name="name" id="uploaderInput" />
                     </div>
                     <div class="form">
                         <i style="color: #f2ac61;" class="fa fa-film fa-2x"></i>
                         <span class="label">电影名称:</span>
-                        <input class="input" type="txt" name="movieName" placeholder="[必填]请填写影片名" required="required" id="filmNameInput"/>
+                        <input class="input" type="txt" name="movieName" placeholder="[必填]请填写影片名" required="required"
+                            id="filmNameInput" />
                     </div>
                     <div class="form">
                         <i style="color: #f2ac61;" class="fa fa-link fa-2x"></i>
                         <span class="label">链接:</span>
-                        <input class="input" type="txt" name="link" placeholder="[必填]请填写电影链接" required="required" id="linkInput"/>
+                        <input class="input" type="txt" name="link" placeholder="[必填]请填写电影链接" required="required"
+                            id="linkInput" />
                     </div>
                     <div class="form">
                         <i style="color: #f2ac61;" class="fa fa-code fa-2x"></i>
                         <span class="label">提取码:</span>
-                        <input class="input" type="txt" placeholder="[选填]链接提取码" name="extractCode" id="extractCodeInput" />
+                        <input class="input" type="txt" placeholder="[选填]链接提取码" name="extractCode"
+                            id="extractCodeInput" />
                     </div>
                     <div class="form">
                         <i style="color: #f2ac61;" class="fa fa-file-text-o fa-2x"></i>
                         <span class="label">备注:</span>
-                        <input class="input" type="txt" placeholder="[选填]你对影片的评价/你的联系方式" name="notes" id="notesInput"/>
+                        <input class="input" type="txt" placeholder="[选填]你对影片的评价/你的联系方式" name="notes" id="notesInput" />
                     </div>
-                    <input class="submitButton"type="submit" value="提交" />
+                    <input class="submitButton" type="submit" value="提交" />
                     <!-- <span>网站资源仅供学习，请于24小时内删除</span> -->
                     <div style="clear: both;"></div>
                 </form>
@@ -255,51 +278,47 @@ while($row = mysqli_fetch_array($result)){
     </div>
     <br><br>
     <script>
-        linkInput.onkeyup = function autoLoadFilmNameAndExtractCode(){
+        linkInput.onkeyup = function autoLoadFilmNameAndExtractCode() {
             var m = document.getElementById("linkInput").value;
             var linkBegin = m.search("http");
             if (linkBegin != -1) {
                 var linkEnd = linkBegin;
-                while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126)
-                {
+                while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126) {
                     linkEnd++;
                 }
-                document.getElementById("linkInput").value = m.substring(linkBegin,linkEnd);
+                document.getElementById("linkInput").value = m.substring(linkBegin, linkEnd);
             }
             var codeBegin = m.search("码");
             if (codeBegin != -1) {
                 codeBegin += 2;
                 var codeEnd = codeBegin;
-                while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126)
-                {
+                while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
                     codeEnd++;
                 }
-                document.getElementById("extractCodeInput").value = m.substring(codeBegin,codeEnd);
+                document.getElementById("extractCodeInput").value = m.substring(codeBegin, codeEnd);
             }
         }
-        extractCodeInput.onkeyup = function autoLoadFilmNameAndExtractCode2(){
+        extractCodeInput.onkeyup = function autoLoadFilmNameAndExtractCode2() {
             var m = document.getElementById("extractCodeInput").value;
             var linkBegin = m.search("http");
             if (linkBegin != -1) {
                 var linkEnd = linkBegin;
-                while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126)
-                {
+                while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126) {
                     linkEnd++;
                 }
-                document.getElementById("linkInput").value = m.substring(linkBegin,linkEnd);
+                document.getElementById("linkInput").value = m.substring(linkBegin, linkEnd);
             }
             var codeBegin = m.search("码");
             if (codeBegin != -1) {
                 codeBegin += 2;
                 var codeEnd = codeBegin;
-                while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126)
-                {
+                while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
                     codeEnd++;
                 }
-                document.getElementById("extractCodeInput").value = m.substring(codeBegin,codeEnd);
+                document.getElementById("extractCodeInput").value = m.substring(codeBegin, codeEnd);
             }
         }
     </script>
 </body>
-</html>
 
+</html>
