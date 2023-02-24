@@ -48,12 +48,12 @@ td.link{
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">scu资源共享站</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="http://localhost:8080/resources">首页</a>
-          <a class="mdl-navigation__link" href="http://localhost:8080/resources/movies.php">电影</a>
-          <a class="mdl-navigation__link" href="http://localhost:8080/resources/serial.php">电视剧</a>
-          <a class="mdl-navigation__link" href="http://localhost:8080/resources/variety_show.php">综艺</a>
-          <a class="mdl-navigation__link" href="http://localhost:8080/resources/books.php">书籍</a>
-          <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">Github</a>
+          <a class="fa fa-user-circle fa-lg mdl-navigation__link" href="http://localhost:8080/resources">&nbsp;&nbsp;&nbsp;首页</a>
+          <a class="fa fa-film fa-lg mdl-navigation__link" href="http://localhost:8080/resources/movies.php">&nbsp;&nbsp;&nbsp;电影</a>
+          <a class="fa fa-video-camera fa-lg mdl-navigation__link" href="http://localhost:8080/resources/serial.php">&nbsp;&nbsp;&nbsp;电视剧</a>
+          <a class="fa fa-hand-peace-o fa-lg mdl-navigation__link" href="http://localhost:8080/resources/variety_show.php">&nbsp;&nbsp;&nbsp;综艺</a>
+          <a class="fa fa-book fa-lg mdl-navigation__link" href="http://localhost:8080/resources/books.php">&nbsp;&nbsp;&nbsp;书籍</a>
+          <a class="fa fa-github fa-lg mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">&nbsp;&nbsp;&nbsp;Github</a>
         </nav>
       </div>
       <main class="mdl-layout__content">
