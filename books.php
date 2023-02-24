@@ -1,6 +1,6 @@
 <!--
 roadmap:
-加入图标
+加入图标 ok
 增加查询框大小 ok
 操作可以有修改选项
 -->
@@ -15,6 +15,11 @@ $result=init("localhost","root","","resources","books","bookName");
     <meta charset="UTF-8">
     <title>scu资源共享站-书籍</title>
 </head>
+
+<!-- sytle sheet -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
 <style>
 
 /*table{
@@ -27,6 +32,16 @@ $result=init("localhost","root","","resources","books","bookName");
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+}*/
+/*label.mdl-textfield__label{
+    font-size: 20px;
+}*/
+/*i{
+    color:rgb(65, 147, 136);
+    font-size: 5px;
+}*/
+/*input.mdl-textfield__input{
+    height: 30px;
 }*/
 </style>
 
@@ -52,12 +67,12 @@ $result=init("localhost","root","","resources","books","bookName");
       <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">scu资源共享站</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="http://localhost:8080/resources">首页</a>
-          <a class="mdl-navigation__link" href="http://localhost:8080/resources/movies.php">电影</a>
-          <a class="mdl-navigation__link" href="http://localhost:8080/resources/serial.php">电视剧</a>
-          <a class="mdl-navigation__link" href="http://localhost:8080/resources/variety_show.php">综艺</a>
-          <a class="mdl-navigation__link" href="http://localhost:8080/resources/books.php">书籍</a>
-          <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">Github</a>
+          <a class="fa fa-user-circle fa-lg mdl-navigation__link" href="http://localhost:8080/resources">&nbsp;&nbsp;&nbsp;首页</a>
+          <a class="fa fa-film fa-lg mdl-navigation__link" href="http://localhost:8080/resources/movies.php">&nbsp;&nbsp;&nbsp;电影</a>
+          <a class="fa fa-video-camera fa-lg mdl-navigation__link" href="http://localhost:8080/resources/serial.php">&nbsp;&nbsp;&nbsp;电视剧</a>
+          <a class="fa fa-hand-peace-o fa-lg mdl-navigation__link" href="http://localhost:8080/resources/variety_show.php">&nbsp;&nbsp;&nbsp;综艺</a>
+          <a class="fa fa-book fa-lg mdl-navigation__link" href="http://localhost:8080/resources/books.php">&nbsp;&nbsp;&nbsp;书籍</a>
+          <a class="fa fa-github fa-lg mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">&nbsp;&nbsp;&nbsp;Github</a>
         </nav>
       </div>
       <main class="mdl-layout__content">
@@ -87,6 +102,7 @@ $result=init("localhost","root","","resources","books","bookName");
                          <label class="mdl-textfield__label" for="extractCode">提取码（如果有的话）</label>
                     </div>
                     <br>
+
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                          <textarea class="mdl-textfield__input" type="text" name="notes" id="notes" ></textarea>
                          <label class="mdl-textfield__label" for="notes">备注……</label>
@@ -122,8 +138,6 @@ $result=init("localhost","root","","resources","books","bookName");
 </body>
 
 <!-- Google mdl风格 -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
 <script defer src="mdl/material.min.js"></script>
 
 <script>
