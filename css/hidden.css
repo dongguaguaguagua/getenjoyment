@@ -13,6 +13,12 @@
     margin-left: 35%;
     border-radius: 10px;
 }
+/*.editLabel{
+    visibility: hidden;
+    overflow: hidden;
+    z-index: 999;
+    opacity: 1;
+}*/
 .open{
     visibility: visible;
     opacity: 1;

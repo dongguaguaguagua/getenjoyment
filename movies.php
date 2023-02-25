@@ -56,34 +56,34 @@ $result=init("localhost","root","","resources","movies","movieName");
                     <div class="editForm">
                         <h3 style="color:rgb(65, 147, 136);">编辑资源</h3>
                         <form action="" method="post" name="editResources">
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" name="name" id="id_name">
-                                <label class="mdl-textfield__label" for="id_name">修改名字</label>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" name="name" id="id_edit_name">
+                                <label class="mdl-textfield__label" for="id_edit_name"></label>
                             </div>
                             <br>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="movieName" required="required"
-                                    id="id_movieName">
-                                <label class="mdl-textfield__label" for="id_movieName">修改电影名称(必填)</label>
+                                    id="id_edit_mediaName">
+                                <label class="mdl-textfield__label" for="id_edit_mediaName"></label>
                             </div>
                             <br>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="link"
-                                    pattern="[A-Z,a-z,0-9,/,:,.,?,%,&,=,-, ]*" id="id_link">
-                                <label class="mdl-textfield__label" for="id_link">修改资源链接(必须是永久链接)</label>
+                                    pattern="[A-Z,a-z,0-9,/,:,.,?,%,&,=,-, ]*" id="id_edit_link">
+                                <label class="mdl-textfield__label" for="id_edit_link"></label>
                                 <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                             </div>
                             <br>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" name="extractCode" id="id_extractCode">
-                                <label class="mdl-textfield__label" for="id_extractCode">修改提取码（如果有的话）</label>
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" type="text" name="extractCode" id="id_edit_extractCode">
+                                <label class="mdl-textfield__label" for="id_edit_extractCode"></label>
                             </div>
                             <br>
 
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            <div class="mdl-textfield mdl-js-textfield">
                                 <textarea class="mdl-textfield__input" type="text" name="notes"
-                                    id="id_notes"></textarea>
-                                <label class="mdl-textfield__label" for="id_notes">修改备注</label>
+                                    id="id_edit_notes"></textarea>
+                                <label class="mdl-textfield__label" for="id_edit_notes"></label>
                             </div>
                             <br>
                             <button
@@ -103,9 +103,9 @@ $result=init("localhost","root","","resources","movies","movieName");
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="movieName" required="required"
-                                id="id_movieName">
-                            <label class="mdl-textfield__label" for="id_movieName">电影名称(必填)</label>
+                            <input class="mdl-textfield__input" type="text" name="movieName"
+                                id="id_mediaName">
+                            <label class="mdl-textfield__label" for="id_mediaName">电影名称(必填)</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

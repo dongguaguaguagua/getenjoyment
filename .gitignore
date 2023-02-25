@@ -38,6 +38,6 @@ pnpm-debug.log*
 
 .rar
 
-.sublime-project
+*.sublime-project
 
-.sublime-workspace
+*.sublime-workspace

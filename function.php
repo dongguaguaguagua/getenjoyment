@@ -8,7 +8,7 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
     mysqli_select_db($connect_mysql,$_user_);
     if(@$_GET['act'] == 'insert'){
         $insert_sql = "insert into $_media_ (name,$_mediaName_,link,extractCode,notes) values ('".$_POST['name']."','".$_POST[$_mediaName_]."','".$_POST['link']."','".$_POST['extractCode']."','".$_POST['notes']."')";
-        echo $insert_sql;
+        // echo $insert_sql;
         if(mysqli_query($connect_mysql,$insert_sql)){
             echo "<script>alert('感谢您的无私分享！将刷新页面');</script>";
         }
@@ -19,7 +19,7 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
     }
     elseif(@$_GET['act'] == 'edit'){
         $update_sql = "update $_media_ set name=\"".$_POST['name']."\",$_mediaName_=\"".$_POST[$_mediaName_]."\",link=\"".$_POST['link']."\",extractCode=\"".$_POST['extractCode']."\",notes=\"".$_POST['notes']."\" where $_mediaName_=\"".$_GET['name']."\";";
-        echo $update_sql;
+        // echo $update_sql;
         if(mysqli_query($connect_mysql,$update_sql)){
             echo "<script>alert('感谢您的修改！将刷新页面');</script>";
         }
