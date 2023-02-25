@@ -2,7 +2,11 @@
 var editItem = function(name,mediaName,link,extractCode,notes) {
     var close = document.getElementsByClassName("close");
     var editForm = document.getElementsByClassName("editForm");
-    console.log(name,mediaName,link,extractCode,notes);
+    console.log(name);
+    console.log(mediaName);
+    console.log(link);
+    console.log(extractCode);
+    console.log(notes);
     //自动填充要编辑的内容
     document.getElementById('id_edit_name').value=name;
     document.getElementById('id_edit_mediaName').value=mediaName;

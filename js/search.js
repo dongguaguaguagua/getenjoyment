@@ -5,7 +5,7 @@ function Fuzzysearch(l,fileName,name) {
     this.searchKey = document.getElementById('id_searchKey');      //查询关键字
     this.searchBtn = document.getElementById('id_searchBtn');      //查询按钮
     this.searchShow = document.getElementById('id_searchShow');    //显示查询结果的表格
-    this.renderTab(this.l,this.name);
+    this.renderTab(this.l,this.name,this.fileName);
     this.init(this.fileName);
 }
 Fuzzysearch.prototype = {
@@ -29,7 +29,7 @@ Fuzzysearch.prototype = {
         var keyWord = this.searchKey.value;
         location.href = fileName +".php" + "?act=search&keyWord=" + keyWord;
     },
-    renderTab: function(list,name) {
+    renderTab: function(list,name,fileName) {
         let colStr = '';
 
         if (list[1].length == 0) {
@@ -45,7 +45,7 @@ Fuzzysearch.prototype = {
             <th style=\"width:3%\">操作</th>\
             </tr></thead>";
         //表身mdl
-        console.log(typeof (list[1][0]));
+        console.log(list[1][0]);
         colStr += "<tbody>";
         for (var i = 0, len = list[1].length; i < len; i++) {
             colStr += "<tr>\
@@ -59,7 +59,7 @@ Fuzzysearch.prototype = {
         </button>\
         <ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"\
             for=\"menu-lower-right"+ i.toString() + "\">\
-            <li class=\"mdl-menu__item\" onclick=\"window.location.href='/resources/books.php?act=delete&delateObject="+ list[1][i] + "'\">删除</li>\
+            <li class=\"mdl-menu__item\" onclick=\"window.location.href='/resources/"+fileName+".php?act=delete&delateObject="+ list[1][i] + "'\">删除</li>\
             <li class=\"mdl-menu__item\" onclick=editItem(\""+ list[0][i] + "\",\""+ list[1][i] + "\",\""+ list[2][i] + "\",\""+ list[3][i] + "\",\""+ list[4][i] + "\");>编辑</li>\
         </ul>\
         </td></tr>";
