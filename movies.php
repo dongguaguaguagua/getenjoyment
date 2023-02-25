@@ -10,9 +10,12 @@ $result=init("localhost","root","","resources","movies","movieName");
     <meta charset="UTF-8">
     <title>scu资源共享站-电影</title>
 </head>
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-<link rel="stylesheet" href="css/hidden.css" />
 
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
+<link rel="stylesheet" href="css/hidden.css" />
 <body>
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -156,25 +159,21 @@ $result=init("localhost","root","","resources","movies","movieName");
         </main>
     </div>
 </body>
+
 <!-- Google mdl风格 -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
 <script defer src="mdl/material.min.js"></script>
+<!-- 编辑 -->
+<script src="js/edit.js"></script>
+<!-- 搜索及后面的表格显示 -->
+<script src="js/search.js"></script>
+<!-- 自动识别提取码 -->
+<script src="js/autoLoadLink.js"></script>
+<!-- mdl进度条 -->
+<script src="js/timeOut.js"></script>
+
 <script>
-    //编辑资源
-    var editItem = function(name) {
-        var close = document.getElementsByClassName("close");
-        var editForm = document.getElementsByClassName("editForm");
-        editForm[0].className = "editForm open";
-        close[0].addEventListener('click', function() {
-            editForm[0].className = "editForm";
-        })
-        document.editResources.action = "movies.php?act=edit&name=" + name;
-    }
-</script>
-<script>
-    let l = [[], [], [], [], []];
-<? php
+let l = [[], [], [], [], []];
+<?php
     $i = 0;
     while ($row = mysqli_fetch_array($result)) {
         echo "l[0][".$i."]=\"".$row['name']."\";";
@@ -185,128 +184,7 @@ $result=init("localhost","root","","resources","movies","movieName");
         $i++;
     }
 ?>;
-    function Fuzzysearch(l) {
-        this.l = l;                                                 //请求得到的数据
-        this.searchKey = document.getElementById('searchKey');      //查询关键字
-        this.searchBtn = document.getElementById('searchBtn');      //查询按钮
-        this.searchShow = document.getElementById('searchShow');    //显示查询结果的表格
-        this.renderTab(this.l);
-        this.init();
-    }
-    Fuzzysearch.prototype = {
-        init: function() {
-            let _this = this;
-            //键入触发事件
-            _this.searchKey.onkeyup = function(e) {
-                var e = e || event;
-                if (e.keyCode == 13) {
-                    let searchResult = _this.searchFn();
-                    _this.renderTab(searchResult);
-                }
-            };
-            //点击查询按钮触发事件
-            _this.searchBtn.onclick = function() {
-                let searchResult = _this.searchFn();
-                _this.renderTab(searchResult);
-            };
-        },
-        searchFn: function() {
-            var keyWord = this.searchKey.value;
-            location.href = "movies.php" + "?act=search&keyWord=" + keyWord;
-        },
-        renderTab: function(list) {
-            let colStr = '';
-
-            if (list[1].length == 0) {
-                this.searchShow.innerHTML = '<center><span class=\"mdl-chip\"><span class=\"mdl-chip__text\">很遗憾，未查询到关键字相关结果</span></span></center>';
-                return;
-            }
-            //表格头mdl
-            colStr += "<thead><tr><th style=\"width:5.2%\">分享者</th>\
-                <th class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">电影名称</th>\
-                <th class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">网盘链接</th>\
-                <th style=\"width:5%\">提取码</th>\
-                <th class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">备注</th>\
-                <th style=\"width:3%\">操作</th>\
-                </tr></thead>";
-            //表身mdl
-            colStr += "<tbody>";
-            for (var i = 0, len = list[1].length; i < len; i++) {
-                colStr += "<tr>\
-            <td style=\"width:5.2%\">"+ list[0][i] + "</td>\
-            <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">"+ list[1][i] + "</td>\
-            <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\" class=\"link\"><a href=\""+ list[2][i] + "\">" + list[2][i] + "</a></td>\
-            <td style=\"width:5%\">"+ list[3][i] + "</td><td class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">" + list[4][i] + "</td>\
-            <td style=\"width:3%\">\
-            <button id=\id_"menu - lower - right"+ i.toString() + "\" class=\"mdl-button mdl-js-button mdl-button--icon\">\
-              <i class=\"material-icons\">more_vert</i>\
-            </button>\
-            <ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"\
-                for=\"menu-lower-right"+ i.toString() + "\">\
-                <li class=\"mdl-menu__item\" onclick=\"window.location.href='/resources/movies.php?act=delete&delateObject="+ list[1][i] + "'\">删除</li>\
-                <li class=\"mdl-menu__item\" onclick=editItem(\""+ list[1][i] + "\");>编辑</li>\
-            </ul>\
-            </td></tr>";
-            }
-            colStr += "</tbody>";
-            this.searchShow.innerHTML = colStr;
-        }
-    }
-    document.getElementById('load').innerHTML = "<span class=\"mdl-chip\"><span class=\"mdl-chip__text\">成功加载后10条内容！</span></span>";
-
-    new Fuzzysearch(l);
-</script>
-
-<script>
-    id_link1.onkeyup = function autoLoadFilmNameAndExtractCode() {
-        var m = document.getElementById("id_link1").value;
-        var linkBegin = m.search("http");
-        if (linkBegin != -1) {
-            var linkEnd = linkBegin;
-            while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126) {
-                linkEnd++;
-            }
-            document.getElementById("id_link1").value = m.substring(linkBegin, linkEnd);
-        }
-        var codeBegin = m.search("码");
-        if (codeBegin != -1) {
-            codeBegin += 2;
-            var codeEnd = codeBegin;
-            while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
-                codeEnd++;
-            }
-            document.getElementById("id_extractCode1").value = m.substring(codeBegin, codeEnd);
-        }
-    }
-    id_extractCode1.onkeyup = function autoLoadFilmNameAndExtractCode2() {
-        var m = document.getElementById("id_extractCode1").value;
-        var linkBegin = m.search("http");
-        if (linkBegin != -1) {
-            var linkEnd = linkBegin;
-            while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126) {
-                linkEnd++;
-            }
-            document.getElementById("id_link1").value = m.substring(linkBegin, linkEnd);
-        }
-        var codeBegin = m.search("码");
-        if (codeBegin != -1) {
-            codeBegin += 2;
-            var codeEnd = codeBegin;
-            while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
-                codeEnd++;
-            }
-            document.getElementById("id_extractCode1").value = m.substring(codeBegin, codeEnd);
-        }
-    }
-</script>
-<script>
-    // 显示1秒的加载进度条
-    setTimeout(function() {
-        // Get a reference to the loading spinner element
-        var spinner = document.getElementById('id_load');
-        // Remove the loading spinner from the DOM
-        spinner.parentNode.removeChild(spinner);
-    }, 1000);
+new Fuzzysearch(l,"movies","电影");
 </script>
 
 </html>

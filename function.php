@@ -8,7 +8,7 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
     mysqli_select_db($connect_mysql,$_user_);
     if(@$_GET['act'] == 'insert'){
         $insert_sql = "insert into $_media_ (name,$_mediaName_,link,extractCode,notes) values ('".$_POST['name']."','".$_POST[$_mediaName_]."','".$_POST['link']."','".$_POST['extractCode']."','".$_POST['notes']."')";
-        // echo $insert_sql;
+        echo $insert_sql;
         if(mysqli_query($connect_mysql,$insert_sql)){
             echo "<script>alert('感谢您的无私分享！将刷新页面');</script>";
         }
