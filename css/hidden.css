@@ -57,3 +57,7 @@
     background-color: #1ABC9C;
     color: white;
 }
+
+.mdl-textfield textarea.mdl-textfield__input{
+    display: inline-block;
+}

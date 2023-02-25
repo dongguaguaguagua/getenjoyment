@@ -16,6 +16,7 @@ $result=init("localhost","root","","resources","movies","movieName");
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
 <link rel="stylesheet" href="css/hidden.css" />
+
 <body>
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -56,17 +57,23 @@ $result=init("localhost","root","","resources","movies","movieName");
                     <div class="editForm">
                         <h3 style="color:rgb(65, 147, 136);">编辑资源</h3>
                         <form action="" method="post" name="editResources">
+                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                                class="fa fa-user-circle fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="name" id="id_edit_name">
                                 <label class="mdl-textfield__label" for="id_edit_name"></label>
                             </div>
                             <br>
+                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                                class="fa fa-film fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="movieName" required="required"
                                     id="id_edit_mediaName">
                                 <label class="mdl-textfield__label" for="id_edit_mediaName"></label>
                             </div>
                             <br>
+                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                                class="fa fa-link fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="link"
                                     pattern="[A-Z,a-z,0-9,/,:,.,?,%,&,=,-, ]*" id="id_edit_link">
@@ -74,12 +81,17 @@ $result=init("localhost","root","","resources","movies","movieName");
                                 <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                             </div>
                             <br>
+                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                                class="fa fa-code fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" name="extractCode" id="id_edit_extractCode">
+                                <input class="mdl-textfield__input" type="text" name="extractCode"
+                                    id="id_edit_extractCode">
                                 <label class="mdl-textfield__label" for="id_edit_extractCode"></label>
                             </div>
                             <br>
 
+                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                                class="fa fa-file-text-o fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <textarea class="mdl-textfield__input" type="text" name="notes"
                                     id="id_edit_notes"></textarea>
@@ -97,17 +109,19 @@ $result=init("localhost","root","","resources","movies","movieName");
                     </div>
                     <!-- 表格内容 -->
                     <form action="movies.php?act=insert" method="post">
+                        <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-user-circle fa-1x"></div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="name" id="id_name">
                             <label class="mdl-textfield__label" for="id_name">你的名字……</label>
                         </div>
                         <br>
+                        <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-film fa-1x"></div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="movieName"
-                                id="id_mediaName">
+                            <input class="mdl-textfield__input" type="text" name="movieName" id="id_mediaName">
                             <label class="mdl-textfield__label" for="id_mediaName">电影名称(必填)</label>
                         </div>
                         <br>
+                        <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-link fa-1x"></div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="link"
                                 pattern="[A-Z,a-z,0-9,/,:,.,?,%,&,=,-, ]*" id="id_link1">
@@ -115,11 +129,13 @@ $result=init("localhost","root","","resources","movies","movieName");
                             <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                         </div>
                         <br>
+                        <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-code fa-1x"></div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="extractCode" id="id_extractCode1">
                             <label class="mdl-textfield__label" for="id_extractCode1">提取码（如果有的话）</label>
                         </div>
                         <br>
+                        <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-file-text-o fa-1x"></div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <textarea class="mdl-textfield__input" type="text" name="notes" id="id_notes"></textarea>
                             <label class="mdl-textfield__label" for="id_notes">备注……</label>
@@ -172,7 +188,7 @@ $result=init("localhost","root","","resources","movies","movieName");
 <script src="js/timeOut.js"></script>
 
 <script>
-let l = [[], [], [], [], []];
+    let l = [[], [], [], [], []];
 <?php
     $i = 0;
     while ($row = mysqli_fetch_array($result)) {
@@ -184,7 +200,7 @@ let l = [[], [], [], [], []];
         $i++;
     }
 ?>;
-new Fuzzysearch(l,"movies","电影");
+    new Fuzzysearch(l, "movies", "电影");
 </script>
 
 </html>

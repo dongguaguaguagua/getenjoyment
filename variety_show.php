@@ -57,17 +57,22 @@ $result=init("localhost","root","","resources","variety_show","showName");
                     <div class="editForm">
                         <h3 style="color:rgb(65, 147, 136);">编辑资源</h3>
                         <form action="" method="post" name="editResources">
+                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                                class="fa fa-user-circle fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="name" id="id_edit_name">
                                 <label class="mdl-textfield__label" for="id_edit_name"></label>
                             </div>
                             <br>
+                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                                class="fa fa-film fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" name="showName"
-                                    id="id_edit_mediaName">
+                                <input class="mdl-textfield__input" type="text" name="showName" id="id_edit_mediaName">
                                 <label class="mdl-textfield__label" for="id_edit_mediaName"></label>
                             </div>
                             <br>
+                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                                class="fa fa-link fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="link"
                                     pattern="[A-Z,a-z,0-9,/,:,.,?,%,&,=,-, ]*" id="id_edit_link">
@@ -75,12 +80,16 @@ $result=init("localhost","root","","resources","variety_show","showName");
                                 <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                             </div>
                             <br>
+                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                                class="fa fa-code fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" name="extractCode" id="id_edit_extractCode">
+                                <input class="mdl-textfield__input" type="text" name="extractCode"
+                                    id="id_edit_extractCode">
                                 <label class="mdl-textfield__label" for="id_edit_extractCode"></label>
                             </div>
                             <br>
-
+                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                                class="fa fa-file-text-o fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <textarea class="mdl-textfield__input" type="text" name="notes"
                                     id="id_edit_notes"></textarea>
@@ -97,67 +106,72 @@ $result=init("localhost","root","","resources","variety_show","showName");
                         </form>
                     </div>
                     <!-- 表格内容 -->
-                    <form action="variety_show.php?act=insert" method="post">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="name" id="id_name">
-                            <label class="mdl-textfield__label" for="id_name">你的名字……</label>
-                        </div>
-                        <br>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="showName" required="required"
-                                id="id_showName">
-                            <label class="mdl-textfield__label" for="id_showName">综艺名称(必填)</label>
-                        </div>
-                        <br>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="link"
-                                pattern="[A-Z,a-z,0-9,/,:,.,?,%,&,=,-, ]*" id="id_link1">
-                            <label class="mdl-textfield__label" for="id_link1">资源链接(必须是永久链接)</label>
-                            <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
-                        </div>
-                        <br>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="extractCode" id="id_extractCode1">
-                            <label class="mdl-textfield__label" for="id_extractCode1">提取码（如果有的话）</label>
-                        </div>
-                        <br>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <textarea class="mdl-textfield__input" type="text" name="notes" id="id_notes"></textarea>
-                            <label class="mdl-textfield__label" for="id_notes">备注……</label>
-                        </div>
-                        <br>
-                        <button
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-                            type="submit">
-                            分享资源
-                        </button>
-                    </form>
-                    <br>
-                    <!-- <div class="mdl-spinner mdl-js-spinner is-active"></div> -->
-
-                    <!-- 加载中 -->
-                    <!-- MDL Progress Bar with Indeterminate Progress -->
-                    <div id="id_load" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
-                    <br>
-                    <div class="wrap">
-                        <!-- 搜索框 -->
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" value="" name="notes" id="id_searchKey"
-                                style="width:400px;">
-                            <label class="mdl-textfield__label" for="id_searchKey" style="width:400px;">搜索……</label>
-                        </div>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <!-- 查询按钮 -->
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-                            id='id_searchBtn'>查询</button>
-                        <!-- 绘制表格 -->
-                        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border=1px id='id_searchShow'>
-                        </table>
-                    </div>
-                    <br><br><br><br><br>
-                </center>
+                    <form action <div style="color: #429488; display: inline-block;padding-right: 20px;"
+                        class="fa fa-user-circle fa-1x">
+            </div>="variety_show.php?act=insert" method="post">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="name" id="id_name">
+                <label class="mdl-textfield__label" for="id_name">你的名字……</label>
             </div>
-        </main>
+            <br>
+            <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-film fa-1x"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="showName" required="required" id="id_showName">
+                <label class="mdl-textfield__label" for="id_showName">综艺名称(必填)</label>
+            </div>
+            <br>
+            <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-link fa-1x"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/,:,.,?,%,&,=,-, ]*"
+                    id="id_link1">
+                <label class="mdl-textfield__label" for="id_link1">资源链接(必须是永久链接)</label>
+                <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
+            </div>
+            <br>
+            <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-code fa-1x"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" name="extractCode" id="id_extractCode1">
+                <label class="mdl-textfield__label" for="id_extractCode1">提取码（如果有的话）</label>
+            </div>
+            <br>
+            <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-file-text-o fa-1x">
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <textarea class="mdl-textfield__input" type="text" name="notes" id="id_notes"></textarea>
+                <label class="mdl-textfield__label" for="id_notes">备注……</label>
+            </div>
+            <br>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                type="submit">
+                分享资源
+            </button>
+            </form>
+            <br>
+            <!-- <div class="mdl-spinner mdl-js-spinner is-active"></div> -->
+
+            <!-- 加载中 -->
+            <!-- MDL Progress Bar with Indeterminate Progress -->
+            <div id="id_load" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+            <br>
+            <div class="wrap">
+                <!-- 搜索框 -->
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" value="" name="notes" id="id_searchKey"
+                        style="width:400px;">
+                    <label class="mdl-textfield__label" for="id_searchKey" style="width:400px;">搜索……</label>
+                </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!-- 查询按钮 -->
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                    id='id_searchBtn'>查询</button>
+                <!-- 绘制表格 -->
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border=1px id='id_searchShow'>
+                </table>
+            </div>
+            <br><br><br><br><br>
+            </center>
+    </div>
+    </main>
     </div>
 </body>
 
@@ -173,7 +187,7 @@ $result=init("localhost","root","","resources","variety_show","showName");
 <script src="js/timeOut.js"></script>
 
 <script>
-let l = [[], [], [], [], []];
+    let l = [[], [], [], [], []];
 <?php
     $i = 0;
     while ($row = mysqli_fetch_array($result)) {
@@ -185,6 +199,7 @@ let l = [[], [], [], [], []];
         $i++;
     }
 ?>;
-new Fuzzysearch(l,"variety_show","综艺");
+    new Fuzzysearch(l, "variety_show", "综艺");
 </script>
+
 </html>
