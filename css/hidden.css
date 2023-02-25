@@ -33,4 +33,21 @@
     cursor:pointer;
 }
 
+/*美化navigation*/
+.mdl-navigation__link{
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+.mdl-navigation__link:hover{
+    background-color: #1ABC9C;
+}
 
+.mdl-layout__drawer-button{
+    border-radius: 25px;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+.mdl-layout__drawer-button:hover {
+    background-color: #1ABC9C;
+    color: white;
+}

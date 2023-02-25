@@ -54,32 +54,33 @@ $result=init("localhost","root","","resources","variety_show","showName");
                         <h3 style="color:rgb(65, 147, 136);">编辑资源</h3>
                         <form action="" method="post" name="editResources">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" name="name" id="name">
-                                <label class="mdl-textfield__label" for="name">修改名字</label>
+                                <input class="mdl-textfield__input" type="text" name="name" id="id_name">
+                                <label class="mdl-textfield__label" for="id_name">修改名字</label>
                             </div>
                             <br>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" name="showName" required="required"
-                                    id="showName">
-                                <label class="mdl-textfield__label" for="showName">修改综艺名称(必填)</label>
+                                    id="id_showName">
+                                <label class="mdl-textfield__label" for="id_showName">修改综艺名称(必填)</label>
                             </div>
                             <br>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" name="link"
-                                    pattern="[A-Z,a-z,0-9,/:.?%&=-]*" id="link">
-                                <label class="mdl-textfield__label" for="link">修改资源链接(必须是永久链接)</label>
+                                    pattern="[A-Z,a-z,0-9,/:.?%&=-]*" id="id_link">
+                                <label class="mdl-textfield__label" for="id_link">修改资源链接(必须是永久链接)</label>
                                 <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                             </div>
                             <br>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" name="extractCode" id="extractCode">
-                                <label class="mdl-textfield__label" for="extractCode">修改提取码（如果有的话）</label>
+                                <input class="mdl-textfield__input" type="text" name="extractCode" id="id_extractCode">
+                                <label class="mdl-textfield__label" for="id_extractCode">修改提取码（如果有的话）</label>
                             </div>
                             <br>
 
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <textarea class="mdl-textfield__input" type="text" name="notes" id="notes"></textarea>
-                                <label class="mdl-textfield__label" for="notes">修改备注</label>
+                                <textarea class="mdl-textfield__input" type="text" name="notes"
+                                    id="id_notes"></textarea>
+                                <label class="mdl-textfield__label" for="id_notes">修改备注</label>
                             </div>
                             <br>
                             <button
@@ -94,31 +95,31 @@ $result=init("localhost","root","","resources","variety_show","showName");
                     <!-- 表格内容 -->
                     <form action="variety_show.php?act=insert" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="name" id="name">
-                            <label class="mdl-textfield__label" for="name">你的名字……</label>
+                            <input class="mdl-textfield__input" type="text" name="name" id="id_name">
+                            <label class="mdl-textfield__label" for="id_name">你的名字……</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="showName" required="required"
-                                id="showName">
-                            <label class="mdl-textfield__label" for="showName">综艺名称(必填)</label>
+                                id="id_showName">
+                            <label class="mdl-textfield__label" for="id_showName">综艺名称(必填)</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="link"
-                                pattern="[A-Z,a-z,0-9,/:.?%&=-]*" id="link">
-                            <label class="mdl-textfield__label" for="link">资源链接(必须是永久链接)</label>
+                                pattern="[A-Z,a-z,0-9,/:.?%&=-]*" id="id_link1">
+                            <label class="mdl-textfield__label" for="id_link1">资源链接(必须是永久链接)</label>
                             <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="extractCode" id="extractCode">
-                            <label class="mdl-textfield__label" for="extractCode">提取码（如果有的话）</label>
+                            <input class="mdl-textfield__input" type="text" name="extractCode" id="id_extractCode1">
+                            <label class="mdl-textfield__label" for="id_extractCode1">提取码（如果有的话）</label>
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <textarea class="mdl-textfield__input" type="text" name="notes" id="notes"></textarea>
-                            <label class="mdl-textfield__label" for="notes">备注……</label>
+                            <textarea class="mdl-textfield__input" type="text" name="notes" id="id_notes"></textarea>
+                            <label class="mdl-textfield__label" for="id_notes">备注……</label>
                         </div>
                         <br>
                         <button
@@ -131,21 +132,22 @@ $result=init("localhost","root","","resources","variety_show","showName");
                     <!-- <div class="mdl-spinner mdl-js-spinner is-active"></div> -->
 
                     <!-- 加载中 -->
-                    <div id="load"><span class="mdl-chip"><span class="mdl-chip__text">加载中……</span></span></div>
+                    <!-- MDL Progress Bar with Indeterminate Progress -->
+                    <div id="id_load" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
                     <br>
                     <div class="wrap">
                         <!-- 搜索框 -->
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" value="" name="notes" id="searchKey"
+                            <input class="mdl-textfield__input" type="text" value="" name="notes" id="id_searchKey"
                                 style="width:400px;">
-                            <label class="mdl-textfield__label" for="searchKey" style="width:400px;">搜索……</label>
+                            <label class="mdl-textfield__label" for="id_searchKey" style="width:400px;">搜索……</label>
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <!-- 查询按钮 -->
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-                            id='searchBtn'>查询</button>
+                            id='id_searchBtn'>查询</button>
                         <!-- 绘制表格 -->
-                        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border=1px id='searchShow'>
+                        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border=1px id='id_searchShow'>
                         </table>
                     </div>
                     <br><br><br><br><br>
@@ -237,7 +239,7 @@ $result=init("localhost","root","","resources","variety_show","showName");
             <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\" class=\"link\"><a href=\""+ list[2][i] + "\">" + list[2][i] + "</a></td>\
             <td style=\"width:5%\">"+ list[3][i] + "</td><td class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">" + list[4][i] + "</td>\
             <td style=\"width:3%\">\
-            <button id=\"menu-lower-right"+ i.toString() + "\" class=\"mdl-button mdl-js-button mdl-button--icon\">\
+            <button id=\id_"menu - lower - right"+ i.toString() + "\" class=\"mdl-button mdl-js-button mdl-button--icon\">\
               <i class=\"material-icons\">more_vert</i>\
             </button>\
             <ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"\
@@ -256,15 +258,15 @@ $result=init("localhost","root","","resources","variety_show","showName");
 </script>
 
 <script>
-    link.onkeyup = function autoLoadFilmNameAndExtractCode() {
-        var m = document.getElementById("link").value;
+    id_link.onkeyup = function autoLoadFilmNameAndExtractCode() {
+        var m = document.getElementById("id_link").value;
         var linkBegin = m.search("http");
         if (linkBegin != -1) {
             var linkEnd = linkBegin;
             while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126) {
                 linkEnd++;
             }
-            document.getElementById("link").value = m.substring(linkBegin, linkEnd);
+            document.getElementById("id_link").value = m.substring(linkBegin, linkEnd);
         }
         var codeBegin = m.search("码");
         if (codeBegin != -1) {
@@ -273,18 +275,18 @@ $result=init("localhost","root","","resources","variety_show","showName");
             while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
                 codeEnd++;
             }
-            document.getElementById("extractCode").value = m.substring(codeBegin, codeEnd);
+            document.getElementById("id_extractCode1").value = m.substring(codeBegin, codeEnd);
         }
     }
-    extractCode.onkeyup = function autoLoadFilmNameAndExtractCode2() {
-        var m = document.getElementById("extractCode").value;
+    id_extractCode1.onkeyup = function autoLoadFilmNameAndExtractCode2() {
+        var m = document.getElementById("id_extractCode1").value;
         var linkBegin = m.search("http");
         if (linkBegin != -1) {
             var linkEnd = linkBegin;
             while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126) {
                 linkEnd++;
             }
-            document.getElementById("link").value = m.substring(linkBegin, linkEnd);
+            document.getElementById("id_link").value = m.substring(linkBegin, linkEnd);
         }
         var codeBegin = m.search("码");
         if (codeBegin != -1) {
@@ -293,9 +295,18 @@ $result=init("localhost","root","","resources","variety_show","showName");
             while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
                 codeEnd++;
             }
-            document.getElementById("extractCode").value = m.substring(codeBegin, codeEnd);
+            document.getElementById("id_extractCode1").value = m.substring(codeBegin, codeEnd);
         }
     }
+</script>
+<script>
+    // 显示1秒的加载进度条
+    setTimeout(function() {
+        // Get a reference to the loading spinner element
+        var spinner = document.getElementById('id_load');
+        // Remove the loading spinner from the DOM
+        spinner.parentNode.removeChild(spinner);
+    }, 1000);
 </script>
 
 </html>

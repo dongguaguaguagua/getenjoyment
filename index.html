@@ -64,6 +64,39 @@ while($row = mysqli_fetch_array($result)){
     <title>sufe资源共享站-电影</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <style>
+        .mdl-spinner {
+            display: inline-block;
+            position: relative;
+            width: 64px;
+            height: 64px;
+        }
+
+        .mdl-spinner::after {
+            content: " ";
+            display: block;
+            border-radius: 50%;
+            width: 0;
+            height: 0;
+            margin: 6px;
+            box-sizing: border-box;
+            border: 26px solid #000;
+            border-color: #000 transparent #000 transparent;
+            animation: 1.2s spin linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
+
+    <style>
         body {
             margin: 0;
         }
@@ -204,6 +237,8 @@ while($row = mysqli_fetch_array($result)){
 </head>
 
 <body>
+    <div id="loading-spinner" class="mdl-spinner mdl-js-spinner is-active"></div>
+
     <div class="head">
         <div class="container">
             <div class="logo">
@@ -318,6 +353,14 @@ while($row = mysqli_fetch_array($result)){
                 document.getElementById("extractCodeInput").value = m.substring(codeBegin, codeEnd);
             }
         }
+    </script>
+    <script>
+        window.addEventListener('load', function() {
+            // Get a reference to the loading spinner element
+            var spinner = document.getElementById('loading-spinner');
+            // Remove the loading spinner from the DOM
+            spinner.parentNode.removeChild(spinner);
+        });
     </script>
 </body>
 
