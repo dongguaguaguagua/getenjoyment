@@ -55,45 +55,45 @@ $result=init("localhost","root","","resources","books","bookName");
                     <h3 style="color:rgb(65, 147, 136)">书籍</h3>
                     <!-- 绘制编辑对话框 -->
                     <div class="editForm">
-                    <h3 style="color:rgb(65, 147, 136);">编辑资源</h3>
-                    <form action="" method="post" name="editResources">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="name" id="name">
-                            <label class="mdl-textfield__label" for="name">修改名字</label>
-                        </div>
-                        <br>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="bookName" required="required"
-                                id="bookName">
-                            <label class="mdl-textfield__label" for="bookName">修改书籍名称(必填)</label>
-                        </div>
-                        <br>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/:.?%&=-]*"
-                                id="link">
-                            <label class="mdl-textfield__label" for="link">修改资源链接(必须是永久链接)</label>
-                            <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
-                        </div>
-                        <br>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="extractCode" id="extractCode">
-                            <label class="mdl-textfield__label" for="extractCode">修改提取码（如果有的话）</label>
-                        </div>
-                        <br>
+                        <h3 style="color:rgb(65, 147, 136);">编辑资源</h3>
+                        <form action="" method="post" name="editResources">
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" name="name" id="name">
+                                <label class="mdl-textfield__label" for="name">修改名字</label>
+                            </div>
+                            <br>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" name="bookName" required="required"
+                                    id="bookName">
+                                <label class="mdl-textfield__label" for="bookName">修改书籍名称(必填)</label>
+                            </div>
+                            <br>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" name="link"
+                                    pattern="[A-Z,a-z,0-9,/:.?%&=-]*" id="link">
+                                <label class="mdl-textfield__label" for="link">修改资源链接(必须是永久链接)</label>
+                                <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
+                            </div>
+                            <br>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <input class="mdl-textfield__input" type="text" name="extractCode" id="extractCode">
+                                <label class="mdl-textfield__label" for="extractCode">修改提取码（如果有的话）</label>
+                            </div>
+                            <br>
 
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <textarea class="mdl-textfield__input" type="text" name="notes" id="notes"></textarea>
-                            <label class="mdl-textfield__label" for="notes">修改备注</label>
-                        </div>
-                        <br>
-                        <button
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-                            type="submit">
-                            提交
-                        </button>
-                        <br><br><br><br>
-                        <div class="close" style="color:rgb(65, 147, 136);">关闭</div>
-                    </form>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea class="mdl-textfield__input" type="text" name="notes" id="notes"></textarea>
+                                <label class="mdl-textfield__label" for="notes">修改备注</label>
+                            </div>
+                            <br>
+                            <button
+                                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                                type="submit">
+                                提交
+                            </button>
+                            <br><br><br><br>
+                            <div class="close" style="color:rgb(65, 147, 136);">关闭</div>
+                        </form>
                     </div>
                     <!-- 表格内容 -->
                     <form action="books.php?act=insert" method="post">
@@ -109,8 +109,8 @@ $result=init("localhost","root","","resources","books","bookName");
                         </div>
                         <br>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/:.?%&=-]*"
-                                id="link">
+                            <input class="mdl-textfield__input" type="text" name="link"
+                                pattern="[A-Z,a-z,0-9,/:.?%&=-]*" id="link">
                             <label class="mdl-textfield__label" for="link">资源链接(必须是永久链接)</label>
                             <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                         </div>
@@ -165,18 +165,18 @@ $result=init("localhost","root","","resources","books","bookName");
 <script>
     //编辑资源
     var editItem = function(name) {
-        var close=document.getElementsByClassName("close");
-        var editForm=document.getElementsByClassName("editForm");
-        editForm[0].className="editForm open";
-        close[0].addEventListener('click',function(){
-            editForm[0].className="editForm";
+        var close = document.getElementsByClassName("close");
+        var editForm = document.getElementsByClassName("editForm");
+        editForm[0].className = "editForm open";
+        close[0].addEventListener('click', function() {
+            editForm[0].className = "editForm";
         })
-        document.editResources.action="books.php?act=edit&name="+name;
+        document.editResources.action = "books.php?act=edit&name=" + name;
     }
 </script>
 <script>
-let l = [[], [], [], [], []];
-<?php
+    let l = [[], [], [], [], []];
+<? php
     $i = 0;
     while ($row = mysqli_fetch_array($result)) {
         echo "l[0][".$i."]=\"".$row['name']."\";";
@@ -232,7 +232,7 @@ let l = [[], [], [], [], []];
                 <th style=\"width:3%\">操作</th>\
                 </tr></thead>";
             //表身mdl
-            console.log(typeof(list[1][0]));
+            console.log(typeof (list[1][0]));
             colStr += "<tbody>";
             for (var i = 0, len = list[1].length; i < len; i++) {
                 colStr += "<tr>\
@@ -241,13 +241,13 @@ let l = [[], [], [], [], []];
             <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\" class=\"link\"><a href=\""+ list[2][i] + "\">" + list[2][i] + "</a></td>\
             <td style=\"width:5%\">"+ list[3][i] + "</td><td class=\"mdl-data-table__cell--non-numeric\" style=\"width:26.8%\">" + list[4][i] + "</td>\
             <td style=\"width:3%\">\
-            <button id=\"menu-lower-right"+i.toString()+"\" class=\"mdl-button mdl-js-button mdl-button--icon\">\
+            <button id=\"menu-lower-right"+ i.toString() + "\" class=\"mdl-button mdl-js-button mdl-button--icon\">\
               <i class=\"material-icons\">more_vert</i>\
             </button>\
             <ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"\
-                for=\"menu-lower-right"+i.toString()+"\">\
+                for=\"menu-lower-right"+ i.toString() + "\">\
                 <li class=\"mdl-menu__item\" onclick=\"window.location.href='/resources/books.php?act=delete&delateObject="+ list[1][i] + "'\">删除</li>\
-                <li class=\"mdl-menu__item\" onclick=editItem(\""+list[1][i]+"\");>编辑</li>\
+                <li class=\"mdl-menu__item\" onclick=editItem(\""+ list[1][i] + "\");>编辑</li>\
             </ul>\
             </td></tr>";
             }
@@ -255,9 +255,52 @@ let l = [[], [], [], [], []];
             this.searchShow.innerHTML = colStr;
         }
     }
-    document.getElementById('load').innerHTML = "<span class=\"mdl-chip\"><span class=\"mdl-chip__text\">加载成功！</span></span>";
+    document.getElementById('load').innerHTML = "<span class=\"mdl-chip\"><span class=\"mdl-chip__text\">成功加载后10条内容！</span></span>";
 
     new Fuzzysearch(l);
+</script>
+
+<script>
+    link.onkeyup = function autoLoadFilmNameAndExtractCode() {
+        var m = document.getElementById("link").value;
+        var linkBegin = m.search("http");
+        if (linkBegin != -1) {
+            var linkEnd = linkBegin;
+            while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126) {
+                linkEnd++;
+            }
+            document.getElementById("link").value = m.substring(linkBegin, linkEnd);
+        }
+        var codeBegin = m.search("码");
+        if (codeBegin != -1) {
+            codeBegin += 2;
+            var codeEnd = codeBegin;
+            while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
+                codeEnd++;
+            }
+            document.getElementById("extractCode").value = m.substring(codeBegin, codeEnd);
+        }
+    }
+    extractCode.onkeyup = function autoLoadFilmNameAndExtractCode2() {
+        var m = document.getElementById("extractCode").value;
+        var linkBegin = m.search("http");
+        if (linkBegin != -1) {
+            var linkEnd = linkBegin;
+            while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126) {
+                linkEnd++;
+            }
+            document.getElementById("link").value = m.substring(linkBegin, linkEnd);
+        }
+        var codeBegin = m.search("码");
+        if (codeBegin != -1) {
+            codeBegin += 2;
+            var codeEnd = codeBegin;
+            while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
+                codeEnd++;
+            }
+            document.getElementById("extractCode").value = m.substring(codeBegin, codeEnd);
+        }
+    }
 </script>
 
 </html>
