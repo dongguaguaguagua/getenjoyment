@@ -1,17 +1,16 @@
 <?php
 require_once 'function.php';
-$result=init("localhost","root","","resources","serial","serialName");
+$result=init("localhost","root","","resources","books","bookName");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>SCU资源共享站-电视剧</title>
+    <title>SCU资源共享站-书籍</title>
 </head>
 
-
+<!-- sytle sheet -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
 <link rel="stylesheet" href="css/hidden.css" />
@@ -34,9 +33,9 @@ $result=init("localhost","root","","resources","serial","serialName");
                 </nav>
             </div>
         </header>
-        <div class="mdl-layout__drawer">
+        <div class="mdl-layout__drawer mdl-js-ripple-effect">
             <span class="mdl-layout-title">SCU资源共享站</span>
-            <nav class="mdl-navigation">
+            <nav class="mdl-navigation mdl-js-ripple-effect">
                 <a class="mdl-navigation__link" href="/resources">
                     <span class="material-icons">home</span>首页
                 </a>
@@ -64,7 +63,7 @@ $result=init("localhost","root","","resources","serial","serialName");
         <main class="mdl-layout__content">
             <div class="page-content">
                 <center>
-                    <h3 style="color:rgb(65, 147, 136)">电视剧</h3>
+                    <h3 style="color:rgb(65, 147, 136)">书籍</h3>
                     <!-- 绘制编辑对话框 -->
                     <div class="editForm">
                         <h3 style="color:rgb(65, 147, 136);">编辑资源</h3>
@@ -76,10 +75,9 @@ $result=init("localhost","root","","resources","serial","serialName");
                                 <label class="mdl-textfield__label" for="id_edit_name"></label>
                             </div>
                             <br>
-                            <span style="color: #429488;padding-right: 20px;" class="material-icons">live_tv</span>
+                            <span style="color: #429488;padding-right: 20px;" class="material-icons">movie</span>
                             <div class="mdl-textfield mdl-js-textfield">
-                                <input class="mdl-textfield__input" type="text" name="serialName"
-                                    id="id_edit_mediaName">
+                                <input class="mdl-textfield__input" type="text" name="bookName" id="id_edit_mediaName">
                                 <label class="mdl-textfield__label" for="id_edit_mediaName"></label>
                             </div>
                             <br>
@@ -115,18 +113,18 @@ $result=init("localhost","root","","resources","serial","serialName");
                         </form>
                     </div>
                     <!-- 表格内容 -->
-                    <form action="serial.php?act=insert" method="post">
+                    <form action="books.php?act=insert" method="post">
                         <span style="color: #429488;padding-right: 20px;" class="material-icons">account_circle</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="name" id="id_name">
                             <label class="mdl-textfield__label" for="id_name">你的名字……</label>
                         </div>
                         <br>
-                        <span style="color: #429488;padding-right: 20px;" class="material-icons">live_tv</span>
+                        <span style="color: #429488;padding-right: 20px;" class="material-icons">movie</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="serialName" required="required"
+                            <input class="mdl-textfield__input" type="text" name="bookName" required="required"
                                 id="id_mediaName">
-                            <label class="mdl-textfield__label" for="id_mediaName">电视剧名称(必填)</label>
+                            <label class="mdl-textfield__label" for="id_mediaName">书籍名称(必填)</label>
                         </div>
                         <br>
                         <span style="color: #429488;padding-right: 20px;" class="material-icons">add_link</span>
@@ -159,6 +157,7 @@ $result=init("localhost","root","","resources","serial","serialName");
                     <!-- <div class="mdl-spinner mdl-js-spinner is-active"></div> -->
 
                     <!-- 加载中 -->
+                    <!-- <div id="id_load"><span class="mdl-chip"><span class="mdl-chip__text">加载中……</span></span></div> -->
                     <!-- MDL Progress Bar with Indeterminate Progress -->
                     <div id="id_load" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
                     <br>
@@ -171,8 +170,7 @@ $result=init("localhost","root","","resources","serial","serialName");
                         </div>
                         <!-- 查询按钮 -->
                         <button style="margin-left: 100px;"
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-                            id='id_searchBtn'>
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id='id_searchBtn'>
                             <span class="material-icons">search</span>
                         </button>
                         <!-- 绘制表格 -->
@@ -199,18 +197,18 @@ $result=init("localhost","root","","resources","serial","serialName");
 
 <script>
     let l = [[], [], [], [], []];
-<?php
+<? php
     $i = 0;
     while ($row = mysqli_fetch_array($result)) {
         echo "l[0][".$i."]=\"".$row['name']."\";";
-        echo "l[1][".$i."]=\"".$row['serialName']."\";";
+        echo "l[1][".$i."]=\"".$row['bookName']."\";";
         echo "l[2][".$i."]=\"".$row['link']."\";";
         echo "l[3][".$i."]=\"".$row['extractCode']."\";";
         echo "l[4][".$i."]=\"".$row['notes']."\";\n";
         $i++;
     }
 ?>;
-    new Fuzzysearch(l, "serial", "电视剧");
+    new Fuzzysearch(l, "books", "书籍");
 </script>
 
 </html>

@@ -53,7 +53,11 @@ $result=init("localhost","root","","resources","variety_show","showName");
                     <span class="material-icons">auto_stories</span>书籍
                 </a>
                 <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">
-                    <span class="material-icons">public</span>Github
+                    <!-- 20-(24-17)=13 -->
+                    <svg viewBox="0 0 24 24" width="17" height="17" style="font-size: small;padding-right: 19px;">
+                        <path fill="#878787"
+                            d="M12,0.4c-6.6,0-12,5.4-12,12c0,5.3,3.4,9.8,8.1,11.4c0.6,0.1,0.8-0.3,0.8-0.6c0-0.3,0-1,0-2c-3.3,0.7-4-1.6-4-1.6c-0.5-1.3-1.3-1.6-1.3-1.6c-1.1-0.7,0.1-0.7,0.1-0.7c1.2,0.1,1.9,1.2,1.9,1.2c1.1,1.9,2.8,1.3,3.5,1c0.1-0.8,0.4-1.3,0.8-1.6c-2.9-0.3-6-1.4-6-6c0-1.3,0.5-2.3,1.2-3.1c-0.1-0.3-0.5-1.5,0.1-3c0,0,1-0.3,3.2,1.2c0.9-0.3,1.9-0.5,2.9-0.5s2,0.2,2.9,0.5c2.1-1.5,3.2-1.2,3.2-1.2c0.6,1.5,0.2,2.7,0.1,3c0.8,0.8,1.2,1.8,1.2,3.1c0,4.6-3.1,5.7-6,6c0.5,0.4,0.9,1.1,0.9,2.3c0,1.7,0,3,0,3c0,0.3,0.2,0.7,0.8,0.6c4.7-1.6,8.1-6.1,8.1-11.4C24,5.8,18.6,0.4,12,0.4z" />
+                    </svg>Github
                 </a>
             </nav>
         </div>
@@ -72,7 +76,7 @@ $result=init("localhost","root","","resources","variety_show","showName");
                                 <label class="mdl-textfield__label" for="id_edit_name"></label>
                             </div>
                             <br>
-                            <span style="color: #429488;padding-right: 20px;" class="material-icons">movie</span>
+                            <span style="color: #429488;padding-right: 20px;" class="material-icons">sports_martial_arts</span>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="showName" id="id_edit_mediaName">
                                 <label class="mdl-textfield__label" for="id_edit_mediaName"></label>
@@ -118,7 +122,7 @@ $result=init("localhost","root","","resources","variety_show","showName");
                             <label class="mdl-textfield__label" for="id_name">你的名字……</label>
                         </div>
                         <br>
-                        <span style="color: #429488;padding-right: 20px;" class="material-icons">movie</span>
+                        <span style="color: #429488;padding-right: 20px;" class="material-icons">sports_martial_arts</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="showName" required="required"
                                 id="id_showName">
