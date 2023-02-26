@@ -135,7 +135,7 @@ $result=init("localhost","root","","resources","movies","movieName");
                         <br>
                         <span style="color: #429488;padding-right: 20px;" class="material-icons">movie</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="movieName" id="id_mediaName">
+                            <input class="mdl-textfield__input" type="text" name="movieName" id="id_mediaName" required="required">
                             <label class="mdl-textfield__label" for="id_mediaName">电影名称(必填)</label>
                         </div>
                         <br>
