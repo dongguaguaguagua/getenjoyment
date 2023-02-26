@@ -11,11 +11,21 @@ id_link1.onkeyup = function autoLoadFilmNameAndExtractCode() {
     }
     var codeBegin = m.search("码");
     if (codeBegin != -1) {
-        codeBegin += 2;
-        var codeEnd = codeBegin;
-        while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
-            codeEnd++;
+        while (!(('0' <= m.charAt(codeBegin) && m.charAt(codeBegin) <= '9') ||
+                ('a' <= m.charAt(codeBegin) && m.charAt(codeBegin) <= 'z') ||
+                ('A' <= m.charAt(codeBegin) && m.charAt(codeBegin) <= 'Z'))) {
+            codeBegin++;
+            // console.log("codebegin:", codeBegin);
         }
+        // console.log(m.charAt(codeBegin));
+        var codeEnd = codeBegin;
+        while (('0' <= m.charAt(codeEnd) && m.charAt(codeEnd) <= '9') ||
+                ('a' <= m.charAt(codeEnd) && m.charAt(codeEnd) <= 'z') ||
+                ('A' <= m.charAt(codeEnd) && m.charAt(codeEnd) <= 'Z')) {
+            codeEnd++;
+            // console.log("codeEnd:", codeEnd);
+        }
+        // console.log(m.charAt(codeEnd));
         var extractCodeInput = document.getElementById("id_extractCode1");
         extractCodeInput.parentElement.MaterialTextfield.change(m.substring(codeBegin, codeEnd));
     }
@@ -33,11 +43,21 @@ id_extractCode1.onkeyup = function autoLoadFilmNameAndExtractCode2() {
     }
     var codeBegin = m.search("码");
     if (codeBegin != -1) {
-        codeBegin += 2;
-        var codeEnd = codeBegin;
-        while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
-            codeEnd++;
+        while (!(('0' <= m.charAt(codeBegin) && m.charAt(codeBegin) <= '9') ||
+                ('a' <= m.charAt(codeBegin) && m.charAt(codeBegin) <= 'z') ||
+                ('A' <= m.charAt(codeBegin) && m.charAt(codeBegin) <= 'Z'))) {
+            codeBegin++;
+            // console.log("codebegin:", codeBegin);
         }
+        // console.log(m.charAt(codeBegin));
+        var codeEnd = codeBegin;
+        while (('0' <= m.charAt(codeEnd) && m.charAt(codeEnd) <= '9') ||
+                ('a' <= m.charAt(codeEnd) && m.charAt(codeEnd) <= 'z') ||
+                ('A' <= m.charAt(codeEnd) && m.charAt(codeEnd) <= 'Z')) {
+            codeEnd++;
+            // console.log("codeEnd:", codeEnd);
+        }
+        // console.log(m.charAt(codeEnd));
         var extractCodeInput = document.getElementById("id_extractCode1");
         extractCodeInput.parentElement.MaterialTextfield.change(m.substring(codeBegin, codeEnd));
     }
