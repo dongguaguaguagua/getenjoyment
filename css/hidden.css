@@ -39,7 +39,7 @@
     cursor:pointer;
 }
 
-/*美化navigation*/
+/* 美化navigation */
 .mdl-navigation__link{
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
@@ -60,4 +60,14 @@
 
 .mdl-textfield textarea.mdl-textfield__input{
     display: inline-block;
+}
+
+.mdl-data-table tbody tr{
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+}
+
+/* 解决表格hover时的问题 */
+.mdl-data-table tbody tr:hover{
+    background-color: rgba(238, 238, 238, 0.7);
 }

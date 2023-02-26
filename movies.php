@@ -8,7 +8,7 @@ $result=init("localhost","root","","resources","movies","movieName");
 
 <head>
     <meta charset="UTF-8">
-    <title>scu资源共享站-电影</title>
+    <title>SCU资源共享站-电影</title>
 </head>
 
 
@@ -23,7 +23,7 @@ $result=init("localhost","root","","resources","movies","movieName");
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
                 <!-- Title -->
-                <span class="mdl-layout-title">欢迎来到scu资源共享站</span>
+                <span class="mdl-layout-title">欢迎来到SCU资源共享站</span>
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation. We hide it in small screens. -->
@@ -36,7 +36,7 @@ $result=init("localhost","root","","resources","movies","movieName");
             </div>
         </header>
         <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">scu资源共享站</span>
+            <span class="mdl-layout-title">SCU资源共享站</span>
             <nav class="mdl-navigation">
                 <a class="fa fa-user-circle fa-lg mdl-navigation__link" href="/resources">&nbsp;&nbsp;&nbsp;首页</a>
                 <a class="fa fa-film fa-lg mdl-navigation__link" href="/resources/movies.php">&nbsp;&nbsp;&nbsp;电影</a>
