@@ -1,0 +1,56 @@
+var escape = function(string){
+    string=string.replace(' ','%20');
+    string=string.replace('+','%2B');
+    string=string.replace('&','%26');
+    string=string.replace('=','%3D');
+    string=string.replace('<','%3C');
+    string=string.replace('>','%3E');
+    string=string.replace('"','%22');
+    string=string.replace('#','%23');
+    string=string.replace(',','%2C');
+    // string=string.replace('%','%25');
+    string=string.replace('{','%7B');
+    string=string.replace('}','%7D');
+    string=string.replace('|','%7C');
+    string=string.replace('\\','%5C');
+    string=string.replace('^','%5E');
+    string=string.replace('~','%7E');
+    string=string.replace('[','%5B');
+    string=string.replace(']','%5D');
+    string=string.replace('`','%60');
+    string=string.replace(';','%3B');
+    string=string.replace('/','%2F');
+    string=string.replace('?','%3F');
+    string=string.replace(':','%3A');
+    string=string.replace('@','%40');
+    string=string.replace('$','%24');
+    return string;
+}
+var unescape = function(string){
+    string=string.replace('%20',' ');
+    string=string.replace('%2B','+');
+    string=string.replace('%26','&');
+    string=string.replace('%3D','=');
+    string=string.replace('%3C','<');
+    string=string.replace('%3E','>');
+    string=string.replace('%22','"');
+    string=string.replace('%23','#');
+    string=string.replace('%2C',',');
+    // string=string.replace('%25','%');
+    string=string.replace('%7B','{');
+    string=string.replace('%7D','}');
+    string=string.replace('%7C','|');
+    string=string.replace('%5C','\\');
+    string=string.replace('%5E','^');
+    string=string.replace('%7E','~');
+    string=string.replace('%5B','[');
+    string=string.replace('%5D',']');
+    string=string.replace('%60','`');
+    string=string.replace('%3B',';');
+    string=string.replace('%2F','/');
+    string=string.replace('%3F','?');
+    string=string.replace('%3A',':');
+    string=string.replace('%40','@');
+    string=string.replace('%24','$');
+    return string;
+}

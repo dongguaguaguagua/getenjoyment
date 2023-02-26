@@ -75,7 +75,7 @@ $result=init("localhost","root","","resources","variety_show","showName");
                                 class="fa fa-link fa-1x"></div>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="link"
-                                    pattern="[A-Z,a-z,0-9,/,:,.,?,%,&,=,-, ]*" id="id_edit_link">
+                                    pattern="^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+" id="id_edit_link">
                                 <label class="mdl-textfield__label" for="id_edit_link"></label>
                                 <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                             </div>
@@ -122,7 +122,7 @@ $result=init("localhost","root","","resources","variety_show","showName");
             <br>
             <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-link fa-1x"></div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" name="link" pattern="[A-Z,a-z,0-9,/,:,.,?,%,&,=,-, ]*"
+                <input class="mdl-textfield__input" type="text" name="link" pattern="^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+"
                     id="id_link1">
                 <label class="mdl-textfield__label" for="id_link1">资源链接(必须是永久链接)</label>
                 <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>

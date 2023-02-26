@@ -1,3 +1,5 @@
+document.write('<script src="js/escape.js" type="text/javascript" charset="utf-8"></script>');
+
 function Fuzzysearch(l,fileName,name) {
     this.l = l;                                                    //请求得到的数据
     this.fileName = fileName;
@@ -31,7 +33,7 @@ Fuzzysearch.prototype = {
     },
     renderTab: function(list,name,fileName) {
         let colStr = '';
-
+        let listEscaped = [[], [], [], [], []];
         if (list[1].length == 0) {
             this.searchShow.innerHTML = '<center><span class=\"mdl-chip\"><span class=\"mdl-chip__text\">很遗憾，未查询到关键字相关结果</span></span></center>';
             return;
@@ -45,9 +47,11 @@ Fuzzysearch.prototype = {
             <th style=\"width:3%\">操作</th>\
             </tr></thead>";
         //表身mdl
-        console.log(list[1][0]);
         colStr += "<tbody>";
         for (var i = 0, len = list[1].length; i < len; i++) {
+            for (var j = 0; j < 5; j++) {
+                listEscaped[j][i] = escape(list[j][i]);
+            }
             colStr += "<tr>\
         <td style=\"width:5.2%\">"+ list[0][i] + "</td>\
         <td class=\"mdl-data-table__cell--non-numeric\" style=\"width:30%\">"+ list[1][i] + "</td>\
@@ -60,7 +64,7 @@ Fuzzysearch.prototype = {
         <ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"\
             for=\"menu-lower-right"+ i.toString() + "\">\
             <li class=\"mdl-menu__item\" onclick=\"window.location.href='/resources/"+fileName+".php?act=delete&delateObject="+ list[1][i] + "'\">删除</li>\
-            <li class=\"mdl-menu__item\" onclick=editItem(\""+ list[0][i] + "\",\""+ list[1][i] + "\",\""+ list[2][i] + "\",\""+ list[3][i] + "\",\""+ list[4][i] + "\");>编辑</li>\
+            <li class=\"mdl-menu__item\" onclick=editItem(\""+fileName+"\",\""+ listEscaped[0][i] + "\",\""+ listEscaped[1][i] + "\",\""+ listEscaped[2][i] + "\",\""+ listEscaped[3][i] + "\",\""+ listEscaped[4][i] + "\");>编辑</li>\
         </ul>\
         </td></tr>";
         }
