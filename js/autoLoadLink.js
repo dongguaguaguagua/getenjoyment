@@ -6,7 +6,8 @@ id_link1.onkeyup = function autoLoadFilmNameAndExtractCode() {
         while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126) {
             linkEnd++;
         }
-        document.getElementById("id_link1").value = m.substring(linkBegin, linkEnd);
+        var linkInput = document.getElementById("id_link1");
+        linkInput.parentElement.MaterialTextfield.change(m.substring(linkBegin, linkEnd));
     }
     var codeBegin = m.search("码");
     if (codeBegin != -1) {
@@ -15,7 +16,8 @@ id_link1.onkeyup = function autoLoadFilmNameAndExtractCode() {
         while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
             codeEnd++;
         }
-        document.getElementById("id_extractCode1").value = m.substring(codeBegin, codeEnd);
+        var extractCodeInput = document.getElementById("id_extractCode1");
+        extractCodeInput.parentElement.MaterialTextfield.change(m.substring(codeBegin, codeEnd));
     }
 }
 id_extractCode1.onkeyup = function autoLoadFilmNameAndExtractCode2() {
@@ -26,7 +28,8 @@ id_extractCode1.onkeyup = function autoLoadFilmNameAndExtractCode2() {
         while (33 <= m.charCodeAt(linkEnd) && m.charCodeAt(linkEnd) <= 126) {
             linkEnd++;
         }
-        document.getElementById("id_link1").value = m.substring(linkBegin, linkEnd);
+        var linkInput = document.getElementById("id_link1");
+        linkInput.parentElement.MaterialTextfield.change(m.substring(linkBegin, linkEnd));
     }
     var codeBegin = m.search("码");
     if (codeBegin != -1) {
@@ -35,6 +38,7 @@ id_extractCode1.onkeyup = function autoLoadFilmNameAndExtractCode2() {
         while (33 <= m.charCodeAt(codeEnd) && m.charCodeAt(codeEnd) <= 126) {
             codeEnd++;
         }
-        document.getElementById("id_extractCode1").value = m.substring(codeBegin, codeEnd);
+        var extractCodeInput = document.getElementById("id_extractCode1");
+        extractCodeInput.parentElement.MaterialTextfield.change(m.substring(codeBegin, codeEnd));
     }
 }
