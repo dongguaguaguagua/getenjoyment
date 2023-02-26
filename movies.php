@@ -12,7 +12,6 @@ $result=init("localhost","root","","resources","movies","movieName");
 </head>
 
 
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
 <link rel="stylesheet" href="css/hidden.css" />
@@ -38,15 +37,24 @@ $result=init("localhost","root","","resources","movies","movieName");
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">SCU资源共享站</span>
             <nav class="mdl-navigation">
-                <a class="fa fa-user-circle fa-lg mdl-navigation__link" href="/resources">&nbsp;&nbsp;&nbsp;首页</a>
-                <a class="fa fa-film fa-lg mdl-navigation__link" href="/resources/movies.php">&nbsp;&nbsp;&nbsp;电影</a>
-                <a class="fa fa-video-camera fa-lg mdl-navigation__link"
-                    href="/resources/serial.php">&nbsp;&nbsp;&nbsp;电视剧</a>
-                <a class="fa fa-hand-peace-o fa-lg mdl-navigation__link"
-                    href="/resources/variety_show.php">&nbsp;&nbsp;&nbsp;综艺</a>
-                <a class="fa fa-book fa-lg mdl-navigation__link" href="/resources/books.php">&nbsp;&nbsp;&nbsp;书籍</a>
-                <a class="fa fa-github fa-lg mdl-navigation__link"
-                    href="https://github.com/dongguaguaguagua/getenjoyment">&nbsp;&nbsp;&nbsp;Github</a>
+                <a class="mdl-navigation__link" href="/resources">
+                    <span class="material-icons">home</span>首页
+                </a>
+                <a class="mdl-navigation__link" href="/resources/movies.php">
+                    <span class="material-icons">movie</span>电影
+                </a>
+                <a class="mdl-navigation__link" href="/resources/serial.php">
+                    <span class="material-icons">live_tv</span>电视剧
+                </a>
+                <a class="mdl-navigation__link" href="/resources/variety_show.php">
+                    <span class="material-icons">sports_martial_arts</span>综艺
+                </a>
+                <a class="mdl-navigation__link" href="/resources/books.php">
+                    <span class="material-icons">auto_stories</span>书籍
+                </a>
+                <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">
+                    <span class="material-icons">public</span>Github
+                </a>
             </nav>
         </div>
         <main class="mdl-layout__content">
@@ -57,23 +65,21 @@ $result=init("localhost","root","","resources","movies","movieName");
                     <div class="editForm">
                         <h3 style="color:rgb(65, 147, 136);">编辑资源</h3>
                         <form action="" method="post" name="editResources">
-                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
-                                class="fa fa-user-circle fa-1x"></div>
+                            <span style="color: #429488;padding-right: 20px;"
+                                class="material-icons">account_circle</span>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="name" id="id_edit_name">
                                 <label class="mdl-textfield__label" for="id_edit_name"></label>
                             </div>
                             <br>
-                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
-                                class="fa fa-film fa-1x"></div>
+                            <span style="color: #429488;padding-right: 20px;" class="material-icons">movie</span>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="movieName" required="required"
                                     id="id_edit_mediaName">
                                 <label class="mdl-textfield__label" for="id_edit_mediaName"></label>
                             </div>
                             <br>
-                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
-                                class="fa fa-link fa-1x"></div>
+                            <span style="color: #429488;padding-right: 20px;" class="material-icons">add_link</span>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="link"
                                     pattern="^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+" id="id_edit_link">
@@ -81,8 +87,7 @@ $result=init("localhost","root","","resources","movies","movieName");
                                 <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                             </div>
                             <br>
-                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
-                                class="fa fa-code fa-1x"></div>
+                            <span style="color: #429488;padding-right: 20px;" class="material-icons">code</span>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="extractCode"
                                     id="id_edit_extractCode">
@@ -90,8 +95,7 @@ $result=init("localhost","root","","resources","movies","movieName");
                             </div>
                             <br>
 
-                            <div style="color: #429488; display: inline-block;padding-right: 20px;"
-                                class="fa fa-file-text-o fa-1x"></div>
+                            <span style="color: #429488;padding-right: 20px;" class="material-icons">description</span>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <textarea class="mdl-textfield__input" type="text" name="notes"
                                     id="id_edit_notes"></textarea>
@@ -109,19 +113,19 @@ $result=init("localhost","root","","resources","movies","movieName");
                     </div>
                     <!-- 表格内容 -->
                     <form action="movies.php?act=insert" method="post">
-                        <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-user-circle fa-1x"></div>
+                        <span style="color: #429488;padding-right: 20px;" class="material-icons">account_circle</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="name" id="id_name">
                             <label class="mdl-textfield__label" for="id_name">你的名字……</label>
                         </div>
                         <br>
-                        <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-film fa-1x"></div>
+                        <span style="color: #429488;padding-right: 20px;" class="material-icons">movie</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="movieName" id="id_mediaName">
                             <label class="mdl-textfield__label" for="id_mediaName">电影名称(必填)</label>
                         </div>
                         <br>
-                        <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-link fa-1x"></div>
+                        <span style="color: #429488;padding-right: 20px;" class="material-icons">add_link</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="link"
                                 pattern="^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+" id="id_link1">
@@ -129,13 +133,13 @@ $result=init("localhost","root","","resources","movies","movieName");
                             <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                         </div>
                         <br>
-                        <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-code fa-1x"></div>
+                        <span style="color: #429488;padding-right: 20px;" class="material-icons">code</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="extractCode" id="id_extractCode1">
                             <label class="mdl-textfield__label" for="id_extractCode1">提取码（如果有的话）</label>
                         </div>
                         <br>
-                        <div style="color: #429488; display: inline-block;padding-right: 20px;" class="fa fa-file-text-o fa-1x"></div>
+                        <span style="color: #429488;padding-right: 20px;" class="material-icons">description</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <textarea class="mdl-textfield__input" type="text" name="notes" id="id_notes"></textarea>
                             <label class="mdl-textfield__label" for="id_notes">备注……</label>
@@ -161,10 +165,12 @@ $result=init("localhost","root","","resources","movies","movieName");
                                 style="width:400px;">
                             <label class="mdl-textfield__label" for="id_searchKey" style="width:400px;">搜索……</label>
                         </div>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <!-- 查询按钮 -->
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-                            id='id_searchBtn'>查询</button>
+                        <button style="margin-left: 100px;"
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                            id='id_searchBtn'>
+                            <span class="material-icons">search</span>
+                        </button>
                         <!-- 绘制表格 -->
                         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" border=1px id='id_searchShow'>
                         </table>

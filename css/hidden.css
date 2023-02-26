@@ -71,3 +71,8 @@
 .mdl-data-table tbody tr:hover{
     background-color: rgba(238, 238, 238, 0.7);
 }
+
+.mdl-navigation .material-icons{
+    padding-right: 20px;
+    font-size: medium;
+}
