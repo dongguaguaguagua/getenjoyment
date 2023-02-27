@@ -237,8 +237,6 @@ while($row = mysqli_fetch_array($result)){
 </head>
 
 <body>
-    <div id="loading-spinner" class="mdl-spinner mdl-js-spinner is-active"></div>
-
     <div class="head">
         <div class="container">
             <div class="logo">
@@ -353,14 +351,6 @@ while($row = mysqli_fetch_array($result)){
                 document.getElementById("extractCodeInput").value = m.substring(codeBegin, codeEnd);
             }
         }
-    </script>
-    <script>
-        window.addEventListener('load', function() {
-            // Get a reference to the loading spinner element
-            var spinner = document.getElementById('loading-spinner');
-            // Remove the loading spinner from the DOM
-            spinner.parentNode.removeChild(spinner);
-        });
     </script>
 </body>
 

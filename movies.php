@@ -1,16 +1,16 @@
-<?php
-require_once 'function.php';
-$result=init("localhost","root","","resources","movies","movieName");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>SCU资源共享站-电影</title>
+    <script src="js/toast.js"></script>
 </head>
 
+<?php
+require_once 'function.php';
+$result=init("localhost","root","","resources","movies","movieName");
+?>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="mdl/material.teal-light_blue.min.css" />
@@ -193,10 +193,6 @@ $result=init("localhost","root","","resources","movies","movieName");
                 </center>
             </div>
         </main>
-        <div id="toast_on_bottom" class="mdl-js-snackbar mdl-snackbar">
-            <div class="mdl-snackbar__text"></div>
-            <button class="mdl-snackbar__action" type="button"></button>
-        </div>
     </div>
 </body>
 

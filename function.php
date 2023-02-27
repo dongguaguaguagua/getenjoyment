@@ -10,10 +10,10 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
         $insert_sql = "insert into $_media_ (name,$_mediaName_,link,extractCode,notes) values ('".$_POST['name']."','".$_POST[$_mediaName_]."','".$_POST['link']."','".$_POST['extractCode']."','".$_POST['notes']."')";
         // echo $insert_sql;
         if(mysqli_query($connect_mysql,$insert_sql)){
-            echo "<script>document.querySelector('#toast_on_bottom').MaterialSnackbar.showSnackbar({message: '感谢您的无私分享！将刷新页面'});</script>";
+            echo "Toast('感谢您的无私分享！将刷新页面', 2000)";
         }
         else{
-            echo "<script>document.querySelector('#toast_on_bottom').MaterialSnackbar.showSnackbar({message: '插入数据失败，请联系我'});</script>";
+            echo "Toast('插入数据失败，请联系我', 2000)";
         }
         $result = showDefaultResult($connect_mysql,$_media_);
     }
@@ -21,10 +21,10 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
         $update_sql = "update $_media_ set name=\"".$_POST['name']."\",$_mediaName_=\"".$_POST[$_mediaName_]."\",link=\"".$_POST['link']."\",extractCode=\"".$_POST['extractCode']."\",notes=\"".$_POST['notes']."\" where $_mediaName_=\"".$_GET['name']."\";";
         // echo $update_sql;
         if(mysqli_query($connect_mysql,$update_sql)){
-            echo "<script>document.querySelector('#toast_on_bottom').MaterialSnackbar.showSnackbar({message: '感谢您的修改！将刷新页面'});</script>";
+            echo "Toast('感谢您的修改！将刷新页面', 2000)";
         }
         else{
-            echo "<script>document.querySelector('#toast_on_bottom').MaterialSnackbar.showSnackbar({message: '修改数据失败，请联系我'});</script>";
+            echo "Toast('修改数据失败，请联系我', 2000)";
         }
         $result = showDefaultResult($connect_mysql,$_media_);
     }
@@ -37,13 +37,13 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
             $insert_deleted_sql = "insert into deleted (name,mediaName,link,extractCode,notes) values ('".$row['name']."','".$row[$_mediaName_]."','".$row['link']."','".$row['extractCode']."','".$row['notes']."')";
             $sql = "delete from $_media_ where $_mediaName_ = '".$_GET['delateObject']."' LIMIT 1";
             if(mysqli_query($connect_mysql,$sql)&&mysqli_query($connect_mysql,$insert_deleted_sql)){
-                echo "<script>document.querySelector('#toast_on_bottom').MaterialSnackbar.showSnackbar({message: '删除数据成功！将刷新页面'});</script>";
+                echo "Toast('删除数据成功！将刷新页面', 2000)";
             }
             else{
-                echo "<script>document.querySelector('#toast_on_bottom').MaterialSnackbar.showSnackbar({message: '删除数据失败，请联系我'});</script>";
+                echo "Toast('删除数据失败，请联系我', 2000)";
             }
         }else{
-            echo "<script>document.querySelector('#toast_on_bottom').MaterialSnackbar.showSnackbar({message: '删除数据失败，为找到相关数据'});</script>";
+            echo "Toast('删除数据失败，为找到相关数据', 2000)";
         }
         $result = showDefaultResult($connect_mysql,$_media_);
     }
