@@ -1,3 +1,9 @@
+// 链接:https://pan.baidu.com/s/1PgTU7p0paXeHcFM272t14Q  密码:iqfj
+// [两杆大烟枪].Lock.Stock....资源-XH1080.com.mkv
+// https://www.aliyundrive.com/s/ZbPkvXKLAEk
+// 提取码: c53r
+// 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。
+// https://dongmelon.lanzouw.com/iLdwJiv4h4j蓝奏云
 id_link1.onkeyup = function autoLoadFilmNameAndExtractCode() {
     var m = document.getElementById("id_link1").value;
     var linkBegin = m.search("http");

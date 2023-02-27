@@ -193,11 +193,15 @@ $result=init("localhost","root","","resources","movies","movieName");
                 </center>
             </div>
         </main>
+        <div id="toast_on_bottom" class="mdl-js-snackbar mdl-snackbar">
+            <div class="mdl-snackbar__text"></div>
+            <button class="mdl-snackbar__action" type="button"></button>
+        </div>
     </div>
 </body>
 
 <!-- Google mdl风格 -->
-<script defer src="mdl/material.min.js"></script>
+<script src="mdl/material.min.js"></script>
 <!-- 编辑 -->
 <script src="js/edit.js"></script>
 <!-- 搜索及后面的表格显示 -->
