@@ -472,10 +472,6 @@
                     </center>
                 </div>
             </section>
-            <div id="toast_on_bottom" class="mdl-js-snackbar mdl-snackbar">
-                <div class="mdl-snackbar__text"></div>
-                <button class="mdl-snackbar__action" type="button"></button>
-            </div>
         </main>
     </div>
 </body>
@@ -488,16 +484,5 @@
 <script src="js/search.js"></script>
 <!-- 自动识别提取码 -->
 <script src="js/autoLoadLink.js"></script>
-
-<script>
-    window.onload = function() {
-        var snackbarContainer = document.querySelector('#toast_on_bottom');
-        var data = {
-            message: '欢迎来到SCU资源共享站',
-            timeout: '3000',
-        };
-        snackbarContainer.MaterialSnackbar.showSnackbar(data);
-    };
-</script>
 
 </html>

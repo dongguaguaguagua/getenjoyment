@@ -4,13 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>SCU资源共享站-书籍</title>
-    <script src="js/toast.js"></script>
 </head>
-
-<?php
-require_once 'function.php';
-$result=init("localhost","root","","resources","books","bookName");
-?>
 
 <!-- sytle sheet -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -207,6 +201,12 @@ $result=init("localhost","root","","resources","books","bookName");
 <script src="js/autoLoadLink.js"></script>
 <!-- mdl进度条 -->
 <script src="js/timeOut.js"></script>
+<script src="js/toast.js"></script>
+
+<?php
+require_once 'function.php';
+$result=init("localhost","root","","resources","books","bookName");
+?>
 
 <script>
     let l = [[], [], [], [], []];

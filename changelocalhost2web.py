@@ -14,8 +14,8 @@ def change(data):
 # with open(f'{fileDir}/movies.php', 'r') as file:
 # with open(f'{fileDir}/serial.php', 'r') as file:
 # with open(f'{fileDir}/variety_show.php', 'r') as file:
-# with open(f'{fileDir}/index.html', 'r') as file:
-with open(f'{fileDir}/js/search.js', 'r') as file:
+with open(f'{fileDir}/index.html', 'r') as file:
+# with open(f'{fileDir}/js/search.js', 'r') as file:
     data = file.read()
 
 print(change(data))
