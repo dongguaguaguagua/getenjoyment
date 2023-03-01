@@ -201,6 +201,7 @@
 <script src="js/autoLoadLink.js"></script>
 <!-- mdl进度条 -->
 <script src="js/timeOut.js"></script>
+<!-- toast -->
 <script src="js/toast.js"></script>
 
 <?php

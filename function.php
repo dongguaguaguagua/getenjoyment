@@ -43,7 +43,7 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
                 echo "Toast('删除数据失败，请联系我', 2000);";
             }
         }else{
-            echo "Toast('删除数据失败，为找到相关数据', 2000);";
+            echo "Toast('删除数据失败，未找到相关数据', 2000);";
         }
         $result = showDefaultResult($connect_mysql,$_media_);
     }
