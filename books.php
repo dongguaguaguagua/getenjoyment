@@ -90,7 +90,8 @@
                             <span style="color: #429488;padding-right: 20px;" class="material-icons">add_link</span>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="link"
-                                    pattern="^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+" id="id_edit_link">
+                                    pattern="^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+" id="id_edit_link"
+                                    onkeyup="autoLoadFilmNameAndExtractCode(this)">
                                 <label class="mdl-textfield__label" for="id_edit_link"></label>
                                 <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                             </div>
@@ -98,7 +99,7 @@
                             <span style="color: #429488;padding-right: 20px;" class="material-icons">code</span>
                             <div class="mdl-textfield mdl-js-textfield">
                                 <input class="mdl-textfield__input" type="text" name="extractCode"
-                                    id="id_edit_extractCode">
+                                    id="id_edit_extractCode" onkeyup="autoLoadFilmNameAndExtractCode2(this)">
                                 <label class="mdl-textfield__label" for="id_edit_extractCode"></label>
                             </div>
                             <br>
@@ -136,14 +137,16 @@
                         <span style="color: #429488;padding-right: 20px;" class="material-icons">add_link</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="link"
-                                pattern="^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+" id="id_link1">
+                                pattern="^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+" id="id_link1"
+                                onkeyup="autoLoadFilmNameAndExtractCode(this)">
                             <label class="mdl-textfield__label" for="id_link1">资源链接(必须是永久链接)</label>
                             <span class="mdl-textfield__error">链接只能包含字母和数字及其他英文符号</span>
                         </div>
                         <br>
                         <span style="color: #429488;padding-right: 20px;" class="material-icons">code</span>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" name="extractCode" id="id_extractCode1">
+                            <input class="mdl-textfield__input" type="text" name="extractCode" id="id_extractCode1"
+                                onkeyup="autoLoadFilmNameAndExtractCode2(this)">
                             <label class="mdl-textfield__label" for="id_extractCode1">提取码（如果有的话）</label>
                         </div>
                         <br>
@@ -176,8 +179,7 @@
                         </div>
                         <!-- 查询按钮 -->
                         <button style="margin-left: 100px;"
-                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-                            id='id_searchBtn'>
+                            class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id='id_searchBtn'>
                             <span class="material-icons">search</span>
                         </button>
                         <!-- 绘制表格 -->
