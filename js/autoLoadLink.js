@@ -8,7 +8,6 @@ function autoLoadFilmNameAndExtractCode(linkInputElement) {
     var linkInputValue = linkInputElement.value;
     var linkElement = linkInputElement.parentElement;
     var codeElement = linkElement.nextElementSibling.nextElementSibling.nextElementSibling;
-    console.log(codeElement)
     var linkBegin = linkInputValue.search("http");
     if (linkBegin != -1) {
         var linkEnd = linkBegin;
@@ -43,7 +42,7 @@ function autoLoadFilmNameAndExtractCode2(codeInputElement) {
         while (33 <= codeInputValue.charCodeAt(linkEnd) && codeInputValue.charCodeAt(linkEnd) <= 126) {
             linkEnd++;
         }
-        codeElement.MaterialTextfield.change(codeInputValue.substring(linkBegin, linkEnd));
+        linkElement.MaterialTextfield.change(codeInputValue.substring(linkBegin, linkEnd));
     }
     var codeBegin = codeInputValue.search("码");
     if (codeBegin != -1) {
@@ -58,6 +57,6 @@ function autoLoadFilmNameAndExtractCode2(codeInputElement) {
                 ('A' <= codeInputValue.charAt(codeEnd) && codeInputValue.charAt(codeEnd) <= 'Z')) {
             codeEnd++;
         }
-        linkElement.MaterialTextfield.change(codeInputValue.substring(codeBegin, codeEnd));
+        codeElement.MaterialTextfield.change(codeInputValue.substring(codeBegin, codeEnd));
     }
 }
