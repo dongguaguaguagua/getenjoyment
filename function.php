@@ -32,6 +32,7 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
         $select_deleted_sql = "select * from $_media_ where $_mediaName_ ='".$_GET['delateObject']."' LIMIT 1";
         $deleted_sql = mysqli_query($connect_mysql,$select_deleted_sql);
         $row = mysqli_fetch_array($deleted_sql);
+        echo $select_deleted_sql;
         if(!empty($row[$_mediaName_]))
         {
             $insert_deleted_sql = "insert into deleted (name,mediaName,link,extractCode,notes) values ('".$row['name']."','".$row[$_mediaName_]."','".$row['link']."','".$row['extractCode']."','".$row['notes']."')";
