@@ -37,6 +37,7 @@
                 <a href="#fixed-tab-movies" class="mdl-layout__tab">电影</a>
                 <a href="#fixed-tab-serial" class="mdl-layout__tab">电视剧</a>
                 <a href="#fixed-tab-variety-show" class="mdl-layout__tab">综艺</a>
+                <a class="mdl-navigation__link" href="/resources/chat.html">GPT3.5</a>
             </div>
         </header>
         <div class="mdl-layout__drawer">

@@ -76,3 +76,43 @@
     padding-right: 20px;
     font-size: medium;
 }
+
+.mdl-grid .mdl-cell {
+  padding: 10px;
+}
+
+.askBox {
+  font-size: 20px;
+  font-weight: bold;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.answerBox {
+  font-size: 20px;
+  background-color: #f7f7f9;
+  width: 60%;
+  margin: 0 auto;
+}
+
+/*  美化多行代码块  */
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  word-break: break-all;
+  word-wrap: break-word;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/*  美化行内代码块  */
+p code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}

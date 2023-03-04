@@ -27,6 +27,7 @@
                     <a class="mdl-navigation__link" href="/resources/serial.php">电视剧</a>
                     <a class="mdl-navigation__link" href="/resources/variety_show.php">综艺</a>
                     <a class="mdl-navigation__link" href="/resources/books.php">书籍</a>
+                    <a class="mdl-navigation__link" href="/resources/chat.html">GPT3.5</a>
                 </nav>
                 <!-- 没有用的search button等你完善-->
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
