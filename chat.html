@@ -16,13 +16,14 @@
 </head>
 
 <body>
+
   <body>
     <!-- Always shows a header, even in smaller screens. -->
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">欢迎来到SCU资源共享站</span>
+          <span class="mdl-layout-title">欢迎使用GPT3.5-Turbo</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
           <!-- Navigation. We hide it in small screens. -->
@@ -102,18 +103,23 @@
       <main class="mdl-layout__content">
         <div class="page-content mdl-grid">
           <div class="mdl-cell mdl-cell--12-col mdl-cell--middle">
-            <form id="myForm" class="mdl-grid">
-              <div
-                class="mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-cell--middle">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" value="" name="notes" id="id_searchKey"
+            <form id="questionForm" class="mdl-grid">
+              <div style="width: 100%;">
+                <div style="margin-left: 100px;" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" name="ask" id="id_askKey" style="width:400px;">
+                  <label class="mdl-textfield__label" for="id_askKey" style="width:400px;">输入问题</label>
+                </div>
+                <div style="margin-left: 100px;" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" name="system" id="id_system_prompt"
                     style="width:400px;">
-                  <label class="mdl-textfield__label" for="id_searchKey" style="width:400px;">问问题吧</label>
+                  <label class="mdl-textfield__label" for="id_system_prompt"
+                    style="width:400px;">系统提示(出现在每次对话的开头)</label>
                 </div>
                 <button type="submit" style="margin-left: 100px;"
-                  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id='id_searchBtn'>
+                  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                   <span class="material-icons">done_all</span>
                 </button>
+              </div>
             </form>
           </div>
           <div id="boxContainer" class="mdl-grid"></div>
@@ -153,14 +159,35 @@
           }
         });
 
-        $("#myForm").submit(function(event) {
+        $("#questionForm").submit(function(event) {
           event.preventDefault();
 
-          var inputText = $("#id_searchKey").val().trim();
+          var systemText = $("#id_system_prompt").val().trim();
+          console.log(systemText);
+          var inputText = $("#id_askKey").val().trim();
 
+          if (systemText !== "") {
+            var iconSystem = $("<span></span>")
+              .addClass("material-icons")
+              .text("settings")
+              .attr("style", "padding-right: 20px; font-size: medium");
+            if (message[0] == null || message[0].role != "system") {
+              message.unshift({ "role": "system", "content": systemText });
+              var box = $("<div></div>")
+                .addClass("mdl-cell mdl-cell--12-col mdl-shadow--2dp")
+                .addClass("systemBox")
+                .attr("id", "system0")
+                .text(systemText);
+              box.prepend(iconSystem);
+              $("#boxContainer").prepend(box);
+            } // 还没开始对话 或 对话已经开始但没有system
+            else if (message[0].role === "system") {
+              message[0].content = systemText;
+              $("#system0").text(systemText).prepend(iconSystem);
+            } // 对话已经开始而且有system
+          }
           if (inputText !== "") {
             message.push({ "role": "user", "content": inputText });
-
             counter++;
             var box = $("<div></div>")
               .addClass("mdl-cell mdl-cell--12-col mdl-shadow--2dp")
@@ -179,7 +206,7 @@
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer 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',
+                'Authorization': 'Bearer sk-***',
                 "Access-Control-Allow-Origin": "*",
               },
               body: JSON.stringify({
@@ -198,7 +225,6 @@
                 .addClass("material-icons")
                 .text("chat")
                 .attr("style", "padding-right: 20px; font-size: medium");
-
               $("#boxContainer").append(box);
 
               const htmlString = md.render(assistantResponce.content);
@@ -209,10 +235,16 @@
               message.push({ "role": "assistant", "content": assistantResponce.content });
             }).catch((error) => {
               console.log("failed!")
+              var box = $("<div></div>")
+                .addClass("mdl-cell mdl-cell--12-col mdl-shadow--2dp")
+                .addClass("errorBox")
+                .attr("id", "id_errorBox")
+                .text("NetWork Error! Please try it again.");
+              $("#boxContainer").append(box);
               console.error(error);
             });
           }
-          $("#id_searchKey").val("");
+          $("#id_askKey").val("");
         });
       });
 
