@@ -81,34 +81,43 @@
     padding: 10px;
 }
 
-.systemBox {
+#conversation_container .systemBox {
     font-size: 20px;
     background-color: #e17d9d;
     color: white;
+    padding: 10px;
+    width: 100%;
 }
 
-.askBox {
+#conversation_container .userBox {
     font-size: 20px;
     font-weight: bold;
-    width: 60%;
-    margin: 0 auto;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 
-.answerBox {
+#conversation_container .assistantBox {
     font-size: 20px;
     background-color: #f7f7f9;
-    width: 60%;
-    margin: 0 auto;
+    width: 100%;
+    padding: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
-.errorBox {
+#conversation_container .errorBox {
     color: red;
-    width: 60%;
-    margin: 0 auto;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /*  美化多行代码块   */
-pre {
+#conversation_container pre {
     display: block;
     padding: 9.5px;
     margin: 0 0 10px;
@@ -121,10 +130,31 @@ pre {
 }
 
 /*  美化行内代码块   */
-p code {
+#conversation_container p code {
     padding: 2px 4px;
     font-size: 90%;
     color: #c7254e;
     background-color: #f9f2f4;
     border-radius: 4px;
 }
+
+#conversation_container .option-icons {
+    font-size: medium;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+
+#conversation_container .right-float-icons {
+    float: right;
+}
+
+#conversation_container {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#conversation_container textarea {
+    width: 90%;
+}
+
