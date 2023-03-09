@@ -94,6 +94,7 @@
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <script>
     var message = [[], [], []];
+    const iconDict = { "user": "face", "assistant": "chat", "system": "settings", "error": "error", "comment": "edit_note" };
     var count = 0;
     const md = new markdownit({
       linkify: true, // Autoconvert URLs into links
@@ -121,44 +122,18 @@
       createBox("assistant", "This is where answers generated, which supports [markdown](https://daringfireball.net/projects/markdown/).", -1);
     });
 
-    function switchToUser(element, index) {
+    function switchTo(element, index, boxClass) {
       const box = $("#box_id" + index);
       const btn = $("#headline_iconbtn_id" + index);
       const content = $("#content_id" + index);
-      message[0][message[2].indexOf(String(index))] = "user";
-      btn.html("<i class='material-icons'>face</i>")
+      message[0][message[2].indexOf(String(index))] = boxClass;
+      btn.html("<i class='material-icons'>" + iconDict[boxClass] + "</i>")
       box.removeClass("userBox");
       box.removeClass("systemBox");
       box.removeClass("assistantBox");
+      box.removeClass("commentBox")
       box.removeClass("errorBox");
-      box.addClass("userBox");
-    }
-
-    function switchToSystem(element, index) {
-      const box = $("#box_id" + index);
-      const btn = $("#headline_iconbtn_id" + index);
-      const content = $("#content_id" + index);
-      message[0][message[2].indexOf(String(index))] = "system";
-      btn.html("<i class='material-icons'>settings</i>")
-      box.removeClass("userBox");
-      box.removeClass("systemBox");
-      box.removeClass("assistantBox");
-      box.removeClass("errorBox");
-      box.addClass("systemBox");
-      console.log(message);
-    }
-
-    function switchToAssistant(element, index) {
-      const box = $("#box_id" + index);
-      const btn = $("#headline_iconbtn_id" + index);
-      const content = $("#content_id" + index);
-      message[0][message[2].indexOf(String(index))] = "assistant";
-      btn.html("<i class='material-icons'>chat</i>")
-      box.removeClass("userBox");
-      box.removeClass("systemBox");
-      box.removeClass("assistantBox");
-      box.removeClass("errorBox");
-      box.addClass("assistantBox");
+      box.addClass(boxClass + "Box");
       console.log(message);
     }
 
@@ -217,8 +192,13 @@
         class: 'material-icons option-icons',
         text: 'chat'
       })
+      const icon4 = $('<i>', {
+        class: 'material-icons option-icons',
+        text: 'edit_note'
+      })
+
       // create the button using the MaterialButton function
-      const iconDict = { "user": "face", "assistant": "chat", "system": "settings", "error": "error" };
+
       const classBtn = $('<button>', {
         id: "headline_iconbtn_id" + count,
         class: 'mdl-button mdl-js-button mdl-button--icon'
@@ -250,16 +230,20 @@
       }).append(
         $('<li>').attr({
           'class': 'mdl-menu__item',
-          'onclick': 'switchToUser(this,' + count + ');'
+          'onclick': "switchTo(this, " + count + ", 'user');"
         }).text('User').prepend(icon1),
         $('<li>').attr({
           'class': 'mdl-menu__item',
-          'onclick': 'switchToSystem(this,' + count + ');'
+          'onclick': "switchTo(this, " + count + ", 'system');"
         }).text('System').prepend(icon2),
         $('<li>').attr({
           'class': 'mdl-menu__item',
-          'onclick': 'switchToAssistant(this,' + count + ');'
+          'onclick': "switchTo(this, " + count + ", 'assistant');"
         }).text('Assistant').prepend(icon3),
+        $('<li>').attr({
+          'class': 'mdl-menu__item',
+          'onclick': "switchTo(this, " + count + ", 'comment');"
+        }).text('Comment').prepend(icon4),
       );
       // append the button and menu to the div with class "head-line"
       headline.append(classBtn, menu, addBtn, deleteBtn);
@@ -299,15 +283,18 @@
       const contents = message[1];
       const processedMsg = [];
 
-      for (let i = 0; i < count; i++) {
-        if (roles[i] != "error") {
+      for (let i = 0; i < message[2].length; i++) {
+        if (roles[i] === "user" || roles[i] === "system" || roles[i] === "assistant") {
           processedMsg.push({
             role: roles[i],
             content: contents[i]
           });
         }
       }
-
+      console.log(JSON.stringify({
+        'model': 'gpt-3.5-turbo',
+        'messages': processedMsg,
+      }));
       fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {

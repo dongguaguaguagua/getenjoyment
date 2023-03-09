@@ -91,7 +91,6 @@
 
 #conversation_container .userBox {
     font-size: 20px;
-    font-weight: bold;
     width: 100%;
     padding: 10px;
     margin-top: 10px;
@@ -106,10 +105,17 @@
     margin-top: 0px;
     margin-bottom: 0px;
 }
-
+/**/
 #conversation_container .errorBox {
     color: red;
-    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#conversation_container .commentBox {
+    color: #9b999a;
     width: 100%;
     padding: 10px;
     margin-top: 10px;
