@@ -9,7 +9,7 @@ DBuser = input("DataBase User:")
 DBpassword = input("DataBase Password:")
 
 def change(data,DBdomain,DBname,DBuser,DBpassword):
-    data = data.replace('localhost', DBdomain).replace(DBuser, DBname).replace(',"",', ',"'+DBpassword+'",').replace(',"resources",', ',"'+DBname+'",')
+    data = data.replace('localhost', DBdomain).replace('root', DBuser).replace(',"",', ',"'+DBpassword+'",').replace(',"resources",', ',"'+DBname+'",')
     data = data.replace('resources/', '').replace('/resources"', 'index.html"')
     return data
 
