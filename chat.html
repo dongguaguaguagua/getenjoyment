@@ -93,9 +93,9 @@
   <!-- material design lite -->
   <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   <script>
+    var count = 0;
     var message = [[], [], []];
     const iconDict = { "user": "face", "assistant": "chat", "system": "settings", "error": "error", "comment": "edit_note" };
-    var count = 0;
     const md = new markdownit({
       linkify: true, // Autoconvert URLs into links
       // typographer: true, // Enable smartypants and other typographic replacements
@@ -123,33 +123,28 @@
       createBox("assistant", "This is where answers are generated.", -1);
     });
 
-    function switchTo(element, index, boxClass) {
-      const box = $("#box_id" + index);
-      const btn = $("#headline_iconbtn_id" + index);
-      const content = $("#content_id" + index);
-      message[0][message[2].indexOf(String(index))] = boxClass;
+    function switchTo(element, index_, boxClass) {
+      const box = $("#box_id" + index_);
+      const btn = $("#headline_iconbtn_id" + index_);
+      message[0][message[2].indexOf(String(index_))] = boxClass;
       btn.html("<i class='material-icons'>" + iconDict[boxClass] + "</i>")
-      box.removeClass("userBox");
-      box.removeClass("systemBox");
-      box.removeClass("assistantBox");
-      box.removeClass("commentBox")
-      box.removeClass("errorBox");
+      box.removeClass("userBox systemBox assistantBox commentBox errorBox");
       box.addClass(boxClass + "Box");
       console.log(message);
     }
 
     function makeNonEditable(element) {
       const textarea = $("#" + element.id);
-      const content = $("#content_id" + textarea.attr("index"));
-      const i = message[2].indexOf(textarea.attr("index"));
+      const i = message[2].indexOf(textarea.attr("index_"));
       const text = textarea.val();
       const htmlStrinng = md.render(text);
-      const div = $('<div>').attr({
+      const div = $('<div>', {
         id: textarea.attr("id"),
         ondblclick: 'makeEditable(this)',
-        index: textarea.attr("index"),
+        index_: textarea.attr("index_"),
         hiddenText: text,
-      }).html(htmlStrinng);
+        html: htmlStrinng,
+      });
       message[1][i] = text;
       textarea.replaceWith(div);
       console.log(message);
@@ -157,29 +152,33 @@
 
     function makeEditable(element) {
       const div = $("#" + element.id);
-      const text = div.attr("hiddenText");
-      const textarea = $('<textarea>').attr({
+      const textarea = $('<textarea>', {
+        val: div.attr("hiddenText"),
         id: div.attr("id"),
-        index: div.attr("index"),
+        index_: div.attr("index_"),
         onblur: 'makeNonEditable(this)',
         hiddenText: div.attr("hiddenText"),
-      }).val(text).keydown(function() {
-        //Auto-expanding textarea
-        this.style.removeProperty('height');
-        this.style.height = (this.scrollHeight + 10) + 'px';
-      }).focus(function() {
-        //Do this on focus, to allow textarea to animate to height...
-        this.style.removeProperty('height');
-        this.style.height = (this.scrollHeight + 10) + 'px';
+        keydown: function() {
+          //Auto-expanding textarea
+          this.style.removeProperty('height');
+          this.style.height = (this.scrollHeight + 10) + 'px';
+        },
+        focus: function() {
+          //Do this on focus, to allow textarea to animate to height...
+          this.style.removeProperty('height');
+          this.style.height = (this.scrollHeight + 10) + 'px';
+        }
       });
       div.replaceWith(textarea);
       textarea.focus();
     }
 
     function createBox(boxClass, text, atwhere) {
-      const headline = $("<div>").attr({
+      // create headline on the top.
+      const headline = $("<div>", {
         id: "headline_id" + count,
-      }).addClass("head-line");
+        class: "head-line"
+      });
       // create icons
       const icon1 = $('<i>', {
         class: 'material-icons option-icons',
@@ -199,7 +198,6 @@
       })
 
       // create the button using the MaterialButton function
-
       const classBtn = $('<button>', {
         id: "headline_iconbtn_id" + count,
         class: 'mdl-button mdl-js-button mdl-button--icon'
@@ -229,40 +227,44 @@
         class: 'mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect',
         for: "headline_iconbtn_id" + count,
       }).append(
-        $('<li>').attr({
-          'class': 'mdl-menu__item',
-          'onclick': "switchTo(this, " + count + ", 'user');"
-        }).text('User').prepend(icon1),
-        $('<li>').attr({
-          'class': 'mdl-menu__item',
-          'onclick': "switchTo(this, " + count + ", 'system');"
-        }).text('System').prepend(icon2),
-        $('<li>').attr({
-          'class': 'mdl-menu__item',
-          'onclick': "switchTo(this, " + count + ", 'assistant');"
-        }).text('Assistant').prepend(icon3),
-        $('<li>').attr({
-          'class': 'mdl-menu__item',
-          'onclick': "switchTo(this, " + count + ", 'comment');"
-        }).text('Comment').prepend(icon4),
+        $('<li>', {
+          class: 'mdl-menu__item',
+          onclick: "switchTo(this, " + count + ", 'user');",
+          text: 'User'
+        }).prepend(icon1),
+        $('<li>', {
+          class: 'mdl-menu__item',
+          onclick: "switchTo(this, " + count + ", 'system');",
+          text: 'System'
+        }).prepend(icon2),
+        $('<li>', {
+          class: 'mdl-menu__item',
+          onclick: "switchTo(this, " + count + ", 'assistant');",
+          text: 'Assistant'
+        }).prepend(icon3),
+        $('<li>', {
+          class: 'mdl-menu__item',
+          onclick: "switchTo(this, " + count + ", 'comment');",
+          text: 'Comment'
+        }).prepend(icon4),
       );
       // append the button and menu to the div with class "head-line"
       headline.append(classBtn, menu, addBtn, deleteBtn);
       // create content container
       const htmlStrinng = md.render(text);
-
-      content = $('<div>').attr({
+      content = $('<div>', {
         id: 'content_id' + count,
-        index: count,
+        index_: count,
         ondblclick: 'makeEditable(this)',
         hiddenText: text,
-      }).html(htmlStrinng);
+        html: htmlStrinng,
+      });
       // create the div box
-      const box = $('<div>').attr({
+      const box = $('<div>', {
+        index_: count,
         id: 'box_id' + count,
-        index: count
-      }).addClass("mdl-cell mdl-cell--12-col mdl-shadow--2dp")
-        .addClass(boxClass + "Box");
+        class: "mdl-cell mdl-cell--12-col mdl-shadow--2dp",
+      }).addClass(boxClass + "Box");
       box.append(headline).append(content);
       if (atwhere == -1) {
         message[0].push(boxClass);
@@ -281,7 +283,10 @@
 
     function submit() {
       // add loading effect
-      const loading = $('<div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>');
+      const loading = $('<div>', {
+        id: "loading",
+        class: "mdl-progress mdl-js-progress mdl-progress__indeterminate",
+      });
       $("#conversation_container").append(loading);
       componentHandler.upgradeDom();
 
@@ -297,6 +302,7 @@
           });
         }
       }
+
       console.log(JSON.stringify({
         'model': 'gpt-3.5-turbo',
         'messages': processedMsg,
@@ -325,18 +331,18 @@
       });
     }
 
-    function addBox(index) {
-      const i = message[2].indexOf(String(index));
+    function addBox(index_) {
+      const i = message[2].indexOf(String(index_));
       createBox("user", "*write something here*", i);
       console.log(message);
     }
 
-    function deleteBox(index) {
-      const i = message[2].indexOf(String(index));
+    function deleteBox(index_) {
+      const i = message[2].indexOf(String(index_));
       message[0].splice(i, 1);
       message[1].splice(i, 1);
       message[2].splice(i, 1);
-      $("#box_id" + index).remove();
+      $("#box_id" + index_).remove();
       console.log(message);
     }
   </script>
