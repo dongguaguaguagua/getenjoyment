@@ -12,7 +12,7 @@ $data = array(
 // Set API request headers
 $headers = array(
     "Content-Type: application/json",
-    "Authorization: Bearer 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"
+    "Authorization: Bearer sk-***"
 );
 
 // Initialize curl session
