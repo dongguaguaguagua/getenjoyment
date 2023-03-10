@@ -75,7 +75,7 @@
       </div>
       <main class="mdl-layout__content">
         <div id="conversation_container"></div>
-        <div id="btnContainer" style="width: 200px;margin-left: auto;margin-right: auto;margin-top: 200px;">
+        <div id="btnContainer">
           <button onclick="submit()" style="width: 100%;"
             class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
             generate
@@ -117,9 +117,10 @@
     });
 
     $(document).ready(function() {
+      createBox("comment", "This is a comment which is can be edited by double-click. All blocks support [MarkDown](https://daringfireball.net/projects/markdown/). Click the **GENERATE** button to get the answer from GPT3.5\n \n - Add block below please click the `add` button. \n - Delete block please click the `delete` button \n - Block type can be changed by expanding the menu on the left \n - Comments are ignored when submiting to API. \n - System prompts target to guide GPT3.5 to generate what you want.", -1);
       createBox("system", "This is a system prompt, double-click to edit me.", -1);
       createBox("user", "**This is where you put your questions, double-click to edit me.**", -1);
-      createBox("assistant", "This is where answers generated, which supports [markdown](https://daringfireball.net/projects/markdown/).", -1);
+      createBox("assistant", "This is where answers are generated.", -1);
     });
 
     function switchTo(element, index, boxClass) {
@@ -279,6 +280,11 @@
     }
 
     function submit() {
+      // add loading effect
+      const loading = $('<div id="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>');
+      $("#conversation_container").append(loading);
+      componentHandler.upgradeDom();
+
       const roles = message[0];
       const contents = message[1];
       const processedMsg = [];
@@ -310,10 +316,12 @@
         assistantResponce = result.choices[0].message;
         console.log("get response successfully:\n", assistantResponce.content);
         createBox("assistant", assistantResponce.content, -1);
+        loading.remove();
       }).catch((error) => {
         console.log("failed!")
         createBox("error", "NetWork Error! Please try it again.", -1);
         console.error(error);
+        loading.remove();
       });
     }
 
