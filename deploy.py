@@ -22,17 +22,10 @@ def write(filename):
             file.write(data)
 
 write("books.php")
-# write("movies.php")
-# write("serial.php")
-# write("variety_show.php")
-# write("index.php")
-# write("index.html")
-# with open(f'{fileDir}/movies.php', 'r') as file:
-# with open(f'{fileDir}/serial.php', 'r') as file:
-# with open(f'{fileDir}/variety_show.php', 'r') as file:
-# with open(f'{fileDir}/index.html', 'r') as file:
-# with open(f'{fileDir}/chat.html', 'r') as file:
-# with open(f'{fileDir}/js/search.js', 'r') as file:
-    # data = file.read()
+write("movies.php")
+write("serial.php")
+write("variety_show.php")
+write("index.php")
+write("index.html")
 
 print("deploy success")
