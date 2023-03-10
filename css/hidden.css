@@ -171,7 +171,16 @@
 }
 
 #conversation_container textarea {
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    outline: none;
     width: 90%;
+}
+
+#conversation_container textarea::selection {
+  background-color: rgba(255, 165, 0, 0.4);
+  color: #000;
 }
 
 #conversation_container #loading {
