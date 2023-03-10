@@ -51,7 +51,7 @@ while($row = mysqli_fetch_array($result)){
     echo "<td><a href=\"".$row['link']."\">".$row['link']."</a></td>";
     echo "<td>".$row['extractCode']."</td>";
     echo "<td>".$row['notes']."</td>";
-    echo "<td><input type=\"button\" value=\"删除\" onclick=\"window.location.href='http://localhost:8080/resources/movies.php?act=delete&movieName=".$row['movieName']."'\"></td>";
+    echo "<td><input type=\"button\" value=\"删除\" onclick=\"window.location.href='movies.php?act=delete&movieName=".$row['movieName']."'\"></td>";
     echo "</tr></center>";
 }
 ?> -->

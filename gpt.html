@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My Website</title>
+  <meta charset="UTF-8">
+  <!-- <title>SCU资源共享站-电影</title> -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">My Website</span>
+      </div>
+    </header>
+
+    <main class="mdl-layout__content">
+      <div class="page-content mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col"></div>
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--middle">
+          <form id="myForm" class="mdl-grid">
+            <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone mdl-cell--middle">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" value="" name="notes" id="id_searchKey" style="width:400px;">
+                  <label class="mdl-textfield__label" for="id_searchKey" style="width:400px;">搜索……</label>
+              </div>
+            </div>
+            <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--2-col-tablet mdl-cell--2-col-phone mdl-cell--middle">
+              <button type="submit"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"><span class="material-icons">Chat</span></button>
+            </div>
+          </form>
+        </div>
+
+        <div id="boxContainer" class="mdl-grid"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var counter = 0;
+      var message = [];
+      var assistantResponce;
+
+      $("#myForm").submit(function(event) {
+        event.preventDefault();
+
+        var inputText = $("#inputText").val();
+
+        if (inputText !== "") {
+          message.push({ "role": "user", "content": inputText })
+
+          counter++;
+          var box = $("<div></div>")
+            .addClass("mdl-cell mdl-cell--12-col mdl-shadow--2dp")
+            .attr("id", "ask" + counter)
+            .text("User: " + inputText);
+          $("#boxContainer").append(box);
+          componentHandler.upgradeElement(box.get(0));
+
+          // assistantResponce = {content:"111111"}
+          fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer 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'
+            },
+            body: JSON.stringify({
+              'model': 'gpt-3.5-turbo',
+              'messages': message,
+            })
+          }).then((response) => response.json()).then((result) => {
+            assistantResponce = result.choices[0].message;
+            console.log("get response successfully:", assistantResponce.content)
+            var box = $("<div></div>")
+              .addClass("mdl-cell mdl-cell--12-col mdl-shadow--2dp")
+              .attr("id", "answer" + counter)
+              .text("ChatGPT: " + assistantResponce.content);
+            $("#boxContainer").append(box);
+            componentHandler.upgradeElement(box.get(0));
+            message.push({ "role": "assistant", "content": assistantResponce.content })
+          }).catch((error) => {
+            console.error(error);
+          });
+        }
+        $("#inputText").val("");
+      });
+    });
+
+  </script>
+</body>
+
+</html>

@@ -43,19 +43,19 @@
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">SCU资源共享站</span>
             <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="http://localhost:8080/resources/index_test.html">
+                <a class="mdl-navigation__link" href="index_test.html">
                     <span class="material-icons">home</span>首页
                 </a>
-                <a class="mdl-navigation__link" href="http://localhost:8080/resources/movies.php">
+                <a class="mdl-navigation__link" href="movies.php">
                     <span class="material-icons">movie</span>电影
                 </a>
-                <a class="mdl-navigation__link" href="http://localhost:8080/resources/serial.php">
+                <a class="mdl-navigation__link" href="serial.php">
                     <span class="material-icons">live_tv</span>电视剧
                 </a>
-                <a class="mdl-navigation__link" href="http://localhost:8080/resources/variety_show.php">
+                <a class="mdl-navigation__link" href="variety_show.php">
                     <span class="material-icons">sports_martial_arts</span>综艺
                 </a>
-                <a class="mdl-navigation__link" href="http://localhost:8080/resources/books.php">
+                <a class="mdl-navigation__link" href="books.php">
                     <span class="material-icons">auto_stories</span>书籍
                 </a>
                 <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">
@@ -121,7 +121,7 @@
                             </form>
                         </div>
                         <!-- 表格内容 -->
-                        <form action="http://localhost:8080/resources/books.php?act=insert" method="post">
+                        <form action="books.php?act=insert" method="post">
                             <span style="color: #429488;padding-right: 20px;" class="material-icons">account_circle</span>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" name="name" id="id_name">
@@ -219,7 +219,7 @@
                             </form>
                         </div>
                         <!-- 表格内容 -->
-                        <form action="http://localhost:8080/resources/movies.php?act=insert" method="post">
+                        <form action="movies.php?act=insert" method="post">
                             <span style="color: #429488;padding-right: 20px;" class="material-icons">account_circle</span>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" name="name" id="id_name">
@@ -315,7 +315,7 @@
                             </form>
                         </div>
                         <!-- 表格内容 -->
-                        <form action="http://localhost:8080/resources/serial.php?act=insert" method="post">
+                        <form action="serial.php?act=insert" method="post">
                             <span style="color: #429488;padding-right: 20px;" class="material-icons">account_circle</span>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" name="name" id="id_name">
@@ -412,7 +412,7 @@
                         </div>
                         <!-- 表格内容 -->
 
-                        <form action="http://localhost:8080/resources/variety_show.php?act=insert" method="post">
+                        <form action="variety_show.php?act=insert" method="post">
                             <span style="color: #429488;padding-right: 20px;" class="material-icons">account_circle</span>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" type="text" name="name" id="id_name">

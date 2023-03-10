@@ -51,7 +51,7 @@ while($row = mysqli_fetch_array($result)){
     echo "<td><a href=\"".$row['link']."\">".$row['link']."</a></td>";
     echo "<td>".$row['extractCode']."</td>";
     echo "<td>".$row['notes']."</td>";
-    echo "<td><input type=\"button\" value=\"删除\" onclick=\"window.location.href='http://localhost:8080/resources/movies.php?act=delete&movieName=".$row['movieName']."'\"></td>";
+    echo "<td><input type=\"button\" value=\"删除\" onclick=\"window.location.href='movies.php?act=delete&movieName=".$row['movieName']."'\"></td>";
     echo "</tr></center>";
 }
 ?> -->
@@ -245,24 +245,24 @@ while($row = mysqli_fetch_array($result)){
                 <div class="logo1" onclick="window.open('https://www.sufe.edu.cn/')">SUFE</div>
                 <div class="logo2">资源共享站(电影)</div>
             </div>
-            <div class="menu" onclick="window.open('http://localhost:8080/resources/movies.php')">
+            <div class="menu" onclick="window.open('movies.php')">
                 <i class="fa fa-film fa-lg"></i>
                 电影
             </div>
-            <div class="menu" onclick="window.open('http://localhost:8080/resources/serial.php')">
+            <div class="menu" onclick="window.open('serial.php')">
                 <i class="fa fa-video-camera fa-lg"></i>
                 电视剧
             </div>
-            <div class="menu" onclick="window.open('http://localhost:8080/resources/variety_show.php')">
+            <div class="menu" onclick="window.open('variety_show.php')">
                 <i class="fa fa-hand-peace-o fa-lg"></i>
                 综艺
             </div>
-            <div class="menu" onclick="window.open('http://localhost:8080/resources/books.php')">
+            <div class="menu" onclick="window.open('books.php')">
                 <i class="fa fa-book fa-lg"></i>
                 书籍
             </div>
             <!--
-            <div class="menu" onclick="window.open('http://localhost:8080/resources/about.php')">
+            <div class="menu" onclick="window.open('about.php')">
                 <i class="fa fa-info-circle fa-lg"></i>
                 关于
             </div> -->
