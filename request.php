@@ -1,46 +1,55 @@
 <?php
-// header('Content-Type:application/text');  //此声明非常重要
-// Set API endpoint URL
-$api_url = "https://api.openai.com/v1/chat/completions";
-// echo $api_url;
-// Set API request parameters
-$data = array(
-    "model" => "gpt-3.5-turbo",
-    // "messages" => $_GET['message']
-    "messages" => "{'role':'user', 'content': 'Hello here!'}",
-);
-// echo "{'role':'user', 'content': 'Hello here!'}\n";
-// Set API request headers
-$headers = array(
+// Default OpenAI API key
+$defaultApiKey = "sk-***";
+
+// Get the API key from the request or use the default key
+$apiKey = isset($_GET['apiKey']) ? $_GET['apiKey'] : $defaultApiKey;
+
+// // GET
+// Get the model and messages from the request
+$model = $_GET['model'];
+$messages = $_GET['messages'];
+
+// Build the request body for OpenAI API
+$requestBody = [
+    "model" => $model,
+    "prompt" => $messages,
+    "temperature" => 0.7,
+    "max_tokens" => 60,
+    "n" => 1,
+    "stop" => "\n"
+];
+// // POST
+// $requestBody = json_decode(file_get_contents('php://input'), true);
+// $model = $requestBody['model'];
+// $messages = $requestBody['messages'];
+
+// Build the headers for the OpenAI API request
+$headers = [
     "Content-Type: application/json",
-    "Authorization: Bearer sk-***",
-    "Access-Control-Allow-Origin: *",
-);
-// echo "Authorization: Bearer sk-***\n";
-// Initialize curl session
-$ch = curl_init();
-// echo "init complete\n";
-// Set curl options
-curl_setopt($ch, CURLOPT_URL, $api_url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-// echo "set option complete\n";
+    "Authorization: Bearer ".$apiKey
+];
 
-// Execute curl session and get API response
-$response = curl_exec($ch);
+// Make the request to OpenAI API
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, "https://api.openai.com/v1/completions");
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($requestBody));
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($curl);
 
-// echo "curl exec complete\n";
-// Close curl session
-curl_close($ch);
-// echo "curl close complete\n";
+if($response===false){
+    echo curl_error($curl);
+    echo curl_getinfo($curl);
+    var_dump($response);
+} else {
+    // Return the response from OpenAI API
+    echo $response;
+}
 
-// Return API response as JSON object
-header("Content-Type:text/html; charset=utf-8");
-echo "echo resp complete:";
-echo '变量类型为：'.gettype($response);
-echo '变量为：'.strval($response);
+curl_close($curl);
 
+// http://scu.getenjoyment.net/request.php?model=davinci&messages=Hello%20world
+// &apiKey=YOUR_API_KEY_HERE
 ?>
-
