@@ -7,11 +7,12 @@ DBdomain = input("DataBase Domain:")
 DBname = input("DataBase Name:")
 DBuser = input("DataBase User:")
 DBpassword = input("DataBase Password:")
+apikey = input("APIkey:")
 
 
 def change(data, DBdomain, DBname, DBuser, DBpassword):
     data = data.replace('localhost', DBdomain).replace('root', DBuser).replace(',"",', ',"'+DBpassword+'",').replace(',"resources",', ',"'+DBname+'",')
-    data = data.replace('resources/', '').replace('/resources"', 'index.html"')
+    data = data.replace('resources/', '').replace('/resources"', 'index.html"').replace("sk-***", apikey)
     return data
 
 
@@ -30,5 +31,8 @@ write("serial.php")
 write("variety_show.php")
 write("index.php")
 write("index.html")
-
+write("gpt.html")
+write("websockettest.php")
+write("request.php")
+write("chat.js")
 print("deploy success")
