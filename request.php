@@ -1,28 +1,15 @@
 <?php
 // Default OpenAI API key
 $defaultApiKey = "sk-***";
+// OpenAI api url
 $url = "https://api.openai.com/v1/chat/completions";
-// // GET
-// Get the model and messages from the request
-// $messages = $_GET["messages"];
-// Get the API key from the request or use the default key
-// $apiKey = isset($_GET['apiKey']) ? $_GET['apiKey'] : $defaultApiKey;
-// POST
+// get POST data
 $requestBody = json_decode(file_get_contents("php://input"), true);
-$model = $requestBody['model'];
-$messages = $requestBody['messages'];
-$apiKey = $defaultApiKey;
-
-// Build the request body for OpenAI API
-$requestBody = [
-    "model" => $model,
-    "messages" => $messages,
-];
 
 // Build the headers for the OpenAI API request
 $headers = [
     "Content-Type: application/json",
-    "Authorization: Bearer ".$apiKey,
+    "Authorization: Bearer ".$defaultApiKey,
     'Access-Control-Allow-Origin: *',
 ];
 

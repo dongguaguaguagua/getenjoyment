@@ -211,33 +211,49 @@ function submit() {
   console.log(JSON.stringify({
     'messages': processedMsg,
   }));
-  const url = `http://34.142.198.190/request.php?messages=${encodeURIComponent(
-    JSON.stringify(processedMsg)
-  )}`;
-  fetch(url, {
-    method: "GET",//请求方式
-    headers: {//定制http请求的标头
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "*"
-    }
-  })
-    .then((response) => {
-      response.json();
+  // const url = `http://34.142.198.190/request.php?messages=${encodeURIComponent(
+  //   JSON.stringify(processedMsg)
+  // )}`;
+  // fetch(url, {
+  //   method: "GET",//请求方式
+  //   headers: {//定制http请求的标头
+  //     "Content-Type": "application/json",
+  //     "Access-Control-Allow-Origin": "*",
+  //     "Access-Control-Allow-Headers": "*"
+  //   }
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //     assistantResponce = data.choices[0].message;
+  //     console.log("get response successfully:\n", assistantResponce.content);
+  //     createBox("assistant", assistantResponce.content, -1);
+  //     loading.remove();
+  //   })
+  //   .catch((error) => {
+  //     console.log("failed!")
+  //     createBox("error", "NetWork Error! Please try it again.", -1);
+  //     console.error(error);
+  //     loading.remove();
+  //   });
+
+  fetch('http://34.142.198.190/request.php', {
+    method: 'POST',
+    body: JSON.stringify({
+      'model': 'gpt-3.5-turbo',
+      'messages': processedMsg,
     })
-    .then((data) => {
-      console.log(data);
-      assistantResponce = data.choices[0].message;
-      console.log("get response successfully:\n", assistantResponce.content);
-      createBox("assistant", assistantResponce.content, -1);
-      loading.remove();
-    })
-    .catch((error) => {
-      console.log("failed!")
-      createBox("error", "NetWork Error! Please try it again.", -1);
-      console.error(error);
-      loading.remove();
-    });
+  }).then((response) => response.json()).then((result) => {
+    assistantResponce = result.choices[0].message;
+    console.log("get response successfully:", assistantResponce.content)
+    createBox("assistant", assistantResponce.content, -1);
+    loading.remove();
+  }).catch((error) => {
+    console.error(error);
+    createBox("error", "NetWork Error! Please try it again.", -1);
+    console.error(error);
+    loading.remove();
+  });
 }
 
 function addBox(index_) {
