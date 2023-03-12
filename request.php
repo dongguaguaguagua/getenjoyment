@@ -1,38 +1,34 @@
 <?php
 // Default OpenAI API key
 $defaultApiKey = "sk-***";
-
-// Get the API key from the request or use the default key
-$apiKey = isset($_GET['apiKey']) ? $_GET['apiKey'] : $defaultApiKey;
-
+$url = "https://api.openai.com/v1/chat/completions"
 // // GET
 // Get the model and messages from the request
-$model = $_GET['model'];
-$messages = $_GET['messages'];
+// $model = $_GET["model"];
+$messages = $_GET["messages"];
+// Get the API key from the request or use the default key
+$apiKey = isset($_GET['apiKey']) ? $_GET['apiKey'] : $defaultApiKey;
+// // POST
+// $requestBody = json_decode(file_get_contents("php://input"), true);
+// $model = $requestBody['model'];
+// $messages = $requestBody['messages'];
 
 // Build the request body for OpenAI API
 $requestBody = [
-    "model" => $model,
-    "prompt" => $messages,
-    "temperature" => 0.7,
-    "max_tokens" => 60,
-    "n" => 1,
-    "stop" => "\n"
+    "model" => "gpt-3.5-turbo",
+    "messages" => $messages,
 ];
-// // POST
-// $requestBody = json_decode(file_get_contents('php://input'), true);
-// $model = $requestBody['model'];
-// $messages = $requestBody['messages'];
 
 // Build the headers for the OpenAI API request
 $headers = [
     "Content-Type: application/json",
     "Authorization: Bearer ".$apiKey
+    'Access-Control-Allow-Origin': '*',
 ];
 
 // Make the request to OpenAI API
 $curl = curl_init();
-curl_setopt($curl, CURLOPT_URL, "https://api.openai.com/v1/completions");
+curl_setopt($curl, CURLOPT_URL, $url);
 curl_setopt($curl, CURLOPT_POST, true);
 curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($requestBody));
 curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);

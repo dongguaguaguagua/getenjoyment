@@ -209,31 +209,32 @@ function submit() {
   }
 
   console.log(JSON.stringify({
-    'model': 'gpt-3.5-turbo',
     'messages': processedMsg,
   }));
-  fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer sk-***',
-      'Access-Control-Allow-Origin': '*',
-    },
-    body: JSON.stringify({
-      'model': 'gpt-3.5-turbo',
-      'messages': processedMsg,
+  const url = `http://34.142.198.190/request.php?messages=${encodeURIComponent(
+    JSON.stringify(processedMsg)
+  )}`;
+  fetch(url, {
+    method: "GET",//请求方式
+    headers: {//定制http请求的标头
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "*"
+    }
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      assistantResponce = result.choices[0].message;
+      console.log("get response successfully:\n", assistantResponce.content);
+      createBox("assistant", assistantResponce.content, -1);
+      loading.remove();
     })
-  }).then((response) => response.json()).then((result) => {
-    assistantResponce = result.choices[0].message;
-    console.log("get response successfully:\n", assistantResponce.content);
-    createBox("assistant", assistantResponce.content, -1);
-    loading.remove();
-  }).catch((error) => {
-    console.log("failed!")
-    createBox("error", "NetWork Error! Please try it again.", -1);
-    console.error(error);
-    loading.remove();
-  });
+    .catch((error) => {
+      console.log("failed!")
+      createBox("error", "NetWork Error! Please try it again.", -1);
+      console.error(error);
+      loading.remove();
+    });
 }
 
 function addBox(index_) {

@@ -1,39 +1,51 @@
 <?php
+// Default OpenAI API key
+$defaultApiKey = "sk-***";
+$url = "https://api.openai.com/v1/chat/completions"
+// // GET
+// Get the model and messages from the request
+// $model = $_GET["model"];
+$messages = $_GET["messages"];
+// Get the API key from the request or use the default key
+$apiKey = isset($_GET['apiKey']) ? $_GET['apiKey'] : $defaultApiKey;
+// // POST
+// $requestBody = json_decode(file_get_contents("php://input"), true);
+// $model = $requestBody['model'];
+// $messages = $requestBody['messages'];
 
-// Set API endpoint URL
-$api_url = "https://api.openai.com/v1/chat/completions";
-
-// Set API request parameters
-$data = array(
+// Build the request body for OpenAI API
+$requestBody = [
     "model" => "gpt-3.5-turbo",
-    "messages" => $message
-);
+    "messages" => $messages,
+];
 
-// Set API request headers
-$headers = array(
+// Build the headers for the OpenAI API request
+$headers = [
     "Content-Type: application/json",
-    "Authorization: Bearer sk-***"
-);
+    "Authorization: Bearer ".$apiKey
+    'Access-Control-Allow-Origin': '*',
+];
 
-// Initialize curl session
-$ch = curl_init();
+// Make the request to OpenAI API
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($requestBody));
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+$response = curl_exec($curl);
 
-// Set curl options
-curl_setopt($ch, CURLOPT_URL, $api_url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+if($response===false){
+    echo curl_error($curl);
+    echo curl_getinfo($curl);
+    var_dump($response);
+} else {
+    // Return the response from OpenAI API
+    echo $response;
+}
 
-// Execute curl session and get API response
-$response = curl_exec($ch);
+curl_close($curl);
 
-// Close curl session
-curl_close($ch);
-
-// Return API response as JSON object
-header('Content-Type: application/json');
-echo $response;
-
+// http://scu.getenjoyment.net/request.php?model=davinci&messages=Hello%20world
+// &apiKey=YOUR_API_KEY_HERE
 ?>
-
