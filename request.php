@@ -1,29 +1,29 @@
 <?php
 // Default OpenAI API key
 $defaultApiKey = "sk-***";
-$url = "https://api.openai.com/v1/chat/completions"
+$url = "https://api.openai.com/v1/chat/completions";
 // // GET
 // Get the model and messages from the request
-// $model = $_GET["model"];
-$messages = $_GET["messages"];
+// $messages = $_GET["messages"];
 // Get the API key from the request or use the default key
-$apiKey = isset($_GET['apiKey']) ? $_GET['apiKey'] : $defaultApiKey;
-// // POST
-// $requestBody = json_decode(file_get_contents("php://input"), true);
-// $model = $requestBody['model'];
-// $messages = $requestBody['messages'];
+// $apiKey = isset($_GET['apiKey']) ? $_GET['apiKey'] : $defaultApiKey;
+// POST
+$requestBody = json_decode(file_get_contents("php://input"), true);
+$model = $requestBody['model'];
+$messages = $requestBody['messages'];
+$apiKey = $defaultApiKey;
 
 // Build the request body for OpenAI API
 $requestBody = [
-    "model" => "gpt-3.5-turbo",
+    "model" => $model,
     "messages" => $messages,
 ];
 
 // Build the headers for the OpenAI API request
 $headers = [
     "Content-Type: application/json",
-    "Authorization: Bearer ".$apiKey
-    'Access-Control-Allow-Origin': '*',
+    "Authorization: Bearer ".$apiKey,
+    'Access-Control-Allow-Origin: *',
 ];
 
 // Make the request to OpenAI API
@@ -36,9 +36,7 @@ curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($curl);
 
 if($response===false){
-    echo curl_error($curl);
-    echo curl_getinfo($curl);
-    var_dump($response);
+    // var_dump($response);
 } else {
     // Return the response from OpenAI API
     echo $response;
@@ -46,6 +44,4 @@ if($response===false){
 
 curl_close($curl);
 
-// http://scu.getenjoyment.net/request.php?model=davinci&messages=Hello%20world
-// &apiKey=YOUR_API_KEY_HERE
 ?>

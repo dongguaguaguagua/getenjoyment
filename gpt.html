@@ -65,12 +65,8 @@
           componentHandler.upgradeElement(box.get(0));
 
           // assistantResponce = {content:"111111"}
-          fetch('https://api.openai.com/v1/chat/completions', {
+          fetch('http://34.142.198.190/request.php', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer sk-***'
-            },
             body: JSON.stringify({
               'model': 'gpt-3.5-turbo',
               'messages': message,

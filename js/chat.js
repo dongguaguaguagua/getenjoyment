@@ -222,9 +222,12 @@ function submit() {
       "Access-Control-Allow-Headers": "*"
     }
   })
-    .then((response) => response.json())
-    .then((result) => {
-      assistantResponce = result.choices[0].message;
+    .then((response) => {
+      response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      assistantResponce = data.choices[0].message;
       console.log("get response successfully:\n", assistantResponce.content);
       createBox("assistant", assistantResponce.content, -1);
       loading.remove();
