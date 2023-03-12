@@ -59,6 +59,9 @@
                 <a class="mdl-navigation__link" href="/resources/books.php">
                     <span class="material-icons">auto_stories</span>书籍
                 </a>
+                <a class="mdl-navigation__link" href="/resources/chat.html">
+                    <span class="material-icons">chat</span>chat
+                </a>
                 <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">
                     <!-- 20-(24-17)=13 -->
                     <svg viewBox="0 0 24 24" width="17" height="17" style="font-size: small;padding-right: 19px;">
