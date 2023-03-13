@@ -1,4 +1,7 @@
 <?php
+// fix: 已拦截跨源请求：同源策略禁止读取位于 xxx 的远程资源。（原因：CORS 头缺少 ‘Access-Control-Allow-O)
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
 // Default OpenAI API key
 $defaultApiKey = "sk-***";
 // OpenAI api url
