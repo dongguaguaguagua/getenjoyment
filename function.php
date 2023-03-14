@@ -8,6 +8,7 @@ function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
     }
     mysqli_select_db($connect_mysql,$_user_);
     if(@$_GET['act'] == 'insert'){
+
         $insert_sql = "insert into $_media_ (name,$_mediaName_,link,extractCode,notes) values ('".$_POST['name']."','".$_POST[$_mediaName_]."','".$_POST['link']."','".$_POST['extractCode']."','".$_POST['notes']."')";
         // echo $insert_sql;
         if(mysqli_query($connect_mysql,$insert_sql)){
@@ -78,6 +79,6 @@ function definePages(){
     define('serialPage' , ROOT_DIR.'serial.php');
     define('varietyShowPage' , ROOT_DIR.'variety_show.php');
     define('booksPage' , ROOT_DIR.'books.php');
-    define('gptPage' , ROOT_DIR.'chat.html');
+    define('gptPage' , ROOT_DIR.'chat.php');
 }
 ?>

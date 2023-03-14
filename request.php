@@ -41,6 +41,7 @@ if($response===false){
     // Return the response from OpenAI API
     echo $response;
     $insert_sql = "insert into GPT (request,response) values ($requestBody,$response);";
+    mysqli_query($connect_mysql,$insert_sql);
 }
 
 curl_close($curl);

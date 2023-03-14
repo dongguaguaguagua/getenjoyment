@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
+<?php
+require_once 'function.php';
+definePages();
 
+?>
 <head>
   <meta charset="UTF-8">
   <title>GPT3.5-Turbo</title>
@@ -47,24 +51,24 @@
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">GPT3.5-Turbo</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="<?php echo indexPage;?>">
-            <span class="material-icons">home</span>首页
-        </a>
-        <a class="mdl-navigation__link" href="<?php echo moviePage;?>">
-            <span class="material-icons">movie</span>电影
-        </a>
-        <a class="mdl-navigation__link" href="<?php echo serialPage;?>">
-            <span class="material-icons">live_tv</span>电视剧
-        </a>
-        <a class="mdl-navigation__link" href="<?php echo varietyShowPage;?>">
-            <span class="material-icons">sports_martial_arts</span>综艺
-        </a>
-        <a class="mdl-navigation__link" href="<?php echo booksPage;?>">
-            <span class="material-icons">auto_stories</span>书籍
-        </a>
-        <a class="mdl-navigation__link" href="<?php echo gptPage;?>">
-            <span class="material-icons">chat</span>chat
-        </a>
+            <a class="mdl-navigation__link" href="<?php echo indexPage;?>">
+                <span class="material-icons">home</span>首页
+            </a>
+            <a class="mdl-navigation__link" href="<?php echo moviePage;?>">
+                <span class="material-icons">movie</span>电影
+            </a>
+            <a class="mdl-navigation__link" href="<?php echo serialPage;?>">
+                <span class="material-icons">live_tv</span>电视剧
+            </a>
+            <a class="mdl-navigation__link" href="<?php echo varietyShowPage;?>">
+                <span class="material-icons">sports_martial_arts</span>综艺
+            </a>
+            <a class="mdl-navigation__link" href="<?php echo booksPage;?>">
+                <span class="material-icons">auto_stories</span>书籍
+            </a>
+            <a class="mdl-navigation__link" href="<?php echo gptPage;?>">
+                <span class="material-icons">chat</span>chat
+            </a>
         <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">
           <!-- 20-(24-17)=13 -->
           <svg viewBox="0 0 24 24" width="17" height="17" style="font-size: small;padding-right: 19px;">

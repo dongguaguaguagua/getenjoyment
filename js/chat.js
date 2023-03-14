@@ -237,7 +237,7 @@ function submit() {
   //     loading.remove();
   //   });
 
-  fetch('http://localhost:8080/resources/request.php', {
+  fetch(' ', {
     method: 'POST',
     body: JSON.stringify({
       'model': 'gpt-3.5-turbo',
