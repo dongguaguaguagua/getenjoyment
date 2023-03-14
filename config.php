@@ -7,5 +7,5 @@ define('DB_NAME', 'resources');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
 //GPT3.5 apikey:
-define('API_KEY','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')
+define('API_KEY','')
 ?>
