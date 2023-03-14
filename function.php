@@ -1,4 +1,5 @@
 <?php
+require_once 'config.php';
 function init($_host_,$_user_,$_password_,$_dbname_,$_media_, $_mediaName_){
     echo "<script>";
     $connect_mysql = mysqli_connect($_host_,$_user_,$_password_,$_dbname_); //创建数据库连接
@@ -70,5 +71,13 @@ function showDefaultResult($connect_mysql,$_media_){
     $select_sql = "select * from $_media_ limit $startMediaCount,$AllMediaCount";
     $result = mysqli_query($connect_mysql,$select_sql);
     return $result;
+}
+function definePages(){
+    define('indexPage' , ROOT_DIR.'index.php');
+    define('moviePage' , ROOT_DIR.'movies.php');
+    define('serialPage' , ROOT_DIR.'serial.php');
+    define('varietyShowPage' , ROOT_DIR.'variety_show.php');
+    define('booksPage' , ROOT_DIR.'books.php');
+    define('gptPage' , ROOT_DIR.'chat.html');
 }
 ?>

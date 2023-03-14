@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+require_once 'function.php';
+definePages();
+$result=init(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME,"movies","movieName");
+?>
 <head>
     <meta charset="UTF-8">
     <title>SCU资源共享站-电影</title>
@@ -22,11 +26,11 @@
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation. We hide it in small screens. -->
                 <nav class="mdl-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link" href="/resources/movies.php">电影</a>
-                    <a class="mdl-navigation__link" href="/resources/serial.php">电视剧</a>
-                    <a class="mdl-navigation__link" href="/resources/variety_show.php">综艺</a>
-                    <a class="mdl-navigation__link" href="/resources/books.php">书籍</a>
-                    <a class="mdl-navigation__link" href="/resources/chat.html">GPT3.5</a>
+                    <a class="mdl-navigation__link" href="<?php echo moviePage;?>">电影</a>
+                    <a class="mdl-navigation__link" href="<?php echo serialPage;?>">电视剧</a>
+                    <a class="mdl-navigation__link" href="<?php echo varietyShowPage;?>">综艺</a>
+                    <a class="mdl-navigation__link" href="<?php echo booksPage;?>">书籍</a>
+                    <a class="mdl-navigation__link" href="<?php echo gptPage;?>">GPT3.5</a>
                 </nav>
                 <!-- 没有用的search button等你完善-->
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
@@ -43,22 +47,22 @@
         <div class="mdl-layout__drawer">
             <span class="mdl-layout-title">SCU资源共享站</span>
             <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="/resources">
+                <a class="mdl-navigation__link" href="<?php echo indexPage;?>">
                     <span class="material-icons">home</span>首页
                 </a>
-                <a class="mdl-navigation__link" href="/resources/movies.php">
+                <a class="mdl-navigation__link" href="<?php echo moviePage;?>">
                     <span class="material-icons">movie</span>电影
                 </a>
-                <a class="mdl-navigation__link" href="/resources/serial.php">
+                <a class="mdl-navigation__link" href="<?php echo serialPage;?>">
                     <span class="material-icons">live_tv</span>电视剧
                 </a>
-                <a class="mdl-navigation__link" href="/resources/variety_show.php">
+                <a class="mdl-navigation__link" href="<?php echo varietyShowPage;?>">
                     <span class="material-icons">sports_martial_arts</span>综艺
                 </a>
-                <a class="mdl-navigation__link" href="/resources/books.php">
+                <a class="mdl-navigation__link" href="<?php echo booksPage;?>">
                     <span class="material-icons">auto_stories</span>书籍
                 </a>
-                <a class="mdl-navigation__link" href="/resources/chat.html">
+                <a class="mdl-navigation__link" href="<?php echo gptPage;?>">
                     <span class="material-icons">chat</span>chat
                 </a>
                 <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">
@@ -207,11 +211,6 @@
 <script src="js/timeOut.js"></script>
 <!-- toast -->
 <script src="js/toast.js"></script>
-
-<?php
-require_once 'function.php';
-$result=init("localhost","root","","resources","movies","movieName");
-?>
 
 
 <script>
