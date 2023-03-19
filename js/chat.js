@@ -200,7 +200,12 @@ function submit() {
   const processedMsg = [];
 
   for (let i = 0; i < message[2].length; i++) {
-    if (roles[i] === "user" || roles[i] === "system" || roles[i] === "assistant") {
+    if ((roles[i] === "user" || roles[i] === "system" || roles[i] === "assistant")
+      && (contents[i] != "This is a system prompt, double-click to edit me.")
+      && (contents[i] != "This is where answers are generated.")
+      && (contents[i] != "*write something here*")
+      && (contents[i] != "This is a comment which is can be edited by double-click. All blocks support [MarkDown](https://daringfireball.net/projects/markdown/). Click the **GENERATE** button to get the answer from GPT3.5\n \n - Add block below please click the `add` button. \n - Delete block please click the `delete` button \n - Block type can be changed by expanding the menu on the left \n - Comments are ignored when submiting to API. \n - System prompts target to guide GPT3.5 to generate what you want.")
+      ) {
       processedMsg.push({
         role: roles[i],
         content: contents[i]
