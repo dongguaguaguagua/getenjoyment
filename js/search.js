@@ -63,7 +63,7 @@ Fuzzysearch.prototype = {
         </button>\
         <ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"\
             for=\"menu-lower-right"+ i.toString() + "\">\
-            <li class=\"mdl-menu__item\" onclick=\"window.location.href='/resources/"+fileName+".php?act=delete&delateObject="+ listEscaped[1][i] + "'\">删除</li>\
+            <li class=\"mdl-menu__item\" onclick=\"window.location.href='" + fileName + ".php?act=delete&delateObject="+ listEscaped[1][i] + "'\">删除</li>\
             <li class=\"mdl-menu__item\" onclick=editItem(\""+fileName+"\",\""+ listEscaped[0][i] + "\",\""+ listEscaped[1][i] + "\",\""+ listEscaped[2][i] + "\",\""+ listEscaped[3][i] + "\",\""+ listEscaped[4][i] + "\");>编辑</li>\
         </ul>\
         </td></tr>";
