@@ -4,6 +4,7 @@
 require_once 'function.php';
 definePages();
 ?>
+
 <head>
   <meta charset="UTF-8">
   <title>SCU资源共享站</title>
@@ -15,6 +16,9 @@ definePages();
 <link rel="stylesheet" href="css/hidden.css" />
 <!-- 高亮代码highlight.js的sublime高亮主题 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/monokai-sublime.min.css">
+<!-- Katex support -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+
 <body>
   <!-- Always shows a header, even in smaller screens. -->
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
@@ -47,24 +51,24 @@ definePages();
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">SCU资源共享站</span>
       <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="<?php echo indexPage;?>">
-              <span class="material-icons">home</span>首页
-          </a>
-          <a class="mdl-navigation__link" href="<?php echo moviePage;?>">
-              <span class="material-icons">movie</span>电影
-          </a>
-          <a class="mdl-navigation__link" href="<?php echo serialPage;?>">
-              <span class="material-icons">live_tv</span>电视剧
-          </a>
-          <a class="mdl-navigation__link" href="<?php echo varietyShowPage;?>">
-              <span class="material-icons">sports_martial_arts</span>综艺
-          </a>
-          <a class="mdl-navigation__link" href="<?php echo booksPage;?>">
-              <span class="material-icons">auto_stories</span>书籍
-          </a>
-          <a class="mdl-navigation__link" href="<?php echo gptPage;?>">
-              <span class="material-icons">chat</span>chat
-          </a>
+        <a class="mdl-navigation__link" href="<?php echo indexPage;?>">
+          <span class="material-icons">home</span>首页
+        </a>
+        <a class="mdl-navigation__link" href="<?php echo moviePage;?>">
+          <span class="material-icons">movie</span>电影
+        </a>
+        <a class="mdl-navigation__link" href="<?php echo serialPage;?>">
+          <span class="material-icons">live_tv</span>电视剧
+        </a>
+        <a class="mdl-navigation__link" href="<?php echo varietyShowPage;?>">
+          <span class="material-icons">sports_martial_arts</span>综艺
+        </a>
+        <a class="mdl-navigation__link" href="<?php echo booksPage;?>">
+          <span class="material-icons">auto_stories</span>书籍
+        </a>
+        <a class="mdl-navigation__link" href="<?php echo gptPage;?>">
+          <span class="material-icons">chat</span>chat
+        </a>
         <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">
           <!-- 20-(24-17)=13 -->
           <svg viewBox="0 0 24 24" width="17" height="17" style="font-size: small;padding-right: 19px;">
@@ -474,6 +478,8 @@ definePages();
 <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
 <!-- 引入highlight.js来高亮代码 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<!-- markdown-it-katex -->
+<script src="js/katex.js"></script>
 <!-- jQuery框架 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- Google mdl风格 -->
@@ -488,15 +494,16 @@ definePages();
 <script src="js/chat.js"></script>
 
 <script>
-function overAllsearch(){
+  function overAllsearch() {
     this.searchKey = document.getElementById('fixed-header-drawer-exp');
     this.searchKey.onkeyup = function(e) {
-        var e = e || event;
-        if (e.keyCode == 13) {
-            let keyWord = this.searchKey.value;
-            location.href = "index.php" + "?act=overAllSearch&keyWord=" + keyWord;
-        }
+      var e = e || event;
+      if (e.keyCode == 13) {
+        let keyWord = this.searchKey.value;
+        location.href = "index.php" + "?act=overAllSearch&keyWord=" + keyWord;
+      }
     };
-}
+  }
 </script>
+
 </html>

@@ -3,8 +3,8 @@
 <?php
 require_once 'function.php';
 definePages();
-
 ?>
+
 <head>
   <meta charset="UTF-8">
   <title>GPT3.5-Turbo</title>
@@ -17,6 +17,8 @@ definePages();
     href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/monokai-sublime.min.css">
   <!-- 自定义CSS -->
   <link rel="stylesheet" href="css/hidden.css" />
+  <!-- Katex support -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
 </head>
 
 <body>
@@ -51,24 +53,24 @@ definePages();
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">GPT3.5-Turbo</span>
       <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="<?php echo indexPage;?>">
-                <span class="material-icons">home</span>首页
-            </a>
-            <a class="mdl-navigation__link" href="<?php echo moviePage;?>">
-                <span class="material-icons">movie</span>电影
-            </a>
-            <a class="mdl-navigation__link" href="<?php echo serialPage;?>">
-                <span class="material-icons">live_tv</span>电视剧
-            </a>
-            <a class="mdl-navigation__link" href="<?php echo varietyShowPage;?>">
-                <span class="material-icons">sports_martial_arts</span>综艺
-            </a>
-            <a class="mdl-navigation__link" href="<?php echo booksPage;?>">
-                <span class="material-icons">auto_stories</span>书籍
-            </a>
-            <a class="mdl-navigation__link" href="<?php echo gptPage;?>">
-                <span class="material-icons">chat</span>chat
-            </a>
+        <a class="mdl-navigation__link" href="<?php echo indexPage;?>">
+          <span class="material-icons">home</span>首页
+        </a>
+        <a class="mdl-navigation__link" href="<?php echo moviePage;?>">
+          <span class="material-icons">movie</span>电影
+        </a>
+        <a class="mdl-navigation__link" href="<?php echo serialPage;?>">
+          <span class="material-icons">live_tv</span>电视剧
+        </a>
+        <a class="mdl-navigation__link" href="<?php echo varietyShowPage;?>">
+          <span class="material-icons">sports_martial_arts</span>综艺
+        </a>
+        <a class="mdl-navigation__link" href="<?php echo booksPage;?>">
+          <span class="material-icons">auto_stories</span>书籍
+        </a>
+        <a class="mdl-navigation__link" href="<?php echo gptPage;?>">
+          <span class="material-icons">chat</span>chat
+        </a>
         <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">
           <!-- 20-(24-17)=13 -->
           <svg viewBox="0 0 24 24" width="17" height="17" style="font-size: small;padding-right: 19px;">
@@ -94,6 +96,8 @@ definePages();
 <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
 <!-- 引入highlight.js来高亮代码 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<!-- markdown-it-katex -->
+<script src="js/katex.js"></script>
 <!-- jQuery框架 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- material design lite -->
