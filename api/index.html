@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-require_once 'function.php';
-definePages();
-?>
 
 <head>
   <meta charset="UTF-8">
@@ -51,22 +47,22 @@ definePages();
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">SCU资源共享站</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="<?php echo indexPage;?>">
+        <a class="mdl-navigation__link" href="index.php">
           <span class="material-icons">home</span>首页
         </a>
-        <a class="mdl-navigation__link" href="<?php echo moviePage;?>">
+        <a class="mdl-navigation__link" href="movies.php">
           <span class="material-icons">movie</span>电影
         </a>
-        <a class="mdl-navigation__link" href="<?php echo serialPage;?>">
+        <a class="mdl-navigation__link" href="serial.php">
           <span class="material-icons">live_tv</span>电视剧
         </a>
-        <a class="mdl-navigation__link" href="<?php echo varietyShowPage;?>">
+        <a class="mdl-navigation__link" href="variety_show.php">
           <span class="material-icons">sports_martial_arts</span>综艺
         </a>
-        <a class="mdl-navigation__link" href="<?php echo booksPage;?>">
+        <a class="mdl-navigation__link" href="books.php">
           <span class="material-icons">auto_stories</span>书籍
         </a>
-        <a class="mdl-navigation__link" href="<?php echo gptPage;?>">
+        <a class="mdl-navigation__link" href="/resources/chat.html">
           <span class="material-icons">chat</span>chat
         </a>
         <a class="mdl-navigation__link" href="https://github.com/dongguaguaguagua/getenjoyment">
@@ -492,18 +488,5 @@ definePages();
 <script src="js/autoLoadLink.js"></script>
 <!-- GPT3.5 -->
 <script src="js/chat.js"></script>
-
-<script>
-  function overAllsearch() {
-    this.searchKey = document.getElementById('fixed-header-drawer-exp');
-    this.searchKey.onkeyup = function(e) {
-      var e = e || event;
-      if (e.keyCode == 13) {
-        let keyWord = this.searchKey.value;
-        location.href = "index.php" + "?act=overAllSearch&keyWord=" + keyWord;
-      }
-    };
-  }
-</script>
 
 </html>

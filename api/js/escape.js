@@ -1,0 +1,56 @@
+var escape = function(string){
+    string=string.replaceAll(' ','%20');
+    string=string.replaceAll('+','%2B');
+    string=string.replaceAll('&','%26');
+    string=string.replaceAll('=','%3D');
+    string=string.replaceAll('<','%3C');
+    string=string.replaceAll('>','%3E');
+    string=string.replaceAll('"','%22');
+    string=string.replaceAll('#','%23');
+    string=string.replaceAll(',','%2C');
+    // string=string.replaceAll('%','%25');
+    string=string.replaceAll('{','%7B');
+    string=string.replaceAll('}','%7D');
+    string=string.replaceAll('|','%7C');
+    string=string.replaceAll('\\','%5C');
+    string=string.replaceAll('^','%5E');
+    string=string.replaceAll('~','%7E');
+    string=string.replaceAll('[','%5B');
+    string=string.replaceAll(']','%5D');
+    string=string.replaceAll('`','%60');
+    string=string.replaceAll(';','%3B');
+    string=string.replaceAll('/','%2F');
+    string=string.replaceAll('?','%3F');
+    string=string.replaceAll(':','%3A');
+    string=string.replaceAll('@','%40');
+    string=string.replaceAll('$','%24');
+    return string;
+}
+var unescape = function(string){
+    string=string.replaceAll('%20',' ');
+    string=string.replaceAll('%2B','+');
+    string=string.replaceAll('%26','&');
+    string=string.replaceAll('%3D','=');
+    string=string.replaceAll('%3C','<');
+    string=string.replaceAll('%3E','>');
+    string=string.replaceAll('%22','"');
+    string=string.replaceAll('%23','#');
+    string=string.replaceAll('%2C',',');
+    // string=string.replaceAll('%25','%');
+    string=string.replaceAll('%7B','{');
+    string=string.replaceAll('%7D','}');
+    string=string.replaceAll('%7C','|');
+    string=string.replaceAll('%5C','\\');
+    string=string.replaceAll('%5E','^');
+    string=string.replaceAll('%7E','~');
+    string=string.replaceAll('%5B','[');
+    string=string.replaceAll('%5D',']');
+    string=string.replaceAll('%60','`');
+    string=string.replaceAll('%3B',';');
+    string=string.replaceAll('%2F','/');
+    string=string.replaceAll('%3F','?');
+    string=string.replaceAll('%3A',':');
+    string=string.replaceAll('%40','@');
+    string=string.replaceAll('%24','$');
+    return string;
+}
