@@ -39,7 +39,7 @@ if($response===false){
     // var_dump($response);
 } else {
     // Return the response from OpenAI API
-    echo $response;
+    echo $response,"aaaaa";
     $insert_sql = "insert into GPT (request,response) values ($requestBody,$response);";
     mysqli_query($connect_mysql,$insert_sql);
 }
