@@ -34,7 +34,15 @@ curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 $response = curl_exec($curl);
 
+<<<<<<< HEAD
 if($response !== false){
+=======
+if($response===false){
+    // var_dump($response);
+} else {
+    // Return the response from OpenAI API
+    echo $response,"aaaaa";
+>>>>>>> 3a0d617730c05ac88ce7c21c17e8336f633cd5b9
     $insert_sql = "insert into GPT (request,response) values ($requestBody,$response);";
     mysqli_query($connect_mysql,$insert_sql);
 

@@ -1,6 +1,6 @@
 <?php
 //root settings:
-define('ROOT_DIR', 'http://localhost:8080/resources/');
+define('ROOT_DIR', 'https://getenjoyment.vercel.app/');
 //database settings:
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'resources');
