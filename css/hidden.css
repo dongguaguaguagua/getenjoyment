@@ -1,7 +1,7 @@
-.editForm{
-    width:400px;
-    height:600px;
-    border:2px solid rgb(65, 147, 136);
+.editForm {
+    width: 400px;
+    height: 600px;
+    border: 2px solid rgb(65, 147, 136);
     visibility: hidden;
     position: absolute;
     z-index: 999;
@@ -13,66 +13,70 @@
     margin-left: 35%;
     border-radius: 10px;
 }
+
 /*.editLabel{
     visibility: hidden;
     overflow: hidden;
     z-index: 999;
     opacity: 1;
 }*/
-.open{
+.open {
     visibility: visible;
     opacity: 1;
 }
 
-.editInput .close{
-    color:#5d5d5d;
+.editInput .close {
+    color: #5d5d5d;
     text-align: center;
     line-height: 20px;
-    border:1px solid    #5d5d5d;
+    border: 1px solid #5d5d5d;
     border-radius: 50%;
     float: right;
     padding-top: 0px;
     margin-right: 10px;
     font-size: 12px;
 }
-.editInput .close:hover{
-    cursor:pointer;
+
+.editInput .close:hover {
+    cursor: pointer;
 }
 
 /* 美化navigation */
-.mdl-navigation__link{
+.mdl-navigation__link {
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
 }
-.mdl-navigation__link:hover{
+
+.mdl-navigation__link:hover {
     background-color: #1ABC9C;
 }
 
-.mdl-layout__drawer-button{
+.mdl-layout__drawer-button {
     border-radius: 25px;
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
 }
+
 .mdl-layout__drawer-button:hover {
     background-color: #1ABC9C;
     color: white;
 }
 
-.mdl-textfield textarea.mdl-textfield__input{
+.mdl-textfield textarea.mdl-textfield__input {
     display: inline-block;
 }
 
-.mdl-data-table tbody tr{
+.mdl-data-table tbody tr {
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
 }
 
 /* 解决表格hover时的问题 */
-.mdl-data-table tbody tr:hover{
+.mdl-data-table tbody tr:hover {
     background-color: rgba(238, 238, 238, 0.7);
 }
 
-.mdl-navigation .material-icons{
+.mdl-navigation .material-icons {
     padding-right: 20px;
     font-size: medium;
 }
@@ -152,6 +156,10 @@
     word-wrap: break-word;
     border: 1px solid #ccc;
     border-radius: 4px;
+    overflow-y: auto;
+    max-height: 300px;
+    overflow-x: auto;
+    max-width: 100%;
 }
 
 /*  表格样式  */
@@ -160,20 +168,25 @@
     border-collapse: collapse;
     font-size: medium;
 }
+
 #conversation_container thead {
     border: 1px solid #ccc;
 }
+
 #conversation_container th {
     padding: 10px;
 }
+
 #conversation_container td {
     border: 1px solid #ccc;
     padding: 10px;
 }
+
 #conversation_container tr {
     -webkit-transition-duration: 0.5s;
     transition-duration: 0.5s;
 }
+
 #conversation_container tr:hover {
     background: rgba(200, 200, 200, 0.2);
 }
@@ -204,7 +217,7 @@
 }
 
 #conversation_container textarea::selection {
-  background-color: rgba(255, 165, 0, 0.4);
+    background-color: rgba(255, 165, 0, 0.4);
 }
 
 #conversation_container #loading {
@@ -219,5 +232,3 @@
     margin-right: auto;
     margin-top: 50px;
 }
-
-

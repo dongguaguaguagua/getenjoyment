@@ -1,4 +1,5 @@
 var count = 0;
+// message: [role, content, timestamp]
 var message = [[], [], []];
 const iconDict = { "user": "face", "assistant": "chat", "system": "settings", "error": "error", "comment": "edit_note" };
 const md = new markdownit({
@@ -22,10 +23,15 @@ const md = new markdownit({
 });
 md.use(window.markdown_katex);
 $(document).ready(function() {
-  createBox("comment", "This is a comment which is can be edited by double-click. All blocks support [MarkDown](https://daringfireball.net/projects/markdown/). Click the **GENERATE** button to get the answer from GPT3.5\n \n - Add block below please click the `add` button. \n - Delete block please click the `delete` button \n - Block type can be changed by expanding the menu on the left \n - Comments are ignored when submiting to API. \n - System prompts target to guide GPT3.5 to generate what you want.", -1);
-  createBox("system", "This is a system prompt, double-click to edit me.", -1);
-  createBox("user", "**This is where you put your questions, double-click to edit me.**", -1);
-  createBox("assistant", "This is where answers are generated.", -1);
+  createBox("comment", `
+---
+
+非常抱歉。由于国家相关法律法规，本页面将无限期停止维护。
+
+很抱歉给您带来不便。
+
+---
+`, -1);
 });
 
 function switchTo(element, index_, boxClass) {
@@ -42,13 +48,12 @@ function makeNonEditable(element) {
   const textarea = $("#" + element.id);
   const i = message[2].indexOf(textarea.attr("index_"));
   const text = textarea.val();
-  const htmlStrinng = md.render(text);
   const div = $('<div>', {
     id: textarea.attr("id"),
     ondblclick: 'makeEditable(this)',
     index_: textarea.attr("index_"),
     hiddenText: text,
-    html: htmlStrinng,
+    html: md.render(text),
   });
   message[1][i] = text;
   textarea.replaceWith(div);
@@ -78,7 +83,7 @@ function makeEditable(element) {
   textarea.focus();
 }
 
-function createBox(boxClass, text, atwhere) {
+async function createBox(boxClass, text, atwhere) {
   // create headline on the top.
   const headline = $("<div>", {
     id: "headline_id" + count,
@@ -156,13 +161,11 @@ function createBox(boxClass, text, atwhere) {
   // append the button and menu to the div with class "head-line"
   headline.append(classBtn, menu, addBtn, deleteBtn);
   // create content container
-  const htmlStrinng = md.render(text);
   content = $('<div>', {
     id: 'content_id' + count,
     index_: count,
     ondblclick: 'makeEditable(this)',
     hiddenText: text,
-    html: htmlStrinng,
   });
   // create the div box
   const box = $('<div>', {
@@ -176,7 +179,15 @@ function createBox(boxClass, text, atwhere) {
     message[1].push(text);
     message[2].push(String(count));
     $("#conversation_container").append(box);
+    // split text into words and add each words to the content div
+    var words = text.split(" ");
+    for (var i = 1; i <= words.length; i++) {
+      // sleep for a random time
+      content.html(md.render(words.slice(0, i).join(" ")));
+      await sleep(50);
+    }
   } else {
+    content.html(md.render(text));
     message[0].splice(atwhere + 1, 0, boxClass);
     message[1].splice(atwhere + 1, 0, text);
     message[2].splice(atwhere + 1, 0, String(count));
@@ -206,7 +217,7 @@ function submit() {
       && (contents[i] != "This is where answers are generated.")
       && (contents[i] != "*write something here*")
       && (contents[i] != "This is a comment which is can be edited by double-click. All blocks support [MarkDown](https://daringfireball.net/projects/markdown/). Click the **GENERATE** button to get the answer from GPT3.5\n \n - Add block below please click the `add` button. \n - Delete block please click the `delete` button \n - Block type can be changed by expanding the menu on the left \n - Comments are ignored when submiting to API. \n - System prompts target to guide GPT3.5 to generate what you want.")
-      ) {
+    ) {
       processedMsg.push({
         role: roles[i],
         content: contents[i]
@@ -214,49 +225,34 @@ function submit() {
     }
   }
 
-  console.log(JSON.stringify({
-    'messages': processedMsg,
-  }));
-  // const url = `http://34.142.198.190/request.php?messages=${encodeURIComponent(
-  //   JSON.stringify(processedMsg)
-  // )}`;
-  // fetch(url, {
-  //   method: "GET",//请求方式
-  //   headers: {//定制http请求的标头
-  //     "Content-Type": "application/json",
-  //     "Access-Control-Allow-Origin": "*",
-  //     "Access-Control-Allow-Headers": "*"
-  //   }
-  // })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     console.log(data);
-  //     assistantResponce = data.choices[0].message;
-  //     console.log("get response successfully:\n", assistantResponce.content);
-  //     createBox("assistant", assistantResponce.content, -1);
-  //     loading.remove();
-  //   })
-  //   .catch((error) => {
-  //     console.log("failed!")
-  //     createBox("error", "NetWork Error! Please try it again.", -1);
-  //     console.error(error);
-  //     loading.remove();
-  //   });
-
-  fetch(' ', {
+  var errorMsg = { "error": "Invalid URL address!" };
+  // fetch('http://34.124.153.74/request.php', {
+  fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${OPENAI_API_KEY}'
+    },
     body: JSON.stringify({
       'model': 'gpt-3.5-turbo',
       'messages': processedMsg,
     })
   }).then((response) => response.json()).then((result) => {
+    errorMsg = result;
     assistantResponce = result.choices[0].message;
-    console.log("get response successfully:", assistantResponce.content)
+    console.log("get response successfully:", result);
     createBox("assistant", assistantResponce.content, -1);
     loading.remove();
   }).catch((error) => {
-    console.error(error);
-    createBox("error", "NetWork Error! Please try it again.", -1);
+    errorMsg['messages'] = processedMsg;
+    // console.error(error);
+    createBox("error", `
+We have caught a network issue. Please try again !
+
+\`\`\`json
+${JSON.stringify(errorMsg, undefined, 2)}
+\`\`\`
+`, -1);
     console.error(error);
     loading.remove();
   });
@@ -275,4 +271,8 @@ function deleteBox(index_) {
   message[2].splice(i, 1);
   $("#box_id" + index_).remove();
   console.log(message);
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
