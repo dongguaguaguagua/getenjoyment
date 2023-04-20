@@ -1,6 +1,7 @@
 .editForm {
     width: 400px;
-    height: 600px;
+    padding: 10px;
+    height: auto;
     border: 2px solid rgb(65, 147, 136);
     visibility: hidden;
     position: absolute;
@@ -231,4 +232,18 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
+}
+
+#topline_container {
+    width: 200px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.settingsLabel {
+    font-weight: bold;
+    margin: 10px;
+    display: flex;
 }
