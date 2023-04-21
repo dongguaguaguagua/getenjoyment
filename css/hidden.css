@@ -158,7 +158,6 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     overflow-y: auto;
-    max-height: 300px;
     overflow-x: auto;
     max-width: 100%;
 }

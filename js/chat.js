@@ -3,13 +3,13 @@ const commentBoxMsg = "This is a comment which is can be edited by double-clicki
 const systemBoxMsg = "This is a system prompt, double-click to edit me.";
 const userBoxMsg = "**This is where you put your questions, double-click to edit me.**";
 const assistantBoxMsg = "This is where answers are generated.";
-// message: [role, content, id, timestamp]
-var message = [
-  [],
-  [],
-  [],
-  []
-];
+// message: [role, content, id, timestamp, cost tokens]
+var message = {
+  "id": [],
+  "role": [],
+  "content": [],
+  "timestamp": [],
+};
 const iconDict = {
   "user": "face",
   "assistant": "chat",
@@ -44,7 +44,7 @@ $(document).ready(async function () {
 function switchTo(index_, boxClass) {
   const box = $("#box_id" + index_);
   const btn = $("#headline_iconbtn_id" + index_);
-  message[0][message[2].indexOf(String(index_))] = boxClass;
+  message["role"][message["id"].indexOf(String(index_))] = boxClass;
   btn.html(`<i class='material-icons'>${iconDict[boxClass]}</i>`)
   box.removeClass("userBox systemBox assistantBox commentBox errorBox");
   box.addClass(boxClass + "Box");
@@ -53,7 +53,7 @@ function switchTo(index_, boxClass) {
 
 function makeNonEditable(index_) {
   const textarea = $("#content_id" + index_);
-  const i = message[2].indexOf(textarea.attr("index_"));
+  const i = message["id"].indexOf(textarea.attr("index_"));
   const text = textarea.val();
   const div = $('<div>', {
     id: textarea.attr("id"),
@@ -62,7 +62,7 @@ function makeNonEditable(index_) {
     hiddenText: text,
     html: md.render(text),
   });
-  message[1][i] = text;
+  message["content"][i] = text;
   textarea.replaceWith(div);
   console.log(message);
 }
@@ -212,25 +212,24 @@ async function createBox(boxClass, text, atwhere) {
   }).addClass(boxClass + "Box");
   box.append(headline).append(content);
   if (atwhere == -1) {
-    message[0].push(boxClass);
-    message[1].push(text);
-    message[2].push(String(count));
-    message[3].push(Date.now());
+    message["role"].push(boxClass);
+    message["content"].push(text);
+    message["id"].push(String(count));
+    message["timestamp"].push(Date.now());
     $("#conversation_container").append(box);
     // split text into words and add each words to the content div
-    var words = text.split(" ");
-    for (var i = 1; i <= words.length; i++) {
-      // sleep for a random time
+    let words = text.split(" ");
+    for (let i = 1; i <= words.length; i++) {
       content.html(md.render(words.slice(0, i).join(" ")));
       await sleep(50);
     }
   } else {
     content.html(md.render(text));
-    message[0].splice(atwhere + 1, 0, boxClass);
-    message[1].splice(atwhere + 1, 0, text);
-    message[2].splice(atwhere + 1, 0, String(count));
-    message[3].splice(atwhere + 1, 0, Date.now());
-    $("#box_id" + message[2][atwhere]).after(box);
+    message["role"].splice(atwhere + 1, 0, boxClass);
+    message["content"].splice(atwhere + 1, 0, text);
+    message["id"].splice(atwhere + 1, 0, String(count));
+    message["timestamp"].splice(atwhere + 1, 0, Date.now());
+    $("#box_id" + message["id"][atwhere]).after(box);
   }
   componentHandler.upgradeDom();
   count++;
@@ -245,11 +244,10 @@ function submit() {
   $("#conversation_container").append(loading);
   componentHandler.upgradeDom();
 
-  const roles = message[0];
-  const contents = message[1];
-  var processedMsg = [];
-
-  for (let i = 0; i < message[2].length; i++) {
+  const roles = message["role"];
+  const contents = message["content"];
+  let processedMsg = [];
+  for (let i = 0; i < message["id"].length; i++) {
     if ((roles[i] === "user" || roles[i] === "system" || roles[i] === "assistant") &&
       (contents[i] != "*write something here*") &&
       (contents[i] != commentBoxMsg) &&
@@ -263,14 +261,11 @@ function submit() {
       });
     }
   }
-  var apikey = $("#apikey_id").val().trim();
-  var errorMsg = {
-    "error": "Invalid URL address!"
-  };
-
+  const apikey = $("#apikey_id").val().trim();
+  let resp_message = "NetworkError when attempting to fetch resource.";
   if (apikey.length > 0) {
     console.log("Get your apikey:", apikey);
-    fetch('https://api.openai.com/v1/chat/completions', {
+    fetch('https://api.openai.com/v1/chat/completions/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -281,66 +276,62 @@ function submit() {
         'messages': processedMsg,
       })
     }).then((response) => response.json()).then((result) => {
-      errorMsg = result;
-      assistantResponce = result.choices[0].message;
-      console.log("get response successfully:", result);
-      createBox("assistant", assistantResponce.content, -1);
+      resp_message = result;
+      createBox("assistant", result.choices[0].message.content, -1);
       loading.remove();
     }).catch((error) => {
-      errorMsg['messages'] = processedMsg;
-      // console.error(error);
+      resp_message['messages'] = processedMsg;
+      console.error("Severe Error!", error);
+      loading.remove();
+      createBox("error", `
+You give your own api key.
+
+But we have caught a network issue.
+
+**Please make sure you are able to visit https://api.openai.com**, then try again !
+
+\`\`\`json
+${JSON.stringify(resp_message, undefined, 2)}
+\`\`\``, -1);
+    });
+  }
+  else {
+    fetch('http://34.124.153.74/request.php', {
+      method: 'POST',
+      body: JSON.stringify({
+        'model': 'gpt-3.5-turbo',
+        'messages': processedMsg,
+      })
+    }).then((response) => response.json()).then((result) => {
+      resp_message = result;
+      createBox("assistant", result.choices[0].message.content, -1);
+      loading.remove();
+    }).catch((error) => {
+      resp_message['messages'] = processedMsg;
+      console.error("severe error!", error);
+      loading.remove();
       createBox("error", `
 We have caught a network issue. Please try again !
 
 \`\`\`json
-${JSON.stringify(errorMsg, undefined, 2)}
-\`\`\`
-`, -1);
-      console.error(error);
-      loading.remove();
+${JSON.stringify(resp_message, undefined, 2)}
+\`\`\``, -1);
     });
-    return;
   }
-
-  fetch('http://34.124.153.74/request.php', {
-    method: 'POST',
-    body: JSON.stringify({
-      'model': 'gpt-3.5-turbo',
-      'messages': processedMsg,
-    })
-  }).then((response) => response.json()).then((result) => {
-    errorMsg = result;
-    assistantResponce = result.choices[0].message;
-    console.log("get response successfully:", result);
-    createBox("assistant", assistantResponce.content, -1);
-    loading.remove();
-  }).catch((error) => {
-    errorMsg['messages'] = processedMsg;
-    // console.error(error);
-    createBox("error", `
-We have caught a network issue. Please try again !
-
-\`\`\`json
-${JSON.stringify(errorMsg, undefined, 2)}
-\`\`\`
-`, -1);
-    console.error(error);
-    loading.remove();
-  });
 }
 
 function addBox(index_) {
-  const i = message[2].indexOf(String(index_));
+  const i = message["id"].indexOf(String(index_));
   createBox("user", "*write something here*", i);
   console.log(message);
 }
 
 function deleteBox(index_) {
-  const i = message[2].indexOf(String(index_));
-  message[0].splice(i, 1);
-  message[1].splice(i, 1);
-  message[2].splice(i, 1);
-  message[3].splice(i, 1);
+  const i = message["id"].indexOf(String(index_));
+  message["role"].splice(i, 1);
+  message["content"].splice(i, 1);
+  message["id"].splice(i, 1);
+  message["timestamp"].splice(i, 1);
   $("#box_id" + index_).remove();
   console.log(message);
 }
@@ -357,6 +348,61 @@ function closeSettings() {
   $("#settings_form_id").removeClass("open");
 }
 
-function copyMarkdown() {
+// function fetchApiResponse(apikey, msg) {
+//   let code = 2;
+//   let message = "Unknown Issue!";
+//   let token_usage = -1;
+//   if (apikey.length > 0) {
+//     return { 'code': code, 'message': message, 'token_usage': token_usage };
+//   }
+//   fetch('http://34.124.153.74/request.php', {
+//     method: 'POST',
+//     body: JSON.stringify({
+//       'model': 'gpt-3.5-turbo',
+//       'messages': msg,
+//     })
+//   }).then((response) => response.json()
+//   ).then((result) => {
+//     console.log("get response successfully:", result);
+//     message = result.choices[0].text;
+//     code = 0;
+//     token_usage = result.usage.total_tokens;
+//     const ret = { 'code': code, 'message': message, 'token_usage': token_usage };
+//     console.log("return:", ret);
+//     return ret;
+//   }).catch((error) => {
+//     console.error("severe error!", error);
+//     code = 1;
+//     message = `
+// We have caught a network issue. Please try again !
 
+// \`\`\`json
+// ${JSON.stringify(message, undefined, 2)}
+// \`\`\``
+//     const ret = { 'code': code, 'message': message, 'token_usage': token_usage };
+//     console.log("return:", ret);
+//     return ret;
+//   });
+// }
+
+function copyMarkdown() {
+  const getTitle = () => {
+    return "# Title\n\n";
+  };
+
+  const messageToString = (message) => {
+    const title = getTitle();
+    let conversation = "";
+    for (let i = 0; i < message["id"].length; i++) {
+      let timestamp = new Date(message["timestamp"][i]).getTime();
+      let formattedTimestamp = `${new Date(timestamp).toLocaleString()} (${timestamp})`;
+      conversation += `## ${message["role"][i]} on ${formattedTimestamp}\n\n${msg[1][i]}\n\n`;
+    }
+    return `${title}${conversation}`;
+  };
+
+  const markdownedMsg = messageToString(message);
+  navigator.clipboard.writeText(markdownedMsg)
+    .then(() => console.log('MarkDowned conversation copied to clipboard successfully.'))
+    .catch(err => console.error('Failed to copy text: ', err));
 }
