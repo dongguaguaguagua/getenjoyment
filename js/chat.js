@@ -45,7 +45,7 @@ function switchTo(index_, boxClass) {
   const box = $("#box_id" + index_);
   const btn = $("#headline_iconbtn_id" + index_);
   message["role"][message["id"].indexOf(String(index_))] = boxClass;
-  btn.html(`<i class='material-icons'>${iconDict[boxClass]}</i>`)
+  btn.html(`<i class="material-icons">${iconDict[boxClass]}</i>`)
   box.removeClass("userBox systemBox assistantBox commentBox errorBox");
   box.addClass(boxClass + "Box");
   console.log(message);
@@ -55,7 +55,7 @@ function makeNonEditable(index_) {
   const textarea = $("#content_id" + index_);
   const i = message["id"].indexOf(textarea.attr("index_"));
   const text = textarea.val();
-  const div = $('<div>', {
+  const div = $("<div>", {
     id: textarea.attr("id"),
     ondblclick: `makeEditable(${index_})`,
     index_: textarea.attr("index_"),
@@ -69,7 +69,7 @@ function makeNonEditable(index_) {
 
 function makeEditable(index_) {
   const div = $("#content_id" + index_);
-  const textarea = $('<textarea>', {
+  const textarea = $("<textarea>", {
     val: div.attr("hiddenText"),
     id: div.attr("id"),
     index_: div.attr("index_"),
@@ -77,13 +77,13 @@ function makeEditable(index_) {
     hiddenText: div.attr("hiddenText"),
     keydown: function () {
       //Auto-expanding textarea
-      this.style.removeProperty('height');
-      this.style.height = (this.scrollHeight + 10) + 'px';
+      this.style.removeProperty("height");
+      this.style.height = (this.scrollHeight + 10) + "px";
     },
     focus: function () {
       //Do this on focus, to allow textarea to animate to height...
-      this.style.removeProperty('height');
-      this.style.height = (this.scrollHeight + 10) + 'px';
+      this.style.removeProperty("height");
+      this.style.height = (this.scrollHeight + 10) + "px";
     }
   });
   div.replaceWith(textarea);
@@ -97,91 +97,91 @@ async function createBox(boxClass, text, atwhere) {
     class: "head-line"
   });
   // create icons
-  const icon1 = $('<span>', {
-    class: 'material-icons option-icons',
-    text: 'face'
+  const icon1 = $("<span>", {
+    class: "material-icons option-icons",
+    text: "face"
   })
-  const icon2 = $('<span>', {
-    class: 'material-icons option-icons',
-    text: 'settings'
+  const icon2 = $("<span>", {
+    class: "material-icons option-icons",
+    text: "settings"
   })
-  const icon3 = $('<span>', {
-    class: 'material-icons option-icons',
-    text: 'chat'
+  const icon3 = $("<span>", {
+    class: "material-icons option-icons",
+    text: "chat"
   })
-  const icon4 = $('<span>', {
-    class: 'material-icons option-icons',
-    text: 'edit_note'
+  const icon4 = $("<span>", {
+    class: "material-icons option-icons",
+    text: "edit_note"
   })
   // create the button using the MaterialButton function
-  const classBtn = $('<button>', {
+  const classBtn = $("<button>", {
     id: "headline_iconbtn_id" + count,
-    class: 'mdl-button mdl-js-button mdl-button--icon'
-  }).append($('<span>', {
-    class: 'material-icons',
+    class: "mdl-button mdl-js-button mdl-button--icon"
+  }).append($("<span>", {
+    class: "material-icons",
     text: iconDict[boxClass]
   }));
-  const deleteBtn = $('<button>', {
+  const deleteBtn = $("<button>", {
     id: "deletebtn_id" + count,
-    class: 'mdl-button mdl-js-button mdl-button--icon right-float-icons',
+    class: "mdl-button mdl-js-button mdl-button--icon right-float-icons",
     onclick: `deleteBox(${count});`
-  }).append($('<span>', {
-    class: 'material-icons',
+  }).append($("<span>", {
+    class: "material-icons",
     text: "delete"
   }));
-  const editBtn = $('<button>', {
+  const editBtn = $("<button>", {
     id: "editbtn_id" + count,
-    class: 'mdl-button mdl-js-button mdl-button--icon right-float-icons',
+    class: "mdl-button mdl-js-button mdl-button--icon right-float-icons",
     onclick: `makeEditable(${count})`
-  }).append($('<span>', {
-    class: 'material-icons',
+  }).append($("<span>", {
+    class: "material-icons",
     text: "edit"
   }));
-  const addBtn = $('<button>', {
+  const addBtn = $("<button>", {
     id: "addbtn_id" + count,
-    class: 'mdl-button mdl-js-button mdl-button--icon right-float-icons',
+    class: "mdl-button mdl-js-button mdl-button--icon right-float-icons",
     onclick: `addBox(${count})`
-  }).append($('<span>', {
-    class: 'material-icons',
+  }).append($("<span>", {
+    class: "material-icons",
     text: "add"
   }));
   // create the menu using the MaterialMenu function
-  const menu = $('<ul>', {
-    class: 'mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect',
+  const menu = $("<ul>", {
+    class: "mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect",
     for: "headline_iconbtn_id" + count,
   }).append(
-    $('<li>', {
-      class: 'mdl-menu__item',
-      onclick: `switchTo(${count}, 'user')`,
-      text: 'User'
+    $("<li>", {
+      class: "mdl-menu__item",
+      onclick: `switchTo(${count}, "user")`,
+      text: "User"
     }).prepend(icon1),
-    $('<li>', {
-      class: 'mdl-menu__item',
-      onclick: `switchTo(${count}, 'system')`,
-      text: 'System'
+    $("<li>", {
+      class: "mdl-menu__item",
+      onclick: `switchTo(${count}, "system")`,
+      text: "System"
     }).prepend(icon2),
-    $('<li>', {
-      class: 'mdl-menu__item',
-      onclick: `switchTo(${count}, 'assistant')`,
-      text: 'Assistant'
+    $("<li>", {
+      class: "mdl-menu__item",
+      onclick: `switchTo(${count}, "assistant")`,
+      text: "Assistant"
     }).prepend(icon3),
-    $('<li>', {
-      class: 'mdl-menu__item',
-      onclick: `switchTo(${count}, 'comment')`,
-      text: 'Comment'
+    $("<li>", {
+      class: "mdl-menu__item",
+      onclick: `switchTo(${count}, "comment")`,
+      text: "Comment"
     }).prepend(icon4),
   );
-  const tipsForDelete = $('<div>', {
+  const tipsForDelete = $("<div>", {
     class: "mdl-tooltip",
     for: "deletebtn_id" + count,
     text: "Delete that block"
   });
-  const tipsForEdit = $('<div>', {
+  const tipsForEdit = $("<div>", {
     class: "mdl-tooltip",
     for: "editbtn_id" + count,
     text: "Edit that block"
   });
-  const tipsForAdd = $('<div>', {
+  const tipsForAdd = $("<div>", {
     class: "mdl-tooltip",
     for: "addbtn_id" + count,
     text: "Add a new block below"
@@ -198,16 +198,16 @@ async function createBox(boxClass, text, atwhere) {
     tipsForEdit,
   );
   // create content container
-  content = $('<div>', {
-    id: 'content_id' + count,
+  content = $("<div>", {
+    id: "content_id" + count,
     index_: count,
     ondblclick: `makeEditable(${count})`,
     hiddenText: text,
   });
   // create the div box
-  const box = $('<div>', {
+  const box = $("<div>", {
     index_: count,
-    id: 'box_id' + count,
+    id: "box_id" + count,
     class: "mdl-cell mdl-cell--12-col mdl-shadow--2dp",
   }).addClass(boxClass + "Box");
   box.append(headline).append(content);
@@ -237,16 +237,16 @@ async function createBox(boxClass, text, atwhere) {
 
 function submit() {
   // add loading effect
-  const loading = $('<div>', {
+  const loading = $("<div>", {
     id: "loading",
     class: "mdl-progress mdl-js-progress mdl-progress__indeterminate",
   });
   $("#conversation_container").append(loading);
   componentHandler.upgradeDom();
-
   const roles = message["role"];
   const contents = message["content"];
   let processedMsg = [];
+  let userQuestions = [];
   for (let i = 0; i < message["id"].length; i++) {
     if ((roles[i] === "user" || roles[i] === "system" || roles[i] === "assistant") &&
       (contents[i] != "*write something here*") &&
@@ -255,6 +255,9 @@ function submit() {
       (contents[i] != userBoxMsg) &&
       (contents[i] != assistantBoxMsg)
     ) {
+      if (roles[i] === "user") {
+        userQuestions.push(contents[i])
+      }
       processedMsg.push({
         role: roles[i],
         content: contents[i]
@@ -262,25 +265,74 @@ function submit() {
     }
   }
   const apikey = $("#apikey_id").val().trim();
+  // get title
+  if (userQuestions.length == 2) {
+    if (apikey.length > 0) {
+      fetch("https://api.openai.com/v1/chat/completions/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + apikey
+        },
+        body: JSON.stringify({
+          "model": "gpt-3.5-turbo",
+          "messages": [{
+            "role": "user",
+            "content": `Use no more than 10 words to title this conversation:\n${userQuestions}`
+          }],
+        })
+      }).then((response) => response.json()).then(async (result) => {
+        let title = result.choices[0].message.content;
+        title.replace("\"", "");
+        for (let i = 1; i <= title.length - 1; i++) {
+          $('#topline_title_id').text(title.slice(0, i));
+          await sleep(50);
+        }
+      }).catch((error) => {
+        console.error("Severe Error! When generating the title", error);
+      });
+    }
+    else {
+      fetch("http://34.124.153.74/request.php", {
+        method: "POST",
+        body: JSON.stringify({
+          "model": "gpt-3.5-turbo",
+          "messages": [{
+            "role": "user",
+            "content": `Use no more than 10 words to title this conversation:\n${userQuestions}`
+          }],
+        })
+      }).then((response) => response.json()).then(async (result) => {
+        let title = result.choices[0].message.content;
+        title.replace("\"", "");
+        for (let i = 1; i <= title.length - 1; i++) {
+          $('#topline_title_id').text(title.slice(0, i));
+          await sleep(50);
+        }
+      }).catch((error) => {
+        console.error("Severe Error! When generating the title", error);
+      });
+    }
+  }
   let resp_message = "NetworkError when attempting to fetch resource.";
   if (apikey.length > 0) {
     console.log("Get your apikey:", apikey);
-    fetch('https://api.openai.com/v1/chat/completions/', {
-      method: 'POST',
+    fetch("https://api.openai.com/v1/chat/completions/", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + apikey
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + apikey
       },
       body: JSON.stringify({
-        'model': 'gpt-3.5-turbo',
-        'messages': processedMsg,
+        "model": "gpt-3.5-turbo",
+        "messages": processedMsg,
       })
     }).then((response) => response.json()).then((result) => {
       resp_message = result;
       createBox("assistant", result.choices[0].message.content, -1);
       loading.remove();
     }).catch((error) => {
-      resp_message['messages'] = processedMsg;
+      resp_message["messages"] = processedMsg;
       console.error("Severe Error!", error);
       loading.remove();
       createBox("error", `
@@ -296,19 +348,19 @@ ${JSON.stringify(resp_message, undefined, 2)}
     });
   }
   else {
-    fetch('http://34.124.153.74/request.php', {
-      method: 'POST',
+    fetch("http://34.124.153.74/request.php", {
+      method: "POST",
       body: JSON.stringify({
-        'model': 'gpt-3.5-turbo',
-        'messages': processedMsg,
+        "model": "gpt-3.5-turbo",
+        "messages": processedMsg,
       })
     }).then((response) => response.json()).then((result) => {
       resp_message = result;
       createBox("assistant", result.choices[0].message.content, -1);
       loading.remove();
     }).catch((error) => {
-      resp_message['messages'] = processedMsg;
-      console.error("severe error!", error);
+      resp_message["messages"] = processedMsg;
+      console.error("Severe Error!", error);
       loading.remove();
       createBox("error", `
 We have caught a network issue. Please try again !
@@ -348,43 +400,6 @@ function closeSettings() {
   $("#settings_form_id").removeClass("open");
 }
 
-// function fetchApiResponse(apikey, msg) {
-//   let code = 2;
-//   let message = "Unknown Issue!";
-//   let token_usage = -1;
-//   if (apikey.length > 0) {
-//     return { 'code': code, 'message': message, 'token_usage': token_usage };
-//   }
-//   fetch('http://34.124.153.74/request.php', {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       'model': 'gpt-3.5-turbo',
-//       'messages': msg,
-//     })
-//   }).then((response) => response.json()
-//   ).then((result) => {
-//     console.log("get response successfully:", result);
-//     message = result.choices[0].text;
-//     code = 0;
-//     token_usage = result.usage.total_tokens;
-//     const ret = { 'code': code, 'message': message, 'token_usage': token_usage };
-//     console.log("return:", ret);
-//     return ret;
-//   }).catch((error) => {
-//     console.error("severe error!", error);
-//     code = 1;
-//     message = `
-// We have caught a network issue. Please try again !
-
-// \`\`\`json
-// ${JSON.stringify(message, undefined, 2)}
-// \`\`\``
-//     const ret = { 'code': code, 'message': message, 'token_usage': token_usage };
-//     console.log("return:", ret);
-//     return ret;
-//   });
-// }
-
 function copyMarkdown() {
   const getTitle = () => {
     return "# Title\n\n";
@@ -395,14 +410,14 @@ function copyMarkdown() {
     let conversation = "";
     for (let i = 0; i < message["id"].length; i++) {
       let timestamp = new Date(message["timestamp"][i]).getTime();
-      let formattedTimestamp = `${new Date(timestamp).toLocaleString()} (${timestamp})`;
-      conversation += `## ${message["role"][i]} on ${formattedTimestamp}\n\n${msg[1][i]}\n\n`;
+      let formattedTimestamp = new Date(timestamp).toLocaleString();
+      conversation += `## ${message["role"][i]} on ${formattedTimestamp}\n\n${message["content"][i]}\n\n`;
     }
     return `${title}${conversation}`;
   };
 
   const markdownedMsg = messageToString(message);
   navigator.clipboard.writeText(markdownedMsg)
-    .then(() => console.log('MarkDowned conversation copied to clipboard successfully.'))
-    .catch(err => console.error('Failed to copy text: ', err));
+    .then(() => console.log("MarkDowned conversation copied to clipboard successfully."))
+    .catch(err => console.error("Failed to copy text: ", err));
 }
