@@ -248,6 +248,27 @@
     line-height: 40px;
 }
 
+#markdown_text_id pre {
+    padding: 5px;
+    display: block;
+    font-size: 13px;
+    line-height: 1.42857143;
+    word-break: break-all;
+    word-wrap: break-word;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow-y: auto;
+    overflow-x: auto;
+    max-width: 100%;
+    max-height: 400px;
+    margin: 0px;
+}
+
+#markdown_text_id button {
+    margin-top: 10px;
+    margin-left: 40%;
+}
+
 .settingsLabel {
     font-weight: bold;
     margin: 10px;

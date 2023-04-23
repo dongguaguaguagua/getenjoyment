@@ -4,6 +4,8 @@ node_modules/
 
 /dist
 
+config.php
+
 # local env files
 
 .env.local

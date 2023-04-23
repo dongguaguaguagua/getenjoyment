@@ -17,6 +17,10 @@ const iconDict = {
   "error": "error",
   "comment": "edit_note"
 };
+String.prototype.replaceAll = function (f, e) {//把f替换成e
+  var reg = new RegExp(f, "g"); //创建正则RegExp对象
+  return this.replace(reg, e);
+}
 const md = new markdownit({
   linkify: true, // Autoconvert URLs into links
   // typographer: true, // Enable smartypants and other typographic replacements
@@ -268,7 +272,7 @@ function submit() {
   // get title
   if (userQuestions.length == 2) {
     if (apikey.length > 0) {
-      fetch("https://api.openai.com/v1/chat/completions/", {
+      fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -283,9 +287,9 @@ function submit() {
         })
       }).then((response) => response.json()).then(async (result) => {
         let title = result.choices[0].message.content;
-        title.replace("\"", "");
+        title.replaceAll("\"", "");
         for (let i = 1; i <= title.length - 1; i++) {
-          $('#topline_title_id').text(title.slice(0, i));
+          $("#topline_title_id").text(title.slice(0, i));
           await sleep(50);
         }
       }).catch((error) => {
@@ -293,20 +297,20 @@ function submit() {
       });
     }
     else {
-      fetch("http://34.124.153.74/request.php", {
+      fetch("request.php", {
         method: "POST",
         body: JSON.stringify({
           "model": "gpt-3.5-turbo",
           "messages": [{
             "role": "user",
-            "content": `Use no more than 10 words to title this conversation:\n${userQuestions}`
+            "content": `Title this conversation as breif as possible:\n${userQuestions}`
           }],
         })
       }).then((response) => response.json()).then(async (result) => {
         let title = result.choices[0].message.content;
-        title.replace("\"", "");
+        title.replaceAll("\"", "");
         for (let i = 1; i <= title.length - 1; i++) {
-          $('#topline_title_id').text(title.slice(0, i));
+          $("#topline_title_id").text(title.slice(0, i));
           await sleep(50);
         }
       }).catch((error) => {
@@ -317,7 +321,7 @@ function submit() {
   let resp_message = "NetworkError when attempting to fetch resource.";
   if (apikey.length > 0) {
     console.log("Get your apikey:", apikey);
-    fetch("https://api.openai.com/v1/chat/completions/", {
+    fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -348,7 +352,7 @@ ${JSON.stringify(resp_message, undefined, 2)}
     });
   }
   else {
-    fetch("http://34.124.153.74/request.php", {
+    fetch("request.php", {
       method: "POST",
       body: JSON.stringify({
         "model": "gpt-3.5-turbo",
@@ -400,24 +404,48 @@ function closeSettings() {
   $("#settings_form_id").removeClass("open");
 }
 
-function copyMarkdown() {
-  const getTitle = () => {
-    return "# Title\n\n";
-  };
+function closeMarkdown() {
+  $("#markdown_text_id").removeClass("open");
+}
 
-  const messageToString = (message) => {
-    const title = getTitle();
-    let conversation = "";
-    for (let i = 0; i < message["id"].length; i++) {
-      let timestamp = new Date(message["timestamp"][i]).getTime();
-      let formattedTimestamp = new Date(timestamp).toLocaleString();
-      conversation += `## ${message["role"][i]} on ${formattedTimestamp}\n\n${message["content"][i]}\n\n`;
-    }
-    return `${title}${conversation}`;
-  };
+function openMarkdown() {
+  let markdownBox = $("#markdown_text_id");
+  let title = $("#topline_title_id").text();
+  if (title == "") {
+    title = "New Conversation"
+  }
+  let conversation = "";
+  for (let i = 0; i < message["id"].length; i++) {
+    let timestamp = new Date(message["timestamp"][i]).getTime();
+    let formattedTimestamp = new Date(timestamp).toLocaleString();
+    conversation += `## ${message["role"][i]} on ${formattedTimestamp}\n\n${message["content"][i]}\n\n`;
+  }
+  const markdownedMsg = `# ${title}\n\n${conversation}`;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(markdownedMsg)
+      .then(() => {
+        console.log('Text copied to clipboard:\n\n', markdownedMsg);
+      })
+      .catch((error) => {
+        console.error('Failed to copy text: ', error);
+      });
+  } else {
+    console.warn('Clipboard API not supported on this browser...');
+  }
+  markdownBox.addClass("open");
+  markdownBox.html(md.render(`
+*The following markdown has been copied to your clipboard automatically.*
 
-  const markdownedMsg = messageToString(message);
-  navigator.clipboard.writeText(markdownedMsg)
-    .then(() => console.log("MarkDowned conversation copied to clipboard successfully."))
-    .catch(err => console.error("Failed to copy text: ", err));
+**If not, copy it by yourself!**
+
+\`\`\`markdown
+${markdownedMsg.replaceAll("`", "\\`")}
+\`\`\`
+`))
+  markdownBox.append($("<button>", {
+    class: "mdl-button mdl-js-button mdl-js-ripple-effect",
+    onclick: "closeMarkdown()",
+    text: "关闭"
+  }));
+  componentHandler.upgradeDom();
 }
