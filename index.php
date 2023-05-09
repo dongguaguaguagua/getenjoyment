@@ -460,6 +460,39 @@ definePages();
       </section>
       <section class="mdl-layout__tab-panel" id="fixed-tab-gpt">
         <div class="page-content">
+          <div class="editForm" id="settings_form_id">
+            <span class="settingsLabel">I have an API Key</span>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="apikey_id" pattern="^sk-[a-zA-Z0-9]{48}">
+              <label class="mdl-textfield__label" for="apikey_id">Put your api key here</label>
+            </div>
+            <span class="settingsLabel">Temperature</span>
+            <input class="mdl-slider mdl-js-slider" type="range" min="0" max="1" step="0.01" value="0.5"
+              id="temperature_slider_id">
+            <span class="settingsLabel">Presence Penalty</span>
+            <input class="mdl-slider mdl-js-slider" type="range" min="-2.0" max="2.0" step="0.01" value="0"
+              id="presence_penalty_slider_id">
+            <span class="settingsLabel">Max Tokens</span>
+            <input class="mdl-slider mdl-js-slider" type="range" min="0" max="2048" value="2000"
+              id="max_tokens_slider_id">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="closeSettings()">
+              关闭
+            </button>
+          </div>
+          <div class="editForm" style="text-align: left;" id="markdown_text_id"></div>
+          <div id="topline_container">
+            <span class="topline-title" id="topline_title_id"></span>
+            <div class="mdl-tooltip" for="settingsbtn_id">Open Settings</div>
+            <button style="float: right;" id="settingsbtn_id"
+              class="mdl-button mdl-js-button mdl-button--icon right-float-icons" onclick="openSettings()">
+              <span class='material-icons'>settings</span>
+            </button>
+            <div class="mdl-tooltip" for="copymdbtn_id">Copy Markdown</div>
+            <button style="float: right;" id="copymdbtn_id"
+              class="mdl-button mdl-js-button mdl-button--icon right-float-icons" onclick="openMarkdown()">
+              <span class="material-icons">copy_all</span>
+            </button>
+          </div>
           <div id="conversation_container"></div>
           <div id="btnContainer">
             <button onclick="submit()" style="width: 100%;"

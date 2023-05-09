@@ -84,7 +84,7 @@ definePages();
       <div class="editForm" id="settings_form_id">
         <span class="settingsLabel">I have an API Key</span>
         <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="apikey_id" pattern="^(sk-)[0-9a-zA-Z]+">
+          <input class="mdl-textfield__input" type="text" id="apikey_id" pattern="^sk-[a-zA-Z0-9]{48}">
           <label class="mdl-textfield__label" for="apikey_id">Put your api key here</label>
         </div>
         <span class="settingsLabel">Temperature</span>
@@ -99,15 +99,17 @@ definePages();
           关闭
         </button>
       </div>
+      <div class="editForm" style="text-align: left;" id="markdown_text_id"></div>
       <div id="topline_container">
+        <span class="topline-title" id="topline_title_id"></span>
         <div class="mdl-tooltip" for="settingsbtn_id">Open Settings</div>
-        <button id="settingsbtn_id" class="mdl-button mdl-js-button mdl-button--icon right-float-icons"
-          onclick="openSettings()">
+        <button style="float: right;" id="settingsbtn_id"
+          class="mdl-button mdl-js-button mdl-button--icon right-float-icons" onclick="openSettings()">
           <span class='material-icons'>settings</span>
         </button>
         <div class="mdl-tooltip" for="copymdbtn_id">Copy Markdown</div>
-        <button id="copymdbtn_id" class="mdl-button mdl-js-button mdl-button--icon right-float-icons"
-          onclick="copyMarkdown()">
+        <button style="float: right;" id="copymdbtn_id"
+          class="mdl-button mdl-js-button mdl-button--icon right-float-icons" onclick="openMarkdown()">
           <span class="material-icons">copy_all</span>
         </button>
       </div>
@@ -132,6 +134,7 @@ definePages();
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- material design lite -->
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<!-- GPT3.5 -->
 <script src="js/chat.js"></script>
 
 </html>
